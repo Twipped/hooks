@@ -23,7 +23,7 @@ export { default as useIsFocusVisible } from './hooks/useIsFocusVisible.js';
 export { default as useIsTransitioning } from './hooks/useIsTransitioning.js';
 export { default as useLazyRef } from './hooks/useLazyRef.js';
 export { default as useLocalObservable } from './hooks/useLocalObservable.js';
-export { default as useLocalStorage } from './hooks/useLocalStorage.js';
+export { default as useLocalStorage, useSessionStorage } from './hooks/useLocalStorage.js';
 export { default as useMakeObservable } from './hooks/useMakeObservable.js';
 export { default as useMap } from './hooks/useMap.js';
 export { default as useMemoMapped } from './hooks/useMemoMapped.js';
