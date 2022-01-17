@@ -1,13 +1,14 @@
 
-import { useState, useCallback } from 'react';
+import { useCallback } from 'react';
 import { jsonSoftParse } from '@twipped/utils';
 import { useWindowEventListener } from './useGlobalListener';
+import useDerivedState from './useDerivedState';
 
 function useWebStorage (store, key, defaultValue) {
-  const [ value, writeValue ] = useState(() => {
+  const [ value, writeValue, getValue ] = useDerivedState(() => {
     const stored = jsonSoftParse(store.getItem(key));
     return stored || stored === 0 ? stored : defaultValue;
-  });
+  }, [ store, key ]);
 
   const setValue = useCallback((newValue) => {
     writeValue(() => {
@@ -22,7 +23,7 @@ function useWebStorage (store, key, defaultValue) {
     }
   });
 
-  return [ value, setValue ];
+  return [ value, setValue, getValue ];
 }
 
 function* storageKeys (store) {
