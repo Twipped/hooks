@@ -1,0 +1,23 @@
+{
+  "exclude": "node_modules/**",
+  "compact": false,
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "modules": false,
+        "useBuiltIns": "usage",
+        "corejs": {
+          "version": 3,
+          "shippedProposals": true
+        }
+      }
+    ],
+    [
+      "@babel/preset-react",
+      {
+        "runtime": "automatic"
+      }
+    ]
+  ]
+}

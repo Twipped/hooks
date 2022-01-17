@@ -1,0 +1,47 @@
+{
+  "name": "@twipped/hooks",
+  "version": "0.0.0",
+  "description": "A collection of my frequently used react hooks",
+  "engines": {
+    "node": ">=14.13"
+  },
+  "scripts": {
+    "lint": "eslint './**/*.{js,jsx}' --fix"
+  },
+  "author": "Jocelyn Badgley <joc@twipped.com> (http://twipped.com)",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/preset-env": "~7.16.8",
+    "@babel/preset-react": "~7.16.7",
+    "eslint": "~8.7.0",
+    "eslint-config-twipped": "~6.1.0",
+    "eslint-plugin-import": "~2.25.4",
+    "eslint-plugin-node": "~11.1.0",
+    "eslint-plugin-promise": "~6.0.0",
+    "eslint-plugin-react": "~7.28.0"
+  },
+  "files": [
+    "hooks",
+    "CHANGELOG.md",
+    "LICENSE.txt",
+    "README.md"
+  ],
+  "dependencies": {
+    "@twipped/utils": "~5.0.2"
+  },
+  "peerDependencies": {
+    "prop-types": ">=15",
+    "react": ">=17"
+  },
+  "optionalDependencies": {
+    "date-fns": "~2.28.0",
+    "mobx": ">=6.3",
+    "mobx-react-lite": "~3.2.3",
+    "qs": "~6.10.3"
+  },
+  "main": "./index.js",
+  "exports": {
+    ".": "./index.js",
+    "./*": "./hooks/*.js"
+  }
+}
