@@ -18,7 +18,7 @@ const deep = (...args) => !deepEqual(...args);
  * @param  {Function}     comparator A function to evaluate if the result of the handler differs from current state
  * @return {[mixed, Function]} Returns a tuple containing the current state and an updater function.
  */
-export default function useDerivedState (fn, deps = [ fn ], comparator = shallow) {
+export default function useDerivedState (fn, deps = [ fn ], { comparator = shallow, ...ops } = {}) {
   if (comparator === true) comparator = deep;
 
   if (!isFunction(fn)) {
@@ -28,7 +28,7 @@ export default function useDerivedState (fn, deps = [ fn ], comparator = shallow
 
   const initial = useStableMemo(fn, deps);
 
-  var [ state, writeState, readState ] = useGettableState(initial);
+  var [ state, writeState, readState ] = useGettableState(initial, ops);
   useImmediateUpdateEffect(() => {
     const diff = comparator(state, initial);
     if (diff) {
