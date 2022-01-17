@@ -8,6 +8,10 @@
   "scripts": {
     "lint": "eslint './**/*.{js,jsx}' --fix"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Twipped/hooks"
+  },
   "author": "Jocelyn Badgley <joc@twipped.com> (http://twipped.com)",
   "license": "MIT",
   "devDependencies": {
