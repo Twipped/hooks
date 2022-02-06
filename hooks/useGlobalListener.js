@@ -1,14 +1,19 @@
 
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useMemo, useRef, useCallback } from 'react';
 import useEventCallback from './useEventCallback';
 
 const getRefTarget = (ref) => ref && ('current' in ref ? ref.current : ref);
 
-
+/**
+ * Shortcut for useGlobalListener against the window
+ */
 export function useWindowEventListener (eventName, listener, capture) {
   return useGlobalListener(eventName, listener, capture, window);
 }
 
+/**
+ * Shortcut for useGlobalListener against the document
+ */
 export function useDocumentEventListener (eventName, listener, capture) {
   return useGlobalListener(eventName, listener, capture, document);
 }
@@ -23,9 +28,9 @@ export function useDocumentEventListener (eventName, listener, capture) {
  * })
  * ```
  *
- * @param eventName The DOM event name
- * @param handler An event handler
- * @param capture Whether or not to listen during the capture event phase
+ * @param eventName Name of the DOM event to listen for.
+ * @param handler   An event handler
+ * @param capture   Whether or not to listen during the capture event phase
  */
 export default function useGlobalListener (eventName, listener, capture = false, ownerElementRef = null) {
   const targetRef = useRef(null);
@@ -60,6 +65,17 @@ export default function useGlobalListener (eventName, listener, capture = false,
   }, [ eventName, handler, capture, ownerElementRef ]);
 }
 
+
+/**
+ * Similar to useGlobalListener, but only binds to the target when told to.
+ * Returns an object containing `remove`, `attach`, and `when` functions.
+ * `when` will attach as long as the provided value is truthy.
+ * @param  {string}    eventName          Name of the DOM event to listen for.
+ * @param  {Function}  handler            An event handler
+ * @param  {Boolean}   capture            Whether or not to listen during the capture event phase
+ * @param  {Ref}       [ownerElementRef]  Ref of an element in the document to be bound to.
+ * @return {Object}
+ */
 export function useToggledGlobalListener (eventName, listener, capture = false, ownerElementRef = null) {
   const targetRef = useRef(null);
   const prehandler = useEventCallback(listener);
@@ -74,36 +90,38 @@ export function useToggledGlobalListener (eventName, listener, capture = false, 
     prehandler(e, ...args);
   });
 
-  const remove = useCallback(() => {
-    if (!targetRef.current) return;
-    const { target, eventName: _event, capture: _capture } = targetRef.current;
-    target.removeEventListener(_event, handler, _capture);
-    targetRef.current = null;
-  }, [ handler ]);
+  const api = useMemo(() => ({
+    remove () {
+      if (!targetRef.current) return;
+      const { target, eventName: _event, capture: _capture } = targetRef.current;
+      target.removeEventListener(_event, handler, _capture);
+      targetRef.current = null;
+    },
 
-  const attach = useCallback(() => {
-    const target = getRefTarget(ownerElementRef)?.ownerDocument || document;
+    attach () {
+      const target = getRefTarget(ownerElementRef)?.ownerDocument || document;
 
-    if (targetRef.current) remove();
+      if (targetRef.current) api.remove();
 
-    targetRef.current = { target, eventName, capture, currentEvent: window.event };
-    target.addEventListener(eventName, handler, capture);
-  }, [ handler, ownerElementRef, capture ]);
+      targetRef.current = { target, eventName, capture, currentEvent: window.event };
+      target.addEventListener(eventName, handler, capture);
+    },
 
-  const when_ = useCallback((value) => {
-    if (value && !targetRef.current) attach();
-    else if (!value && targetRef.current) remove();
-  }, [ attach, remove ]);
+    when (value) {
+      if (value && !targetRef.current) api.attach();
+      else if (!value && targetRef.current) api.remove();
+    },
+  }));
 
   useEffect(() => {
     // do not bind immediately, but if we're already bound we need to refresh.
     if (targetRef.current) {
-      remove();
-      attach();
+      api.remove();
+      api.attach();
     }
 
-    return remove;
+    return api.remove;
   }, [ eventName, handler, capture, ownerElementRef ]);
 
-  return { attach, remove, when: when_ };
+  return api;
 }

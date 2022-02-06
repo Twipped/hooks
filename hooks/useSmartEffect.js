@@ -1,16 +1,16 @@
 
 import { useEffect, useRef } from 'react';
 import { shallowEqual, deepEqual } from '@twipped/utils';
-import areHookInputsEqual from './areHookInputsEqual';
 import dft from './default';
 
 /**
- * Runs an effect only when the dependencies have changed, using whatever comparison
- * function is provided, or a shallow equal if none is provided.
- *
- * @category effects
+ * Identical to useEffect, except dependencies may be compared deeply.
+ * @param  {Function} effect The function to execute after render.
+ * @param  {Object}   dependencies An object or array of values to compare for changes.
+ * @param  {Boolean}  options.comparison The comparison function used to detect if
+ * the dependencies change. Defaults to a shallow equal, pass true to use deep equality.
  */
-export default function useSmartEffect (fn, deps, comparison = areHookInputsEqual) {
+export default function useSmartEffect (fn, deps, { comparison = false } = {}) {
   if (comparison === false) comparison = shallowEqual;
   if (comparison === true) comparison = deepEqual;
 

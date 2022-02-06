@@ -2,6 +2,11 @@
 import { useRef, Children } from 'react';
 import areHookInputsEqual from './areHookInputsEqual';
 
+/**
+ * Recursively iterates over the child structure, one child at a time.
+ * @param {ReactChildren} children
+ * @yield {any} The current child
+ */
 export function* childDescender (children) {
   for (const child of Children.toArray(children)) {
     if (child.props && child.props.children) {
@@ -28,6 +33,13 @@ function flattenChildren (childs) {
   ).flat(1);
 }
 
+/**
+ * Works much like useMemo, except based upon the component child structure.
+ * Memoizes deeply against all descendant properties.
+ * @param  {ReactChildren} children A react component `children` value.
+ * @param  {Function} factory The function to evaluate at mount and whenever children changes.
+ * @return {any} The last return value of the factory.
+ */
 export default function useChildren (children, factory) {
   let isValid = true;
 

@@ -2,16 +2,20 @@
 import { useRef } from 'react';
 import usePrevious from './usePrevious';
 
-/*
-  Returns an integer that increments any time the passed value changes
+/**
+ * Returns an integer that increments any time the passed value changes
+ * @param  {any}    value
+ * @param  {Number} step  Amount to increment by.
+ * @return {Number} The incrementing value
  */
 export default function useIncrementer (value, step = 1) {
   const ref = useRef(-step);
   const prev = usePrevious(value);
+  const resetRef = useRef(() => { ref.current = 0; });
 
   if (value !== prev) {
     ref.current += step;
   }
 
-  return ref.current;
+  return [ ref.current, resetRef.current ];
 }

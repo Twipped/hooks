@@ -5,10 +5,14 @@ import { shallowEqual, deepEqual } from '@twipped/utils';
 import areHookInputsEqual from './areHookInputsEqual';
 import dft from './default';
 
-/*
-  Produces a MobX computed observable that invalidates when the dependencies change
+/**
+ * Produces a MobX computed observable that invalidates when the dependencies change
+ * @param  {Function}    fn         Factory function for generating the observable.
+ * @param  {Array<any>}  deps       Dependencies array
+ * @param  {Object}      options
+ * @return {Observable<any>}
  */
-export default function useComputed (fn, deps, comparison = areHookInputsEqual) {
+export default function useComputed (fn, deps, { comparison = areHookInputsEqual } = {}) {
   if (comparison === false) comparison = shallowEqual;
   if (comparison === true) comparison = deepEqual;
 

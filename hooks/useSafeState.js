@@ -3,12 +3,12 @@ import useMounted from './useMounted';
 
 /**
  * `useSafeState` takes the return value of a `useState` hook and wraps the
- * setter to prevent updates onces the component has unmounted. Can used
+ * setter to prevent updates once the component has unmounted. Can used
  * with `useMergeState` and `useStateAsync` as well
  *
  * @param state The return value of a useStateHook
  *
- * ```ts
+ * ```js
  * const [show, setShow] = useSafeState(useState(true));
  * ```
  */

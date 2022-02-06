@@ -9,6 +9,12 @@ function matches (parent, target, selector) {
   return nodes.includes(target);
 }
 
+/**
+ * Returns true if the target element is currently animating a css transition
+ * @param  {Ref<Element>} elementRef
+ * @param  {String} [selector]   Optional css selector to specify the animation delegate
+ * @return {Boolean}
+ */
 export default function useIsTransitioning (elementRef, selector = null) {
   const [ isTransitioning, setTransition ] = useState(0);
 

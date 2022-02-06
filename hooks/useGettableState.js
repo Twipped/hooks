@@ -1,30 +1,44 @@
 
-import { useState, useCallback, useRef } from 'react';
-import { isObject, deepEqual } from '@twipped/utils';
+import { useState, useMemo, useRef } from 'react';
+import { isFunction, isObject, shallowEqual, deepEqual } from '@twipped/utils';
 
 /**
  * Functions identical to useState, except the state is retrievable
  * via a callback passed as the third return element. This always returns
  * the current state regardless of where we are in the render process.
- * @param  {...[type]} args [description]
- * @return {[type]}         [description]
+ * @param  {any}    initial                  Default value passed to useState
+ * @param  {Boolean} options.alwaysMerge      [description]
+ * @param  {Boolean} options.alwaysUpdate     [description]
+ * @param  {Boolean|Function} options.comparison } When alwaysUpdate is false, the comparison
+ * function provided will evaluate if the new state differs from the old state. Pass true
+ * to perform a deep equal, otherwise the comparison will be shallow.
+ * @return {[ state, setState, getState ]}
  */
-export default function useGettableState (initial, { alwaysMerge, alwaysUpdate, onlyUpdateOnDiff } = {}) {
+export default function useGettableState (initial, { alwaysMerge = false, alwaysUpdate = true, comparison = false } = {}) {
+  if (!comparison) comparison = shallowEqual;
+  if (comparison === true)  comparison = deepEqual;
+  if (!isFunction(comparison)) alwaysUpdate = true;
+
   const [ state, setState ] = useState(initial);
   const ref = useRef(state);
   ref.current = state;
 
-  const getter = useCallback(() => ref.current, [ ref ]);
-  const setter = useCallback((value, merge = alwaysMerge, forceUpdate = alwaysUpdate) => {
-    if (merge && isObject(value, true)) {
-      value = { ...ref.current, ...value };
-    }
-    if (!forceUpdate && onlyUpdateOnDiff && deepEqual(value, ref.current)) return;
-    ref.current = value;
-    setState(value);
-  }, [ ref, setState ]);
+  const { getter, setter } = useMemo(() => ({
+    getter () {
+      return ref.current;
+    },
 
-  setter.reset = useCallback(() => setter(initial));
+    setter (value, { merge = alwaysMerge, forceUpdate = alwaysUpdate } = {}) {
+      if (merge && isObject(value, true)) {
+        value = { ...ref.current, ...value };
+      }
+      if (!forceUpdate && comparison(value, ref.current)) return;
+      ref.current = value;
+      setState(value);
+    },
+  }));
+
+  setter.reset = (options) => setter(isFunction(initial) ? initial() : initial, options);
 
   return [ state, setter, getter ];
 }

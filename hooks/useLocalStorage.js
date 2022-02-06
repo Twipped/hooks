@@ -12,7 +12,11 @@ function useWebStorage (store, key, defaultValue) {
 
   const setValue = useCallback((newValue) => {
     writeValue(() => {
-      store.setItem(key, JSON.stringify(newValue));
+      if (newValue === undefined) {
+        store.removeItem(key);
+      } else {
+        store.setItem(key, JSON.stringify(newValue));
+      }
       return newValue;
     });
   }, [ key ]);
@@ -32,12 +36,32 @@ function* storageKeys (store) {
   }
 }
 
+/**
+ * Creates a state store that is connected to the browser localStorage
+ * @param  {string} key          Name of the key to store the value into
+ * @param  {any} defaultValue    The initial value to use if the key does not exist.
+ * @return {[ value, setValue, getValue]} A three item array.
+ */
 export default function useLocalStorage (key, defaultValue) {
   return useWebStorage(window.localStorage, key, defaultValue);
 }
+
+/**
+ * Returns an array of the keys present in localStorage
+ */
 useLocalStorage.keys = () => Array.from(storageKeys(window.localStorage));
 
+/**
+ * Creates a state store that is connected to the browser sessionStorage
+ * @param  {string} key          Name of the key to store the value into
+ * @param  {any} defaultValue    The initial value to use if the key does not exist.
+ * @return {[ value, setValue, getValue]} A three item array.
+ */
 export function useSessionStorage (key, defaultValue) {
   return useWebStorage(window.sessionStorage, key, defaultValue);
 }
+
+/**
+ * Returns an array of the keys present in sessionStorage
+ */
 useSessionStorage.keys = () => Array.from(storageKeys(window.sessionStorage));

@@ -4,16 +4,16 @@ import useWillUnmount from './useWillUnmount';
 import { useRef } from 'react';
 
 /**
- * An _immediate_ effect that runs an effect callback when its dependency array
- * changes. This is helpful for updates should must run during render, most
- * commonly state derived from props; a more ergonomic version of https://reactjs.org/docs/hooks-faq.html#how-do-i-implement-getderivedstatefromprops
+ * A synchronous effect that evaluates only when its dependency array changes.
+ * This is helpful for reacting to prop changes. Note that state updates within this function
+ * will trigger an error from react.
  *
- * ```ts
+ * ```js
  * function Example({ value }) {
  *   const [intermediaryValue, setValue] = useState(value);
  *
  *   useImmediateUpdateEffect(() => {
- *     setValue(value)
+ *     setTimeout(() => setValue(value));
  *   }, [value])
  * ```
  *

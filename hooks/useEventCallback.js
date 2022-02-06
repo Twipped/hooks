@@ -1,6 +1,5 @@
 
-import { useCallback } from 'react';
-import useCommittedRef from './useCommittedRef';
+import { useRef, useCallback } from 'react';
 
 /**
  * Wraps a callback so that the most recent version is always the one invoked.
@@ -8,6 +7,7 @@ import useCommittedRef from './useCommittedRef';
  * @return {Function}
  */
 export default function useEventCallback (fn) {
-  const ref = useCommittedRef(fn);
+  const ref = useRef(fn);
+  ref.current = fn;
   return useCallback((...args) => ref.current && ref.current(...args), [ ref ]);
 }

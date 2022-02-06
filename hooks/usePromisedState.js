@@ -1,8 +1,8 @@
 
-import { useCallback, useRef, useEffect } from 'react';
+import { useState, useCallback, useRef, useEffect } from 'react';
 import useGettableState from './useGettableState';
 import { shallowEqual, warn, MultiMap } from '@twipped/utils';
-import useComputedRef from './useLazyRef';
+import useLazyRef from './useLazyRef';
 import DEFAULT from './default';
 
 /**
@@ -18,11 +18,12 @@ import DEFAULT from './default';
 
 export default function usePromisedState (fn, deps = [], { comparator = shallowEqual, skipFirst, initial = DEFAULT } = {}) {
 
+  const [ error, setError ] = useState();
   const [ state, writeState, readState ] = useGettableState(initial);
-  const { current: flights } = useComputedRef(() => new Set());
-  const { current: cache } = useComputedRef(() => new MultiMap());
+  const { current: flights } = useLazyRef(() => new Set());
+  const { current: cache } = useLazyRef(() => new MultiMap());
   const isFirst = useRef(true);
-  const ticker = useRef(0);
+  const ticker  = useRef(0);
 
   const refresh = useCallback((force) => {
 
@@ -37,6 +38,7 @@ export default function usePromisedState (fn, deps = [], { comparator = shallowE
         // if the request fails, remove it from the cache.
         flight = flight.catch((err) => {
           warn('usePromiseState received a rejection: ', err);
+          setError(err);
           cache.delete(deps);
         });
         cache.set(deps, flight);
@@ -52,7 +54,9 @@ export default function usePromisedState (fn, deps = [], { comparator = shallowE
       // there's more recent refreshes currently in flight
       if (flights.size && ticker.current > id) return;
 
+
       if (force || !comparator(res, readState())) {
+        setError(null);
         writeState(res);
       }
 
@@ -77,6 +81,7 @@ export default function usePromisedState (fn, deps = [], { comparator = shallowE
     set: writeState,
     get: readState,
     reset,
+    error,
     loading: state === DEFAULT || !!flights.size,
   };
 }

@@ -6,7 +6,9 @@ import useStableMemo from './useStableMemo';
  * Memoizes a passed object so that the same object is always returned
  * as long as all of its properties are unchanged. This is useful for
  * objects passed as component props, so that child components will not re-render
- * because a parent component rendered and produced a new object.
+ * because a parent component rendered and produced a new object. Most
+ * notably, this is needed to prevent context providers from triggering
+ * downstream updates every time they render.
  *
  * @param  {object} obj The object to memoize.
  * @return {object} The first instance of the object passed.

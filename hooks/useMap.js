@@ -35,8 +35,8 @@ export class HookedMap extends Map {
  *
  * ```jsx
  * const customerAges = useMap<number>([
- *  ['john', 24],
- *  ['betsy', 25]
+ *   ['john', 24],
+ *   ['betsy', 25]
  * ]);
  *
  * return (

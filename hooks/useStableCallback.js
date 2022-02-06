@@ -1,16 +1,22 @@
 
 import { useRef } from 'react';
-import areHookInputsEqual from './areHookInputsEqual';
+import { shallowEqual, deepEqual } from '@twipped/utils';
 
 /**
  * Identical to `useCallback` _except_ that it provides a semantic guarantee that
- * function will not be invalidated unless the dependencies change. This version does
- * not complain if the length of the dependencies change.
+ * function will not be invalidated unless the dependencies change. Dependencies may
+ * be an array or an object.
  *
  * @param fn A function that returns a value to be memoized
  * @param deps A dependency array
+ * @param  {Boolean}  options.comparison The comparison function used to detect if
+ * the dependencies change. Defaults to a shallow equal, pass true to use deep equality.
+ * @returns {Function}
  */
-export default function useStableCallback (fn, deps) {
+export default function useStableCallback (fn, deps, { comparison = false }) {
+  if (comparison === false) comparison = shallowEqual;
+  if (comparison === true) comparison = deepEqual;
+
   let isValid = true;
 
   const valueRef = useRef();
@@ -19,7 +25,7 @@ export default function useStableCallback (fn, deps) {
     isValid = !!(
       deps &&
       valueRef.current.deps &&
-      areHookInputsEqual(deps, valueRef.current.deps)
+      comparison(deps, valueRef.current.deps)
     );
   } else {
     valueRef.current = {

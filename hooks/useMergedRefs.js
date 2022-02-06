@@ -22,7 +22,7 @@ export function mergeRefs (...refs) {
 /**
  * Create and returns a single callback ref composed from two other Refs.
  *
- * ```tsx
+ * ```jsx
  * const Button = React.forwardRef((props, ref) => {
  *   const [element, attachRef] = useCallbackRef<HTMLButtonElement>();
  *   const mergedRef = useMergedRefs(ref, attachRef);

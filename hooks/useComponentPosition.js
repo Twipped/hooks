@@ -1,9 +1,17 @@
 
 import {  useCallback, useLayoutEffect } from 'react';
-import { shallowEqual } from '@twipped/utils';
+import { isObject, shallowEqual, assert } from '@twipped/utils';
 import useGettableState from './useGettableState';
 
+/**
+ * Retrieves the current page position of the element Ref passed.
+ * @param  {Ref}      ref        React ref (from createRef or useRef) that will contain an element reference.
+ * @param  {Function} [onUpdate] Optional function to fire when the position changes.
+ * @return {Object}  `top` and `left` properties, relative to the top left of the document. `width` and `height` of the element.
+ */
 export default function useComponentPosition (ref, onUpdate) {
+  assert(isObject(ref) && 'current' in ref, 'First argument of useComponentPosition must be a React Ref object.');
+
   var [ componentSize, setComponentSize, getComponentSize ] = useGettableState(getSize(ref?.current));
 
   var handleResize = useCallback(() => {

@@ -31,6 +31,23 @@ function makeInterval (method) {
   }, [ interval ]);
 }
 
+/**
+ * Triggers a component refresh at the interval checks passed in to the arguments.
+ * Interval Checks are functions which compare the last tick value against the current
+ * time and returns true if they have NOT changed within the interval, false
+ * if they are in different intervals. Multiple checks may be passed to trigger at
+ * different intervals.
+ * @param  {...[Function]} checks Interval Check functions
+ * @return {Date} Returns the time of the last interval tick.
+ * @example
+ * useClock(useClock.INTERVAL_SECONDS(10)) // ticks every ten seconds
+ * useClock(useClock.INTERVAL_MINUTES(30)) // ticks every 30 minutes
+ * useClock(useClock.INTERVAL_HOURS(2)) // ticks every 2 hours
+ * useClock(useClock.SECONDS) // ticks once per second
+ * useClock(useClock.MINUTES) // ticks at the top of each minute
+ * useClock(useClock.HOURS) // ticks at the top of each hour
+ * useClock(useClock.DAYS) // ticks at midnight
+ */
 export default function useClock (...checks) {
   checks = checks.flat(Infinity).filter((c) => typeof c === 'function');
   if (!checks.length) throw new Error('You must provide tick functions to check against.');

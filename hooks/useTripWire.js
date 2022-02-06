@@ -2,15 +2,17 @@
 import { useRef } from 'react';
 
 /**
- * Creates a ref which initializes as false and remains false until a truthy
- * value is provided on the hook. The value will then always be true for the
- * life of the component.
+ * Returns false as long as the passed value remains falsy. Once the value becomes
+ * truthy, the return will also become truthy and remain so until reset.
  *
- * @param value The `Ref` value
+ * @param  {any} value  The triggering value.
+ * @return {Boolean}
  */
-export default function useTripWire (value, wReset = false) {
+export default function useTripWire (value) {
   const ref = useRef(false);
+  const resetRef = useRef(() => { ref.current = false; });
+
   ref.current = !!ref.current || !!value;
-  if (wReset) return [ ref.current, () => { ref.current = false; } ];
-  return ref.current;
+
+  return [ ref.current, resetRef.current ];
 }

@@ -80,6 +80,13 @@ export class Manager {
 
 const Managers = new Map;
 
+/**
+ * Tracks component instantiation and reports if the current component is the
+ * first and/or last instance of the component. Useful for fullscreen effects such
+ * as backdrops where you do not want multiple instances.
+ * @param  {string|Symbol} channel The name/category of the component to be tracked.
+ * @return {Object} `first` and `last` keys containing booleans, indicating first and most recent mount, respectively.
+ */
 export default function useChosenOne (channel) {
   if (!Managers.has(channel)) Managers.set(channel, new Manager);
   const manager = Managers.get(channel);

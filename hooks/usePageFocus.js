@@ -4,11 +4,19 @@ import useEventCallback from './useEventCallback';
 import useGlobalListener from './useGlobalListener';
 import useForceUpdate from './useForceUpdate';
 
-export default function usePageFocus ({ onChange, update, ownerElementRef }) {
+/**
+ * State hook which tracks if the current window is focused.
+ * @param  {Function}     [options.onChange]         Optional callback to be invoked when the state changes.
+ * @param  {Boolean}      [options.update]           Controls if the component should update when the state changes. Defaults to true.
+ * @param  {Ref<Element>} [options.ownerElementRef]  Ref of an element in the document to be monitored.
+ * @return {Array<Boolean, Function, Function>}      Focus state, a function to focus the window, and a function to get the focus state.
+ */
+export default function usePageFocus ({ onChange, update = true, ownerElementRef }) {
   onChange = useEventCallback(onChange);
 
   const forceUpdate = useForceUpdate();
   const focusedRef = useRef(document.hasFocus());
+  focusedRef.current = document.hasFocus();
 
   const handleEvent = ({ type } = {}) => {
     let active = focusedRef.current;
@@ -34,5 +42,8 @@ export default function usePageFocus ({ onChange, update, ownerElementRef }) {
   useGlobalListener('blur', handleEvent, ownerElementRef);
   useGlobalListener('visibilitychange', handleEvent, ownerElementRef);
 
-  return useCallback(() => focusedRef.current);
+  const getter = useCallback(() => focusedRef.current);
+  const setter = useCallback(() => typeof window !== 'undefined' && window.focus());
+
+  return [ focusedRef.current, setter, getter ];
 }

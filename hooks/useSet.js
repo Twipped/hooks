@@ -53,8 +53,3 @@ export default function useSet (...args) {
   const forceUpdate = useForceUpdate();
   return useStableMemo(() => new HookedSet(forceUpdate, ...args), []);
 }
-
-export function useDerivedSet (fn, deps) {
-  const forceUpdate = useForceUpdate();
-  return useDerivedState(() => new HookedSet(forceUpdate, fn()), deps);
-}

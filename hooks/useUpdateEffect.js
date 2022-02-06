@@ -6,7 +6,7 @@ import { useEffect, useRef } from 'react';
  * initial "on mount" run. Caution, if the dependency list never changes,
  * the effect is **never run**
  *
- * ```ts
+ * ```js
  *  const ref = useRef<HTMLInput>(null);
  *
  *  // focuses an element only if the focus changes, and not on mount
