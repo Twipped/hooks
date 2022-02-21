@@ -7,7 +7,8 @@ import { useReducer } from 'react';
  * is preferable but may be required in some advanced usages of refs for interop or
  * when direct DOM manipulation is required.
  *
- * ```jsx
+ * @returns {Function} Returns a forceUpdate function.
+ * @example ```jsx
  * const forceUpdate = useForceUpdate();
  *
  * const updateOnClick = useCallback(() => {
@@ -15,7 +16,7 @@ import { useReducer } from 'react';
  * }, [forceUpdate])
  *
  * return <button type="button" onClick={updateOnClick}>Hi there</button>
- * ```
+ *```
  */
 export default function useForceUpdate () {
   // The toggling state value is designed to defeat React optimizations for skipping

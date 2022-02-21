@@ -1,7 +1,6 @@
 
 import useStableMemo from './useStableMemo';
 import useForceUpdate from './useForceUpdate';
-import useDerivedState from './useDerivedState';
 
 export class HookedSet extends Set {
   constructor (listener, ...args) {
@@ -31,9 +30,12 @@ export class HookedSet extends Set {
 }
 
 /**
- * Create and return a [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) that triggers rerenders when it's updated.
+ * Create and return a [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
+ * that triggers rerenders when it's updated.
  *
- * ```jsx
+ * @param {...any} args initial Set values
+ * @returns {Set}
+ * @example ```jsx
  * const ids = useSet([1,2,3,4]);
  *
  * return (
@@ -46,8 +48,6 @@ export class HookedSet extends Set {
  *  </>
  * )
  * ```
- *
- * @param init initial Set values
  */
 export default function useSet (...args) {
   const forceUpdate = useForceUpdate();

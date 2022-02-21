@@ -3,20 +3,21 @@ import { useRef, useCallback } from 'react';
 import useStableMemo from './useStableMemo';
 
 /**
- * Identical to `useState` _except_ that it does not trigger a redraw when
+ * Identical to `useState` _except_ that it does not trigger an update when
  * the state is updated.
  *
- * @param initial The initial value to set the state to.
- * @param {Array<mixed>} deps A dependency array. If provided, the state
+ * @param {*}          initial             The initial value to set the state to.
+ * @param {Array<*>}   dependencies        A dependency array. If provided, the state
  * will be reset to the passed initial value if a dependency changes.
+ * @returns {Array<*, Function, Function>} A three item array containing: state, setState, getState
  */
-export default function useSilentState (initial = null, deps) {
-  const ref = useRef(initial);
+export default function useSilentState (initial = null, dependencies) {
+  const ref = useRef();
 
-  // if the deps change, then the state will be reset to the initial value
+  // if the dependencies change, then the state will be reset to the initial value
   useStableMemo(() => {
-    if (deps) ref.current = initial;
-  }, deps);
+    ref.current = (typeof initial === 'function' ? initial() : initial);
+  }, dependencies);
 
   const setter = useCallback((value) => {
     ref.current = value;

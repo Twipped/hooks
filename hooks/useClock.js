@@ -14,15 +14,21 @@ import useGettableState from './useGettableState';
 import { useInterval } from './useTimers';
 
 
-export const DAYS = isSameDay;
-export const HOURS = isSameHour;
-export const MINUTES = isSameMinute;
-export const SECONDS = isSameSecond;
-export const INTERVAL_SECONDS = makeInterval(differenceInSeconds);
-export const INTERVAL_MINUTES = makeInterval(differenceInMinutes);
-export const INTERVAL_HOURS = makeInterval(differenceInHours);
-export const INTERVAL_DAYS = makeInterval(differenceInDays);
+export const DAYS    = /* #__PURE__*/isSameDay;
+export const HOURS   = /* #__PURE__*/isSameHour;
+export const MINUTES = /* #__PURE__*/isSameMinute;
+export const SECONDS = /* #__PURE__*/isSameSecond;
+export const INTERVAL_SECONDS = /* #__PURE__*/makeInterval(differenceInSeconds);
+export const INTERVAL_MINUTES = /* #__PURE__*/makeInterval(differenceInMinutes);
+export const INTERVAL_HOURS   = /* #__PURE__*/makeInterval(differenceInHours);
+export const INTERVAL_DAYS    = /* #__PURE__*/makeInterval(differenceInDays);
 
+/**
+ * Define an interval checker using a computational function
+ *
+ * @param  {Function} method The function to use.
+ * @returns {Function} The produced checker
+ */
 function makeInterval (method) {
   return (interval) => useCallback((a, b) => {
     const diff = Math.abs(method(a, b));
@@ -37,8 +43,9 @@ function makeInterval (method) {
  * time and returns true if they have NOT changed within the interval, false
  * if they are in different intervals. Multiple checks may be passed to trigger at
  * different intervals.
- * @param  {...[Function]} checks Interval Check functions
- * @return {Date} Returns the time of the last interval tick.
+ *
+ * @param  {...Function} checks Interval Check functions
+ * @returns {Date} Returns the time of the last interval tick.
  * @example
  * useClock(useClock.INTERVAL_SECONDS(10)) // ticks every ten seconds
  * useClock(useClock.INTERVAL_MINUTES(30)) // ticks every 30 minutes

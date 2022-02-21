@@ -3,6 +3,17 @@ import { useState } from 'react';
 import useEventHandler from './useEventHandler';
 import useWhenElementRefReady from './useWhenElementRefReady';
 
+/**
+ * @typedef {object} Ref
+ * @property {*} current The contents of the ref
+ */
+
+/**
+ * @param {Element} parent
+ * @param {Element} target
+ * @param {string} [selector]
+ * @returns {boolean}
+ */
 function matches (parent, target, selector) {
   if (!selector) return parent === target;
   const nodes = Array.from(parent.querySelectorAll(selector));
@@ -11,9 +22,10 @@ function matches (parent, target, selector) {
 
 /**
  * Returns true if the target element is currently animating a css transition
+ *
  * @param  {Ref<Element>} elementRef
- * @param  {String} [selector]   Optional css selector to specify the animation delegate
- * @return {Boolean}
+ * @param  {string} [selector]   Optional css selector to specify the animation delegate
+ * @returns {boolean}
  */
 export default function useIsTransitioning (elementRef, selector = null) {
   const [ isTransitioning, setTransition ] = useState(0);

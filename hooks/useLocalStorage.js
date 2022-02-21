@@ -4,6 +4,16 @@ import { jsonSoftParse } from '@twipped/utils';
 import { useWindowEventListener } from './useGlobalListener';
 import useDerivedState from './useDerivedState';
 
+/**
+ * @typedef {object} Storage
+ */
+
+/**
+ * @param {Storage} store
+ * @param {string} key
+ * @param {*} [defaultValue]
+ * @returns {Array<*, Function, Function>} A three item array containing: state, setState, getState
+ */
 function useWebStorage (store, key, defaultValue) {
   const [ value, writeValue, getValue ] = useDerivedState(() => {
     const stored = jsonSoftParse(store.getItem(key));
@@ -30,6 +40,10 @@ function useWebStorage (store, key, defaultValue) {
   return [ value, setValue, getValue ];
 }
 
+/**
+ * @param {Storage} store
+ * @yields {string} Iterates each available key
+ */
 function* storageKeys (store) {
   for (var i = 0; i < store.length; i++) {
     yield store.key(i);
@@ -38,9 +52,10 @@ function* storageKeys (store) {
 
 /**
  * Creates a state store that is connected to the browser localStorage
+ *
  * @param  {string} key          Name of the key to store the value into
  * @param  {any} defaultValue    The initial value to use if the key does not exist.
- * @return {[ value, setValue, getValue]} A three item array.
+ * @returns {Array<*, Function, Function>} A three item array containing: state, setState, getState
  */
 export default function useLocalStorage (key, defaultValue) {
   return useWebStorage(window.localStorage, key, defaultValue);
@@ -48,14 +63,17 @@ export default function useLocalStorage (key, defaultValue) {
 
 /**
  * Returns an array of the keys present in localStorage
+ *
+ * @returns {Array<string>}
  */
 useLocalStorage.keys = () => Array.from(storageKeys(window.localStorage));
 
 /**
  * Creates a state store that is connected to the browser sessionStorage
+ *
  * @param  {string} key          Name of the key to store the value into
  * @param  {any} defaultValue    The initial value to use if the key does not exist.
- * @return {[ value, setValue, getValue]} A three item array.
+ * @returns {Array<*, Function, Function>} A three item array containing: state, setState, getState
  */
 export function useSessionStorage (key, defaultValue) {
   return useWebStorage(window.sessionStorage, key, defaultValue);
@@ -63,5 +81,7 @@ export function useSessionStorage (key, defaultValue) {
 
 /**
  * Returns an array of the keys present in sessionStorage
+ *
+ * @returns {Array<string>}
  */
 useSessionStorage.keys = () => Array.from(storageKeys(window.sessionStorage));

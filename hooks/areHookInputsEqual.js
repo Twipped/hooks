@@ -1,5 +1,12 @@
 
 
+/**
+ * Tests if the two provided arrays match
+ *
+ * @param  {Array} nextDeps First array
+ * @param  {Array} prevDeps Second array
+ * @returns {boolean} True if the arrays match
+ */
 export default function areHookInputsEqual (nextDeps, prevDeps) {
   const is = Object.is || ((x, y) => (x === y && (x !== 0 || 1 / x === 1 / y)) || (x !== x && y !== y)); // eslint-disable-line no-self-compare
 

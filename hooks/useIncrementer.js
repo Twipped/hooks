@@ -4,9 +4,10 @@ import usePrevious from './usePrevious';
 
 /**
  * Returns an integer that increments any time the passed value changes
- * @param  {any}    value
- * @param  {Number} step  Amount to increment by.
- * @return {Number} The incrementing value
+ *
+ * @param  {*}      value Value to watch for changes
+ * @param  {number} step  Amount to increment by.
+ * @returns {number} The incrementing value
  */
 export default function useIncrementer (value, step = 1) {
   const ref = useRef(-step);

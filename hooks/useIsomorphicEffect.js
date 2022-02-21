@@ -1,7 +1,6 @@
 import { useEffect, useLayoutEffect } from 'react';
 
 /**
- * useIsomorphicEffect
  * Resolves to useEffect when "window" is not in scope and useLayoutEffect in the browser
  *
  * @param {Function} callback Callback function to be called on mount

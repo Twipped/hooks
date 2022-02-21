@@ -1,11 +1,27 @@
 
 import { useEffect, useMemo, useRef, useCallback } from 'react';
-import useEventCallback from './useEventCallback';
+import useEventCallback from './useEventCallback.js';
+import resolveRef from './resolveRef.js';
 
-const getRefTarget = (ref) => ref && ('current' in ref ? ref.current : ref);
+/**
+ * @typedef {object} Ref
+ * @property {*} current The contents of the ref
+ */
+
+/**
+ * @typedef {object} HandlerAPI
+ * @function attach Attaches the handler to its target.
+ * @function remove Detaches the handler from its target
+ * @function when Attaches or detaches based on if the passed value is truthy
+ */
 
 /**
  * Shortcut for useGlobalListener against the window
+ *
+ * @param {string}   eventName
+ * @param {Function} listener
+ * @param {boolean}  capture
+ * @returns {void}
  */
 export function useWindowEventListener (eventName, listener, capture) {
   return useGlobalListener(eventName, listener, capture, window);
@@ -13,6 +29,11 @@ export function useWindowEventListener (eventName, listener, capture) {
 
 /**
  * Shortcut for useGlobalListener against the document
+ *
+ * @param {string}   eventName
+ * @param {Function} listener
+ * @param {boolean}  capture
+ * @returns {void}
  */
 export function useDocumentEventListener (eventName, listener, capture) {
   return useGlobalListener(eventName, listener, capture, document);
@@ -28,9 +49,10 @@ export function useDocumentEventListener (eventName, listener, capture) {
  * })
  * ```
  *
- * @param eventName Name of the DOM event to listen for.
- * @param handler   An event handler
- * @param capture   Whether or not to listen during the capture event phase
+ * @param {string}  eventName Name of the DOM event to listen for.
+ * @param {Function}listener  An event handler
+ * @param {boolean} [capture]   Whether or not to listen during the capture event phase
+ * @param {Ref} [ownerElementRef]
  */
 export default function useGlobalListener (eventName, listener, capture = false, ownerElementRef = null) {
   const targetRef = useRef(null);
@@ -54,7 +76,7 @@ export default function useGlobalListener (eventName, listener, capture = false,
   }, [ handler ]);
 
   useEffect(() => {
-    const target = getRefTarget(ownerElementRef)?.ownerDocument || document;
+    const target = resolveRef(ownerElementRef)?.ownerDocument || document;
 
     if (targetRef.current) remove();
 
@@ -70,11 +92,12 @@ export default function useGlobalListener (eventName, listener, capture = false,
  * Similar to useGlobalListener, but only binds to the target when told to.
  * Returns an object containing `remove`, `attach`, and `when` functions.
  * `when` will attach as long as the provided value is truthy.
+ *
  * @param  {string}    eventName          Name of the DOM event to listen for.
- * @param  {Function}  handler            An event handler
- * @param  {Boolean}   capture            Whether or not to listen during the capture event phase
+ * @param  {Function}  listener           An event handler
+ * @param  {boolean}   [capture]          Whether or not to listen during the capture event phase
  * @param  {Ref}       [ownerElementRef]  Ref of an element in the document to be bound to.
- * @return {Object}
+ * @returns {HandlerAPI}
  */
 export function useToggledGlobalListener (eventName, listener, capture = false, ownerElementRef = null) {
   const targetRef = useRef(null);
@@ -99,7 +122,7 @@ export function useToggledGlobalListener (eventName, listener, capture = false, 
     },
 
     attach () {
-      const target = getRefTarget(ownerElementRef)?.ownerDocument || document;
+      const target = resolveRef(ownerElementRef)?.ownerDocument || document;
 
       if (targetRef.current) api.remove();
 

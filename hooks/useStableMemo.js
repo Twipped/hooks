@@ -8,10 +8,14 @@ import { shallowEqual, deepEqual } from '@twipped/utils';
  * values will not be invalidated unless the dependencies change. This is unlike
  * the built in `useMemo` which may discard memoized values for performance reasons.
  *
- * @param factory A function that returns a value to be memoized
- * @param deps A dependency array
+ * @param {Function}  factory      A function that returns a value to be memoized
+ * @param {Array}     dependencies A dependency array
+ * @param {object}    options
+ * @param {boolean}   options.comparison The comparison function used to detect if
+ * the dependencies change. Defaults to a shallow equal, pass true to use deep equality.
+ * @returns {*}
  */
-export default function useStableMemo (factory, deps, comparison = areHookInputsEqual) {
+export default function useStableMemo (factory, dependencies, { comparison = areHookInputsEqual } = {}) {
   if (comparison === false) comparison = shallowEqual;
   if (comparison === true) comparison = deepEqual;
 
@@ -20,19 +24,19 @@ export default function useStableMemo (factory, deps, comparison = areHookInputs
   const valueRef = useRef();
 
   if (valueRef.current) {
-    isValid = !deps || !!(
-      deps &&
-      valueRef.current.deps &&
-      comparison(deps, valueRef.current.deps)
+    isValid = !dependencies || !!(
+      dependencies &&
+      valueRef.current.dependencies &&
+      comparison(dependencies, valueRef.current.dependencies)
     );
   } else {
     valueRef.current = {
-      deps,
+      dependencies,
       result: factory(),
     };
   }
 
-  const cache = isValid ? valueRef.current : { deps, result: factory() };
+  const cache = isValid ? valueRef.current : { dependencies, result: factory() };
   // must update immediately so any sync renders here don't cause an infinite loop
   valueRef.current = cache;
 

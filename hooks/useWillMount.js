@@ -5,20 +5,22 @@ import { useRef, useEffect } from 'react';
 /**
  * Executes the passed function only on mount, storing the result
  * and returning it during every render until unmounted.
- * @param  {Function} fn [description]
- * @return {[type]}      [description]
+ *
+ * @param  {Function} onMount
+ * @param  {Function} onWillUnmount
+ * @returns {*} Returns the result of the onMount function.
  */
-export default function useWillMount (fn, unFn) {
+export default function useWillMount (onMount, onWillUnmount) {
   const mounted = useRef(null);
 
   if (!mounted.current) {
-    mounted.current = [ fn() ];
+    mounted.current = [ onMount() ];
   }
 
   useEffect(
     () => () => {
       mounted.current = null;
-      unFn && unFn();
+      onWillUnmount && onWillUnmount();
     },
     [],
   );

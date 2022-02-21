@@ -5,12 +5,15 @@ import dft from './default';
 
 /**
  * Identical to useEffect, except dependencies may be compared deeply.
- * @param  {Function} effect The function to execute after render.
- * @param  {Object}   dependencies An object or array of values to compare for changes.
- * @param  {Boolean}  options.comparison The comparison function used to detect if
+ *
+ * @param  {Function} effect        The function to execute after render.
+ * @param  {object}   dependencies  An object or array of values to compare for changes.
+ * @param  {object}   options
+ * @param  {boolean}  options.comparison The comparison function used to detect if
  * the dependencies change. Defaults to a shallow equal, pass true to use deep equality.
+ * @returns {void}
  */
-export default function useSmartEffect (fn, deps, { comparison = false } = {}) {
+export default function useSmartEffect (effect, dependencies, { comparison = false } = {}) {
   if (comparison === false) comparison = shallowEqual;
   if (comparison === true) comparison = deepEqual;
 
@@ -18,15 +21,15 @@ export default function useSmartEffect (fn, deps, { comparison = false } = {}) {
   const exitFn = useRef();
 
   useEffect(() => {
-    if (depsRef.current === dft || !comparison(depsRef.current, deps)) {
-      // update deps to newest value
-      depsRef.current = deps;
+    if (depsRef.current === dft || !comparison(depsRef.current, dependencies)) {
+      // update dependencies to newest value
+      depsRef.current = dependencies;
 
       // run exit function from last evocation
       if (exitFn.current) exitFn.current();
 
       // run the effect, saving the exit function
-      exitFn.current = fn();
+      exitFn.current = effect();
     }
   });
 

@@ -7,22 +7,28 @@ import useStableMemo from './useStableMemo';
 const easingLinear = (v) => v;
 
 /**
+ * @typedef {object} Ref
+ * @property {*} current The contents of the ref
+ */
+
+
+/**
  * Hook to tween the scroll position of an overflow:scroll element.
  *
- * ```jsx
+ * @param {Ref<Element>} ref          The target element.
+ * @param {object}   [baseOptions]
+ * @param {number}   [baseOptions.duration]   Duration of the animation, in milliseconds
+ * @param {number}   [baseOptions.top]        Target scrollTop value.
+ * @param {number}   [baseOptions.left]       Target scrollLeft value.
+ * @param {Function} [baseOptions.easing]     Easing function to use for the animation.
+ * @returns {Function}
+ * @example ```jsx
  * const ref = useRef();
  * const refScroll = useSroll(ref);
  * const scrollToTop = useCallback(() => refScroll({ top: 0, duration: 500 }))
  *
  * return <div style={{ overflow: scroll }} ref={ref} onClick={scrolltoTop} />;
  * ```
- *
- * @param {Ref<Element>} ref          The target element.
- * @param {Number} options.duration   Duration of the animation, in milliseconds
- * @param {Number} options.top        Target scrollTop value.
- * @param {Number} options.left       Target scrollLeft value.
- * @param {Function} options.easing   Easing function to use for the animation.
- * @return {Function}
  */
 export default function useScroll (ref, baseOptions = {}) {
   if (!(ref && 'current' in ref)) throw new Error('useScroll must be passed a ref object');

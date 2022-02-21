@@ -1,6 +1,23 @@
 
 import { useState, useCallback, useLayoutEffect } from 'react';
 
+/**
+ * @typedef {object} Ref
+ * @property {*} current The contents of the ref
+ */
+
+/**
+ * @typedef Position
+ * @property {number} top
+ * @property {number} left
+ * @property {number} width
+ * @property {number} height
+ */
+
+/**
+ * @param {Element} el
+ * @returns {Position}
+ */
 function getSize (el) {
   if (!el) {
     return {
@@ -19,10 +36,14 @@ function getSize (el) {
   };
 }
 
+/**
+ * State hook which provides the position and dimensions of the passed element Ref.
+ *
+ * @param  {Ref} ref
+ * @returns {Position}
+ */
 export default function useComponentPosition (ref) {
-  var _useState = useState(getSize(ref ? ref.current : {}));
-  var ComponentSize = _useState[0];
-  var setComponentSize = _useState[1];
+  var [ ComponentSize, setComponentSize ] = useState(getSize(ref ? ref.current : {}));
 
   var handleResize = useCallback(
     function handleResize () {

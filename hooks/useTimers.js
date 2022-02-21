@@ -1,11 +1,56 @@
 
 import { useCallback, useEffect, useRef } from 'react';
+import { assert } from '@twipped/utils';
 import useMounted from './useMounted';
 import useCommittedRef from './useCommittedRef';
 import useWillUnmount from './useWillUnmount';
 import useEventCallback from './useEventCallback';
 import useStableMemo from './useStableMemo';
 
+/**
+ * @classdesc Timeout/Defer API interface
+ * @function TimeoutHandler
+ * @param {Function} fn       Callback to evaluate when the timeout finishes
+ * @param {number}   delayMs  Duration of the timeout
+ * @param {boolean}  [reset]  If a previous timeout should be reset when this is invoked. Default's to true.
+ * @returns {void}
+ */
+
+/**
+ * @function TimeoutHandler#set
+ * @description Starts or resets the timeout
+ * @param {Function} [fn]     Callback to evaluate when the timeout finishes. If omitted, will fallback to the rootFn.
+ * @param {number}   [delayMs]  Duration of the timeout. Defaults to 0 (next event loop).
+ * @param {boolean}  [reset]  If a previous timeout should be reset when this is invoked. Default's to true.
+ */
+
+/**
+ * @function TimeoutHandler#clear
+ * @description Clears the timeout
+ */
+
+/**
+ * @property {boolean} TimeoutHandler#isActive
+ * @description Identifies if the timeout is currently running.
+ */
+
+/**
+ * @typedef IntervalHandler
+ * @function start
+ * @function stop
+ * @property {boolean} isActive
+ */
+
+
+
+/**
+ * Produces the wrapping interface used by useTimeout and useDefer
+ *
+ * @param {Function} setter
+ * @param {Function} clearer
+ * @param {Function} [rootFn]
+ * @returns {TimeoutHandler}
+ */
 function useTimeoutGenerator (setter, clearer, rootFn) {
   const isMounted = useMounted();
 
@@ -14,14 +59,30 @@ function useTimeoutGenerator (setter, clearer, rootFn) {
   useWillUnmount(() => clearer(handleRef.current));
 
   return useStableMemo(() => {
+    /**
+     * @callback clearTimeout
+     */
     function clear () {
       handleRef.current && clearer(handleRef.current);
       handleRef.current = null;
     }
 
-    function set (fn, delayMs = 0, reset = true) {
+    /**
+     * @callback setTimeout
+     * @param {Function} [fn]     Callback to evaluate when the timeout finishes
+     * @param {number}   [delayMs]  Duration of the timeout. Defaults to 0 (next event loop).
+     * @param {boolean}  [reset]  If a previous timeout should be reset when this is invoked. Default's to true.
+     */
+    function set (fn = rootFn, delayMs = 0, reset = true) {
       if (!isMounted()) return;
       if (!reset && handleRef.current) return;
+
+      if (typeof fn !== 'function' && typeof rootFn === 'function') {
+        delayMs = fn;
+        fn = rootFn;
+      }
+
+      assert(typeof fn === 'function', 'useTimeout/useDefer must be provided a function as its first argument');
 
       clear();
 
@@ -29,7 +90,7 @@ function useTimeoutGenerator (setter, clearer, rootFn) {
     }
 
     const isActive = () => !!handleRef.current;
-    set.set = rootFn ? set.bind(null, rootFn) : set;
+    set.set = set;
     set.clear = clear;
     set.isActive = isActive;
 
@@ -41,10 +102,12 @@ function useTimeoutGenerator (setter, clearer, rootFn) {
  * Returns a controller object for setting a timeout that is properly cleaned up
  * once the component unmounts. New timeouts cancel and replace existing ones.
  *
- *
- * ```jsx
+ * @param {Function} [fn] A base function for the timeout.
+ * @returns {TimeoutHandler}
+ * @example ```jsx
  * const { set, clear } = useTimeout();
  * const [hello, showHello] = useState(false);
+ *
  * //Display hello after 5 seconds
  * set(() => showHello(true), 5000);
  * return (
@@ -63,9 +126,9 @@ export function useTimeout (fn) {
  * Returns a controller object for performing a UI deferred task that is properly cleaned up
  * if the component unmounts before the task complete. New deferrals cancel and replace existing ones.
  *
- *
- *
- * ```jsx
+ * @param {Function} [fn] A base function for the timeout.
+ * @returns {TimeoutHandler}
+ * @example ```jsx
  * const { set, clear } = useDefer();
  * const [hello, showHello] = useState(false);
  * //Display hello after 5 seconds
@@ -83,23 +146,39 @@ export function useDefer (fn) {
   return timer;
 }
 
+
+/**
+ * @function IntervalHandler#start
+ * @description Starts or resets the interval loop
+ * @param {Function} [fn]     Callback to evaluate when the timeout finishes. If omitted, will fallback to the rootFn.
+ * @param {number}   [delayMs]  Duration of the timeout. Defaults to 0 (next event loop).
+ * @param {boolean}  [reset]  If a previous timeout should be reset when this is invoked. Default's to true.
+ */
+
+/**
+ * @function IntervalHandler#stop
+ * @description Aborts the interval loop
+ */
+
+/**
+ * @property {boolean} IntervalHandler#isActive
+ * @description Identifies if the interval is currently running.
+ */
+
+
 /**
  * Creates an interval timer that is properly cleaned up when a component is unmounted
  *
- * ```jsx
+ * @param {Function} fn   A function run on each interval
+ * @param {number}   ms   The milliseconds duration of the interval. Set to 0 to loop on animation frames.
+ * @returns {IntervalHandler}
+ * @example ```jsx
  *  const [timer, setTimer] = useState(-1)
  *  useInterval(() => setTimer(i => i + 1), 1000, false, true)
  *
  *  // will update to 0 on the first effect
  *  return <span>{timer} seconds past</span>
  * ```
- *
- * @param fn A function run on each interval
- * @param ms The milliseconds duration of the interval
- * @param paused If true, the loop will halt and will not start. If false, the loop starts. Defaults to null.
- * @param runImmediately Whether to run the function immediately on mount or unpause. Defaults to false.
- * rather than waiting for the first interval to elapse
- *
  */
 export function useInterval (fn, ms = 0) {
   const timer = ms > 0 ? useTimeout() : useDefer();
@@ -122,11 +201,8 @@ export function useInterval (fn, ms = 0) {
  * Creates an interval timer that loops on the UI thread update and is properly
  * cleaned up when a component is unmounted
  *
- * @param fn A function run on each interval
- * @param [paused] If true, the loop will halt and will not start. If false, the loop start. Defaults to null.
- * @param [runImmediately] Whether to run the function immediately on mount or unpause. Defaults to false.
- * rather than waiting for the first interval to elapse
- *
+ * @param {Function} fn A function run on each interval
+ * @returns {IntervalHandler}
  */
 export function useDeferredLoop (fn) {
   return useInterval(fn, 0);
@@ -134,14 +210,16 @@ export function useDeferredLoop (fn) {
 
 
 /**
- * Returns a function that will only invoke the wrapped callback once within
+ * Produces a function that will only invoke the wrapped callback once within
  * the delay window defined, regardless of how many invocations have occurred.
  * If the component unmounts mid-debounce, the invocation will be canceled.
  * The passed callback is wrapped in useEventCallback so that it is always
  * current across re-renders.
+ *
  * @param  {Function} fn
- * @param  {Number}   delay Defaults to 100ms
- * @param  {Number}   maxDelay
+ * @param  {number}   delay Defaults to 100ms
+ * @param  {number}   maxDelay
+ * @returns {Function}
  */
 export function useDebounce (fn, delay = 100, maxDelay = Infinity) {
   fn = useEventCallback(fn);
@@ -170,12 +248,13 @@ export function useDebounce (fn, delay = 100, maxDelay = Infinity) {
  * Similar to useEffect, except that the callback will only execute once within
  * the delay window defined, regardless of how many renders have occurred.
  * If the component unmounts mid-debounce, the invocation will be canceled.
+ *
  * @param  {Function} fn
- * @param  {Number}   delay Defaults to 100ms
- * @param  {Number}   maxDelay
- * @param  {Array<mixed>} deps A dependency array to pass to useEffect
+ * @param  {number}   delay Defaults to 100ms
+ * @param  {number}   maxDelay
+ * @param  {Array<*>} deps A dependency array to pass to useEffect
+ * @returns {void}
  */
-
 export function useDebouncedEffect (fn, delay = 100, maxDelay = Infinity, deps) {
   fn = useDebounce(fn, delay, maxDelay);
   useEffect(() => fn(), deps);

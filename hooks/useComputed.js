@@ -6,13 +6,19 @@ import areHookInputsEqual from './areHookInputsEqual';
 import dft from './default';
 
 /**
- * Produces a MobX computed observable that invalidates when the dependencies change
- * @param  {Function}    fn         Factory function for generating the observable.
- * @param  {Array<any>}  deps       Dependencies array
- * @param  {Object}      options
- * @return {Observable<any>}
+ * @typedef {object} Observable
  */
-export default function useComputed (fn, deps, { comparison = areHookInputsEqual } = {}) {
+
+/**
+ * Produces a MobX computed observable that invalidates when the dependencies change
+ *
+ * @param  {Function}  fn         Factory function for generating the observable.
+ * @param  {Array<*>}  dependencies       Dependencies array
+ * @param  {object}    [options]        Behavioral options
+ * @param  {Function|boolean}   options.comparison A comparison method, false for shallow equality, or true for deep equality
+ * @returns {Observable<*>} Returns a MobX Observable containing the derived values
+ */
+export default function useComputed (fn, dependencies, { comparison = areHookInputsEqual } = {}) {
   if (comparison === false) comparison = shallowEqual;
   if (comparison === true) comparison = deepEqual;
 
@@ -28,9 +34,9 @@ export default function useComputed (fn, deps, { comparison = areHookInputsEqual
   c.derivation = fn;
 
   if (depsRef.current === dft) {
-    depsRef.current = deps;
-  } else if (c.dependenciesState_ === 0 && !comparison(depsRef.current, deps)) {
-    depsRef.current = deps;
+    depsRef.current = dependencies;
+  } else if (c.dependenciesState_ === 0 && !comparison(depsRef.current, dependencies)) {
+    depsRef.current = dependencies;
 
     // invalidate the computed
     c.dependenciesState_ = 2;

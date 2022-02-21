@@ -6,13 +6,24 @@ import useWhenElementRefReady from './useWhenElementRefReady.js';
 import { assert } from '@twipped/utils';
 
 /**
+ * @typedef {object} Ref
+ * @property {*} current The contents of the ref
+ */
+
+/**
+ * @typedef {object} HandlerAPI
+ * @function attach Attaches the handler to a new target.
+ * @function remove Detaches the handler from the current target
+ */
+
+/**
  * Attaches an event handler to a specified DOM element, bypassing the react synthetic event system.
  * Handler is automatically cleaned up when the calling component unmounts.
  *
- * @param {string}   event   Name of the DOM event to listen for.
- * @param {Function} handler An event handler
- * @param {Boolean}  capture Whether or not to listen during the capture event phase
- * @return
+ * @param {string}   event    Name of the DOM event to listen for.
+ * @param {Function} listener An event handler
+ * @param {boolean}  capture  Whether or not to listen during the capture event phase
+ * @returns {HandlerAPI} The attachment interface
  */
 export default function useEventHandler (event, listener, capture = false) {
   const handler = useEventCallback(listener);
@@ -45,10 +56,12 @@ export default function useEventHandler (event, listener, capture = false) {
 
 /**
  * Functions identical to useEventHandler, but takes a React Ref object as its first argument
- * @param  {Ref} ref           Target ref to attach to, when ready.
- * @param  {string} event      Name of the DOM event to listen for.
- * @param  {Function} handler  An event handler
- * @param  {Boolean} capture   Whether or not to listen during the capture event phase
+ *
+ * @param  {Ref} ref            Target ref to attach to, when ready.
+ * @param  {string} event       Name of the DOM event to listen for.
+ * @param  {Function} listener  An event handler
+ * @param  {boolean} capture    Whether or not to listen during the capture event phase
+ * @returns {void}
  */
 export function useEventHandlerOn (ref, event, listener, capture = false) {
 

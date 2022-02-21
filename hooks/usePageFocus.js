@@ -5,13 +5,20 @@ import useGlobalListener from './useGlobalListener';
 import useForceUpdate from './useForceUpdate';
 
 /**
- * State hook which tracks if the current window is focused.
- * @param  {Function}     [options.onChange]         Optional callback to be invoked when the state changes.
- * @param  {Boolean}      [options.update]           Controls if the component should update when the state changes. Defaults to true.
- * @param  {Ref<Element>} [options.ownerElementRef]  Ref of an element in the document to be monitored.
- * @return {Array<Boolean, Function, Function>}      Focus state, a function to focus the window, and a function to get the focus state.
+ * @typedef {object} Ref
+ * @property {*} current The contents of the ref
  */
-export default function usePageFocus ({ onChange, update = true, ownerElementRef }) {
+
+/**
+ * State hook which tracks if the current window is focused.
+ *
+ * @param  {object}       [options]
+ * @param  {Function}     [options.onChange]         Optional callback to be invoked when the state changes.
+ * @param  {boolean}      [options.update]           Controls if the component should update when the state changes. Defaults to true.
+ * @param  {Ref<Element>} [options.ownerElementRef]  Ref of an element in the document to be monitored.
+ * @returns {Array<boolean, Function, Function>}      Focus state, a function to focus the window, and a function to get the focus state.
+ */
+export default function usePageFocus ({ onChange, update = true, ownerElementRef } = {}) {
   onChange = useEventCallback(onChange);
 
   const forceUpdate = useForceUpdate();

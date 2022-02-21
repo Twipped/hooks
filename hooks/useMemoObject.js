@@ -11,7 +11,7 @@ import useStableMemo from './useStableMemo';
  * downstream updates every time they render.
  *
  * @param  {object} obj The object to memoize.
- * @return {object} The first instance of the object passed.
+ * @returns {object} The first instance of the object passed.
  */
 export default function useMemoObject (obj) {
   if (!isArray(obj) && !isObject(obj)) return obj;

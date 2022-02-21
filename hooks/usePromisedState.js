@@ -10,13 +10,16 @@ import DEFAULT from './default';
  * If the dependencies change, the function will be re-run, and IF the results differ then the state will be updated.
  * Invoking setState.reset() will re-evaluate the function and force update with the results.
  * Note: State will always be empty at initial invocation until the promise resolves.
- * @param  {Function}     fn         Handler to run at initialization and when a dependency changes
- * @param  {Array<mixed>} deps       A dependency array
- * @param  {Function}     comparator A function to evaluate if the result of the handler differs from current state
- * @return {Object} Returns an object containing the current `state`, `get`, `set`, and `reset` functions, and the current `loading` state.
+ *
+ * @param {Function} fn                 Handler to run at initialization and when a dependency changes
+ * @param {Array}    dependencies       A dependency array
+ * @param {object}   options
+ * @param {Function} options.comparator A function to evaluate if the result of the handler differs from current state
+ * @param {boolean}  options.skipFirst  Should the state me fetched on first render
+ * @param {*}        options.initial    Default value of the state before first fetch.
+ * @returns {object} Returns an object containing the current `state`, `get`, `set`, and `reset` functions, and the current `loading` state.
  */
-
-export default function usePromisedState (fn, deps = [], { comparator = shallowEqual, skipFirst, initial = DEFAULT } = {}) {
+export default function usePromisedState (fn, dependencies = [], { comparator = shallowEqual, skipFirst, initial = DEFAULT } = {}) {
 
   const [ error, setError ] = useState();
   const [ state, writeState, readState ] = useGettableState(initial);
@@ -27,21 +30,21 @@ export default function usePromisedState (fn, deps = [], { comparator = shallowE
 
   const refresh = useCallback((force) => {
 
-    var flight = deps && cache.get(deps);
+    var flight = dependencies && cache.get(dependencies);
 
     if (!flight || force) {
       // this request hasn't been seen before, so initiate and cache it.
       flight = (async () => fn())();
 
-      if (deps) {
+      if (dependencies) {
         // if we received a dependency array, we need to cache the request.
         // if the request fails, remove it from the cache.
         flight = flight.catch((err) => {
           warn('usePromiseState received a rejection: ', err);
           setError(err);
-          cache.delete(deps);
+          cache.delete(dependencies);
         });
-        cache.set(deps, flight);
+        cache.set(dependencies, flight);
       }
     }
 
@@ -72,7 +75,7 @@ export default function usePromisedState (fn, deps = [], { comparator = shallowE
       if (skipFirst) return;
     }
     refresh();
-  }, deps);
+  }, dependencies);
 
   const reset = useCallback(() => refresh(true), [ refresh ]);
 

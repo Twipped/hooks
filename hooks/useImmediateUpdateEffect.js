@@ -17,9 +17,10 @@ import { useRef } from 'react';
  *   }, [value])
  * ```
  *
- * @category effects
+ * @param {Function} effect
+ * @param {Array<*>} dependencies
  */
-export default function useImmediateUpdateEffect (effect, deps) {
+export default function useImmediateUpdateEffect (effect, dependencies) {
   const firstRef = useRef(true);
   const tearDown = useRef();
 
@@ -35,5 +36,5 @@ export default function useImmediateUpdateEffect (effect, deps) {
 
     if (tearDown.current) tearDown.current();
     tearDown.current = effect();
-  }, deps);
+  }, dependencies);
 }
