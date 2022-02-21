@@ -38,10 +38,12 @@
     "react": ">=17"
   },
   "optionalDependencies": {
-    "date-fns": "~2.28.0",
+    "@emotion/css": ">=11.7.1",
+    "@emotion/react": ">=11.7.1",
+    "date-fns": ">=2.28.0",
     "mobx": ">=6.3",
-    "mobx-react-lite": "~3.2.3",
-    "qs": "~6.10.3"
+    "mobx-react-lite": ">=3.2.3",
+    "qs": ">=6.10.3"
   },
   "main": "./index.js",
   "exports": {
