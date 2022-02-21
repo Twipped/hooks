@@ -11,6 +11,7 @@ import resolveRef from './resolveRef.js';
 /**
  * Executes the passed function once the provided Ref resolves to a value.
  *
+ * @name useWhenElementRefReady
  * @param {Ref} ref
  * @param {Function} onResolved
  * @returns {*}

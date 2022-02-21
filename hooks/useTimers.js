@@ -18,6 +18,7 @@ import useStableMemo from './useStableMemo';
 
 /**
  * @function TimeoutHandler#set
+ * @memberof TimeoutHandler
  * @description Starts or resets the timeout
  * @param {Function} [fn]     Callback to evaluate when the timeout finishes. If omitted, will fallback to the rootFn.
  * @param {number}   [delayMs]  Duration of the timeout. Defaults to 0 (next event loop).
@@ -26,22 +27,16 @@ import useStableMemo from './useStableMemo';
 
 /**
  * @function TimeoutHandler#clear
+ * @memberof TimeoutHandler
  * @description Clears the timeout
  */
 
 /**
  * @property {boolean} TimeoutHandler#isActive
+ * @memberof TimeoutHandler
  * @description Identifies if the timeout is currently running.
+ * @readonly
  */
-
-/**
- * @typedef IntervalHandler
- * @function start
- * @function stop
- * @property {boolean} isActive
- */
-
-
 
 /**
  * Produces the wrapping interface used by useTimeout and useDefer
@@ -50,6 +45,7 @@ import useStableMemo from './useStableMemo';
  * @param {Function} clearer
  * @param {Function} [rootFn]
  * @returns {TimeoutHandler}
+ * @private
  */
 function useTimeoutGenerator (setter, clearer, rootFn) {
   const isMounted = useMounted();
@@ -102,9 +98,10 @@ function useTimeoutGenerator (setter, clearer, rootFn) {
  * Returns a controller object for setting a timeout that is properly cleaned up
  * once the component unmounts. New timeouts cancel and replace existing ones.
  *
+ * @name useTimeout
  * @param {Function} [fn] A base function for the timeout.
  * @returns {TimeoutHandler}
- * @example ```jsx
+ * @example
  * const { set, clear } = useTimeout();
  * const [hello, showHello] = useState(false);
  *
@@ -115,7 +112,6 @@ function useTimeoutGenerator (setter, clearer, rootFn) {
  *     {hello ? <h3>Hello</h3> : null}
  *   </div>
  * );
- * ```
  */
 export function useTimeout (fn) {
   const timer = useTimeoutGenerator(setTimeout, clearTimeout, fn);
@@ -126,9 +122,10 @@ export function useTimeout (fn) {
  * Returns a controller object for performing a UI deferred task that is properly cleaned up
  * if the component unmounts before the task complete. New deferrals cancel and replace existing ones.
  *
+ * @name useDefer
  * @param {Function} [fn] A base function for the timeout.
  * @returns {TimeoutHandler}
- * @example ```jsx
+ * @example
  * const { set, clear } = useDefer();
  * const [hello, showHello] = useState(false);
  * //Display hello after 5 seconds
@@ -138,7 +135,6 @@ export function useTimeout (fn) {
  *     {hello ? <h3>Hello</h3> : null}
  *   </div>
  * );
- * ```
  */
 export function useDefer (fn) {
   if (typeof cancelAnimationFrame === 'undefined') return useTimeout();
@@ -148,7 +144,12 @@ export function useDefer (fn) {
 
 
 /**
+ * @typedef IntervalHandler
+ */
+
+/**
  * @function IntervalHandler#start
+ * @memberof IntervalHandler
  * @description Starts or resets the interval loop
  * @param {Function} [fn]     Callback to evaluate when the timeout finishes. If omitted, will fallback to the rootFn.
  * @param {number}   [delayMs]  Duration of the timeout. Defaults to 0 (next event loop).
@@ -157,11 +158,14 @@ export function useDefer (fn) {
 
 /**
  * @function IntervalHandler#stop
+ * @memberof IntervalHandler
  * @description Aborts the interval loop
  */
 
 /**
  * @property {boolean} IntervalHandler#isActive
+ * @memberof IntervalHandler
+ * @readonly
  * @description Identifies if the interval is currently running.
  */
 
@@ -169,16 +173,16 @@ export function useDefer (fn) {
 /**
  * Creates an interval timer that is properly cleaned up when a component is unmounted
  *
+ * @name useInterval
  * @param {Function} fn   A function run on each interval
  * @param {number}   ms   The milliseconds duration of the interval. Set to 0 to loop on animation frames.
  * @returns {IntervalHandler}
- * @example ```jsx
+ * @example
  *  const [timer, setTimer] = useState(-1)
  *  useInterval(() => setTimer(i => i + 1), 1000, false, true)
  *
  *  // will update to 0 on the first effect
  *  return <span>{timer} seconds past</span>
- * ```
  */
 export function useInterval (fn, ms = 0) {
   const timer = ms > 0 ? useTimeout() : useDefer();
@@ -201,6 +205,7 @@ export function useInterval (fn, ms = 0) {
  * Creates an interval timer that loops on the UI thread update and is properly
  * cleaned up when a component is unmounted
  *
+ * @name useDeferredLoop
  * @param {Function} fn A function run on each interval
  * @returns {IntervalHandler}
  */
@@ -216,6 +221,7 @@ export function useDeferredLoop (fn) {
  * The passed callback is wrapped in useEventCallback so that it is always
  * current across re-renders.
  *
+ * @name useDebounce
  * @param  {Function} fn
  * @param  {number}   delay Defaults to 100ms
  * @param  {number}   maxDelay
@@ -249,6 +255,7 @@ export function useDebounce (fn, delay = 100, maxDelay = Infinity) {
  * the delay window defined, regardless of how many renders have occurred.
  * If the component unmounts mid-debounce, the invocation will be canceled.
  *
+ * @name useDebouncedEffect
  * @param  {Function} fn
  * @param  {number}   delay Defaults to 100ms
  * @param  {number}   maxDelay

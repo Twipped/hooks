@@ -8,6 +8,7 @@ import { shallowEqual, deepEqual } from '@twipped/utils';
  * values will not be invalidated unless the dependencies change. This is unlike
  * the built in `useMemo` which may discard memoized values for performance reasons.
  *
+ * @name useStableMemo
  * @param {Function}  factory      A function that returns a value to be memoized
  * @param {Array}     dependencies A dependency array
  * @param {object}    options

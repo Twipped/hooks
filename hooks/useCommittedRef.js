@@ -13,6 +13,7 @@ import { useRef, useEffect } from 'react';
  *
  * This is safe to access in an event handler.
  *
+ * @name useCommittedRef
  * @param {Ref} value The `Ref` value
  * @returns {*} The committed value
  */

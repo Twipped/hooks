@@ -9,10 +9,12 @@ import useDerivedState from './useDerivedState';
  */
 
 /**
+ * @name useWebStorage
  * @param {Storage} store
  * @param {string} key
  * @param {*} [defaultValue]
  * @returns {Array<*, Function, Function>} A three item array containing: state, setState, getState
+ * @private
  */
 function useWebStorage (store, key, defaultValue) {
   const [ value, writeValue, getValue ] = useDerivedState(() => {
@@ -43,6 +45,7 @@ function useWebStorage (store, key, defaultValue) {
 /**
  * @param {Storage} store
  * @yields {string} Iterates each available key
+ * @private
  */
 function* storageKeys (store) {
   for (var i = 0; i < store.length; i++) {
@@ -53,6 +56,7 @@ function* storageKeys (store) {
 /**
  * Creates a state store that is connected to the browser localStorage
  *
+ * @name useLocalStorage
  * @param  {string} key          Name of the key to store the value into
  * @param  {any} defaultValue    The initial value to use if the key does not exist.
  * @returns {Array<*, Function, Function>} A three item array containing: state, setState, getState
@@ -71,6 +75,7 @@ useLocalStorage.keys = () => Array.from(storageKeys(window.localStorage));
 /**
  * Creates a state store that is connected to the browser sessionStorage
  *
+ * @name useSessionStorage
  * @param  {string} key          Name of the key to store the value into
  * @param  {any} defaultValue    The initial value to use if the key does not exist.
  * @returns {Array<*, Function, Function>} A three item array containing: state, setState, getState

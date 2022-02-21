@@ -8,6 +8,7 @@ import { shallowEqual, deepEqual, isObject } from '@twipped/utils';
  * Functionally identical to useMemo, except it takes a dependency object
  * instead of an array (presumably a components props argument).
  *
+ * @name usePropsMemo
  * @param  {Function} factory
  * @param  {object}   props
  * @param  {object}   [options]

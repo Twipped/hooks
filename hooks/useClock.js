@@ -28,6 +28,7 @@ export const INTERVAL_DAYS    = /* #__PURE__*/makeInterval(differenceInDays);
  *
  * @param  {Function} method The function to use.
  * @returns {Function} The produced checker
+ * @private
  */
 function makeInterval (method) {
   return (interval) => useCallback((a, b) => {
@@ -44,6 +45,7 @@ function makeInterval (method) {
  * if they are in different intervals. Multiple checks may be passed to trigger at
  * different intervals.
  *
+ * @name useClock
  * @param  {...Function} checks Interval Check functions
  * @returns {Date} Returns the time of the last interval tick.
  * @example

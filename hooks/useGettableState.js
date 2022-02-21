@@ -7,6 +7,7 @@ import { isFunction, isObject, shallowEqual, deepEqual } from '@twipped/utils';
  * via a callback passed as the third return element. This always returns
  * the current state regardless of where we are in the render process.
  *
+ * @name useGettableState
  * @param  {*}       initial                  Default value passed to useState
  * @param  {object}  options
  * @param  {boolean} options.alwaysMerge      [description]

@@ -3,8 +3,10 @@ import { useState, useEffect } from 'react';
 
 /**
  * ChosenOne state manager
+ *
+ * @private
  */
-export class Manager {
+class ChosenOneManager {
 
   constructor () {
     this.hooks = [];
@@ -88,11 +90,12 @@ const Managers = new Map;
  * first and/or last instance of the component. Useful for fullscreen effects such
  * as backdrops where you do not want multiple instances.
  *
+ * @name useChosenOne
  * @param  {string | symbol} channel The name/category of the component to be tracked.
  * @returns {object} `first` and `last` keys containing booleans, indicating first and most recent mount, respectively.
  */
 export default function useChosenOne (channel) {
-  if (!Managers.has(channel)) Managers.set(channel, new Manager);
+  if (!Managers.has(channel)) Managers.set(channel, new ChosenOneManager);
   const manager = Managers.get(channel);
 
   const [ [ first, last ], setState ] = useState([ false, false ]);
@@ -111,6 +114,7 @@ export default function useChosenOne (channel) {
  * @param  {Function} fn    Setter function
  * @param  {*}        state The state to set
  * @returns {void}
+ * @private
  */
 function invokeState (fn, state) {
   if (!fn) return;

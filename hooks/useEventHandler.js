@@ -11,19 +11,31 @@ import { assert } from '@twipped/utils';
  */
 
 /**
- * @typedef {object} HandlerAPI
- * @function attach Attaches the handler to a new target.
- * @function remove Detaches the handler from the current target
+ * @typedef {object} EventHandlerInterface
+ */
+
+/**
+ * @function EventHandlerInterface#attach
+ * @description Attaches the handler to the provided target.
+ * @memberof EventHandlerInterface
+ * @param {Element} target
+ */
+
+/**
+ * @function EventHandlerInterface#remove
+ * @description Detaches the handler from its target.
+ * @memberof EventHandlerInterface
  */
 
 /**
  * Attaches an event handler to a specified DOM element, bypassing the react synthetic event system.
  * Handler is automatically cleaned up when the calling component unmounts.
  *
+ * @name useEventHandler
  * @param {string}   event    Name of the DOM event to listen for.
  * @param {Function} listener An event handler
  * @param {boolean}  capture  Whether or not to listen during the capture event phase
- * @returns {HandlerAPI} The attachment interface
+ * @returns {EventHandlerInterface} The attachment interface
  */
 export default function useEventHandler (event, listener, capture = false) {
   const handler = useEventCallback(listener);
@@ -57,6 +69,7 @@ export default function useEventHandler (event, listener, capture = false) {
 /**
  * Functions identical to useEventHandler, but takes a React Ref object as its first argument
  *
+ * @name useEventHandlerOn
  * @param  {Ref} ref            Target ref to attach to, when ready.
  * @param  {string} event       Name of the DOM event to listen for.
  * @param  {Function} listener  An event handler

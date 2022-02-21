@@ -11,6 +11,7 @@ import dft from './default';
  * Exactly the same as `useRef` except it accepts a function to produce the initial value.
  * Useful when the default is relatively costly to construct.
  *
+ * @name useLazyRef
  * @param {Function|*} fn A function to execute on ref initialization.
  * @returns {Ref}
  */

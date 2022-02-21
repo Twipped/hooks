@@ -12,6 +12,7 @@ import dft from './default';
 /**
  * Produces a MobX computed observable that invalidates when the dependencies change
  *
+ * @name useComputed
  * @param  {Function}  fn         Factory function for generating the observable.
  * @param  {Array<*>}  dependencies       Dependencies array
  * @param  {object}    [options]        Behavioral options

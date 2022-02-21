@@ -34,9 +34,10 @@ export class HookedMap extends Map {
  * Create and return a [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
  * that triggers rerenders when it is updated.
  *
+ * @name useMap
  * @param {...any} args initial Map entries
  * @returns {Map}
- * @example ```jsx
+ * @example
  * const customerAges = useMap<number>([
  *   ['john', 24],
  *   ['betsy', 25]
@@ -51,7 +52,6 @@ export class HookedMap extends Map {
  *    )}
  *  </>
  * )
- * ```
  */
 export default function useMap (...args) {
   const forceUpdate = useForceUpdate();

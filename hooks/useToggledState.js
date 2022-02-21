@@ -12,6 +12,7 @@ import useStableMemo from './useStableMemo';
  * Produces a state hook that can only hold a boolean value.
  * Provides callbacks for toggling, activating and deactivating the state.
  *
+ * @name useToggledState
  * @param  {boolean} initial
  * @returns {ToggledState}
  */
@@ -22,6 +23,8 @@ export default function useToggledState (initial = false) {
 
     /**
      * @property {boolean} ToggledState#state
+     * @memberof ToggledState
+     * @readonly
      * @returns {boolean} The current state
      */
     get state () {
@@ -32,6 +35,7 @@ export default function useToggledState (initial = false) {
      * Toggles the state on or off based on current value
      *
      * @function ToggledState#toggle
+     * @memberof ToggledState
      * @param  {boolean} [onoff] Force a specific value. Will be ignored if value is not a boolean.
      * @returns {boolean}
      */
@@ -44,6 +48,7 @@ export default function useToggledState (initial = false) {
     /**
      * Sets state to true
      *
+     * @memberof ToggledState
      * @function ToggledState#on
      * @returns {void}
      */
@@ -55,6 +60,7 @@ export default function useToggledState (initial = false) {
      * Sets state to false
      *
      * @function ToggledState#off
+     * @memberof ToggledState
      * @returns {void}
      */
     off () {
@@ -65,6 +71,7 @@ export default function useToggledState (initial = false) {
      * Retreives the current state
      *
      * @function ToggledState#toggle
+     * @memberof ToggledState
      * @returns {boolean}
      */
     get: getter,

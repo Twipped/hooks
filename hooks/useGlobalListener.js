@@ -9,10 +9,25 @@ import resolveRef from './resolveRef.js';
  */
 
 /**
- * @typedef {object} HandlerAPI
- * @function attach Attaches the handler to its target.
- * @function remove Detaches the handler from its target
- * @function when Attaches or detaches based on if the passed value is truthy
+ * @typedef {object} GlobalListenerInterface
+ */
+
+/**
+ * @function GlobalListenerInterface#attach
+ * @description Attaches the handler to its target.
+ * @memberof GlobalListenerInterface
+ */
+
+/**
+ * @function GlobalListenerInterface#remove
+ * @description Detaches the handler from its target.
+ * @memberof GlobalListenerInterface
+ */
+
+/**
+ * @function GlobalListenerInterface#when
+ * @description Attaches or detaches based on if the passed value is truthy
+ * @memberof GlobalListenerInterface
  */
 
 /**
@@ -43,16 +58,14 @@ export function useDocumentEventListener (eventName, listener, capture) {
  * Attaches an event handler outside directly to the `document`,
  * bypassing the react synthetic event system.
  *
- * ```js
- * useGlobalListener('keydown', (event) => {
- *  console.log(event.key)
- * })
- * ```
- *
  * @param {string}  eventName Name of the DOM event to listen for.
  * @param {Function}listener  An event handler
  * @param {boolean} [capture]   Whether or not to listen during the capture event phase
  * @param {Ref} [ownerElementRef]
+ * @example
+ * useGlobalListener('keydown', (event) => {
+ *  console.log(event.key)
+ * });
  */
 export default function useGlobalListener (eventName, listener, capture = false, ownerElementRef = null) {
   const targetRef = useRef(null);
@@ -97,7 +110,7 @@ export default function useGlobalListener (eventName, listener, capture = false,
  * @param  {Function}  listener           An event handler
  * @param  {boolean}   [capture]          Whether or not to listen during the capture event phase
  * @param  {Ref}       [ownerElementRef]  Ref of an element in the document to be bound to.
- * @returns {HandlerAPI}
+ * @returns {GlobalListenerInterface}
  */
 export function useToggledGlobalListener (eventName, listener, capture = false, ownerElementRef = null) {
   const targetRef = useRef(null);

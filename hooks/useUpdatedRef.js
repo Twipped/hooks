@@ -9,6 +9,7 @@ import { useRef } from 'react';
 /**
  * Returns a ref that is immediately updated with the new value
  *
+ * @name useUpdatedRef
  * @param {*} value The Ref value
  * @returns {Ref}
  */

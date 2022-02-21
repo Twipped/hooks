@@ -6,6 +6,7 @@ import { useRef, useEffect } from 'react';
  * Executes the passed function only on mount, storing the result
  * and returning it during every render until unmounted.
  *
+ * @name useWillMount
  * @param  {Function} onMount
  * @param  {Function} onWillUnmount
  * @returns {*} Returns the result of the onMount function.

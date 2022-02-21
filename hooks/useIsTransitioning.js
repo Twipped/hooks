@@ -13,6 +13,7 @@ import useWhenElementRefReady from './useWhenElementRefReady';
  * @param {Element} target
  * @param {string} [selector]
  * @returns {boolean}
+ * @private
  */
 function matches (parent, target, selector) {
   if (!selector) return parent === target;
@@ -23,6 +24,7 @@ function matches (parent, target, selector) {
 /**
  * Returns true if the target element is currently animating a css transition
  *
+ * @name useIsTransitioning
  * @param  {Ref<Element>} elementRef
  * @param  {string} [selector]   Optional css selector to specify the animation delegate
  * @returns {boolean}

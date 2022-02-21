@@ -14,6 +14,7 @@ const deep = (...args) => !deepEqual(...args);
  * If the dependencies change, the state will be repopulated based on the new dependencies, IF the results differ.
  * Invoking setState.reset() will change the state back to the last derived value.
  *
+ * @name useDerivedState
  * @param  {Function} fn           Handler to run at initialization and when a dependency changes
  * @param  {Array<*>} deps         A dependency array
  * @param  {Function} comparator   A function to evaluate if the result of the handler differs from current state

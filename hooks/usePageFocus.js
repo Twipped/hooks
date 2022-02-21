@@ -12,6 +12,7 @@ import useForceUpdate from './useForceUpdate';
 /**
  * State hook which tracks if the current window is focused.
  *
+ * @name usePageFocus
  * @param  {object}       [options]
  * @param  {Function}     [options.onChange]         Optional callback to be invoked when the state changes.
  * @param  {boolean}      [options.update]           Controls if the component should update when the state changes. Defaults to true.

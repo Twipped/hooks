@@ -7,6 +7,7 @@ import { shallowEqual, deepEqual } from '@twipped/utils';
  * function will not be invalidated unless the dependencies change. Dependencies may
  * be an array or an object.
  *
+ * @name useStableCallback
  * @param  {Function} fn            A function that returns a value to be memoized
  * @param  {Array}    dependencies  A dependency array
  * @param  {object}   options

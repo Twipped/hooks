@@ -7,6 +7,7 @@ import areHookInputsEqual from './areHookInputsEqual';
  *
  * @param {Children} children The react `children` property
  * @yields {any} The current child
+ * @private
  */
 export function* childDescender (children) {
   for (const child of Children.toArray(children)) {
@@ -23,6 +24,7 @@ export function* childDescender (children) {
  *
  * @param {Children} children The react `children` property
  * @returns {Array} A flattened array of child components
+ * @private
  */
 function flattenChildren (children) {
   return Array.from(childDescender(children),
@@ -44,6 +46,7 @@ function flattenChildren (children) {
  * Works much like useMemo, except based upon the component child structure.
  * Memoizes deeply against all descendant properties.
  *
+ * @name useChildren
  * @param  {Children} children The react `children` property
  * @param  {Function} factory The function to evaluate at mount and whenever children changes.
  * @returns {*} The last return value of the factory.

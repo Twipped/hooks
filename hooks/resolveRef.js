@@ -8,7 +8,8 @@
  * Attempts to resolve a value from the passed ref
  *
  * @param  {Ref} ref A React ref object
- * @returns {*}     [description]
+ * @returns {*}
+ * @private
  */
 export default function resolveRef (ref) {
   if (typeof document === 'undefined' || !ref) { return null; }

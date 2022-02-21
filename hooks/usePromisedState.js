@@ -11,6 +11,7 @@ import DEFAULT from './default';
  * Invoking setState.reset() will re-evaluate the function and force update with the results.
  * Note: State will always be empty at initial invocation until the promise resolves.
  *
+ * @name usePromisedState
  * @param {Function} fn                 Handler to run at initialization and when a dependency changes
  * @param {Array}    dependencies       A dependency array
  * @param {object}   options

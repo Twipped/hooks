@@ -5,6 +5,7 @@ import { useTheme } from '@emotion/react';
 /**
  * Takes a style definition and passes it through the Emotion css engine.
  *
+ * @name useEmotion
  * @param  {string | object | Function} stylesElement Style definition
  * @returns {object} Collection of scoped css classes, keyed to their original names
  */

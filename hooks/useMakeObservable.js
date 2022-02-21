@@ -10,6 +10,7 @@ import { useState, useEffect } from 'react';
  * Takes any value and makes it into a mobx observable. If the input value
  * changes, then the observable is invalidated and replaced.
  *
+ * @name useMakeObservable
  * @param {*} input
  * @returns {Observable<*>}
  */

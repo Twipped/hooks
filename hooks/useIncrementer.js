@@ -5,6 +5,7 @@ import usePrevious from './usePrevious';
 /**
  * Returns an integer that increments any time the passed value changes
  *
+ * @name useIncrementer
  * @param  {*}      value Value to watch for changes
  * @param  {number} step  Amount to increment by.
  * @returns {number} The incrementing value

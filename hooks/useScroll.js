@@ -15,6 +15,7 @@ const easingLinear = (v) => v;
 /**
  * Hook to tween the scroll position of an overflow:scroll element.
  *
+ * @name useScroll
  * @param {Ref<Element>} ref          The target element.
  * @param {object}   [baseOptions]
  * @param {number}   [baseOptions.duration]   Duration of the animation, in milliseconds
@@ -22,13 +23,12 @@ const easingLinear = (v) => v;
  * @param {number}   [baseOptions.left]       Target scrollLeft value.
  * @param {Function} [baseOptions.easing]     Easing function to use for the animation.
  * @returns {Function}
- * @example ```jsx
+ * @example
  * const ref = useRef();
  * const refScroll = useSroll(ref);
  * const scrollToTop = useCallback(() => refScroll({ top: 0, duration: 500 }))
  *
  * return <div style={{ overflow: scroll }} ref={ref} onClick={scrolltoTop} />;
- * ```
  */
 export default function useScroll (ref, baseOptions = {}) {
   if (!(ref && 'current' in ref)) throw new Error('useScroll must be passed a ref object');

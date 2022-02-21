@@ -6,10 +6,11 @@ import { useEffect, useRef } from 'react';
  * initial "on mount" run. Caution, if the dependency list never changes,
  * the effect is **never run**
  *
+ * @name useUpdateEffect
  * @param {Function} effect An effect to run on mount
  * @param {Array} dependencies
  * @returns {void}
- * @example ```js
+ * @example js
  *  const ref = useRef<HTMLInput>(null);
  *
  *  // focuses an element only if the focus changes, and not on mount
@@ -19,7 +20,6 @@ import { useEffect, useRef } from 'react';
  *    element?.focus()
  *
  *  }, [focusedIndex])
- * ```
  */
 export default function useUpdateEffect (effect, dependencies) {
   const isFirst = useRef(true);

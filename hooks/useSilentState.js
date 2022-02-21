@@ -6,6 +6,7 @@ import useStableMemo from './useStableMemo';
  * Identical to `useState` _except_ that it does not trigger an update when
  * the state is updated.
  *
+ * @name useSilentState
  * @param {*}          initial             The initial value to set the state to.
  * @param {Array<*>}   dependencies        A dependency array. If provided, the state
  * will be reset to the passed initial value if a dependency changes.
