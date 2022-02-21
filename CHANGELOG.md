@@ -15,6 +15,7 @@
   * DELETED: `useLocalObservable` (use mobx-react-lite)
   * DELETED: `usePageHashContext` (moved to @twipped/react-utils/page-hash-map)
   * DELETED: `useDerivedSet`      (use mobx, this never worked right, anyway)
+  * DELETED: `usePosition`        (use useComponentPosition, I somehow ended up with two of these)
   * FIX: `useEventHandlerOn` now detaches if the ref changes.
   * ADD: `useIsomorphicEffect`
   * ADD: `useProxyRef`
