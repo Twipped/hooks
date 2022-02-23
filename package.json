@@ -1,6 +1,6 @@
 {
   "name": "@twipped/hooks",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "A collection of my frequently used react hooks",
   "engines": {
     "node": ">=14.13"
