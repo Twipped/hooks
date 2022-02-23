@@ -1,5 +1,5 @@
 
-0.3.0 / 2022-02-22
+0.3.1 / 2022-02-22
 ==================
 
   * BREAKING: `useComputed` now receives an options object as a third parameter, with `comparison` as a configurable.
@@ -23,6 +23,7 @@
   * FEATURE: `useLocalStorage` and `useSessionStorage` will now delete the key from storage if the passed value is `undefined`.
   * FEATURE: `usePromisedState` now returns an error value that updates if a request fails.
   * DOCS: They exist!
+  * FIX: The package now includes index.js (oops, thought it did that automatically)
 
 
 0.2.0 / 2022-01-17

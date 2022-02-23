@@ -34,7 +34,8 @@
     "hooks",
     "CHANGELOG.md",
     "LICENSE.txt",
-    "README.md"
+    "README.md",
+    "index.js"
   ],
   "dependencies": {
     "@twipped/utils": "~5.0.2"
