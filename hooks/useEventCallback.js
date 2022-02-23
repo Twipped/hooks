@@ -4,7 +4,7 @@ import { useRef, useCallback } from 'react';
 /**
  * Wraps a callback so that the most recent version is always the one invoked.
  *
- * @name useEventCallback
+ * @function useEventCallback
  * @param  {Function} fn The callback to wrap
  * @returns {Function} The stable wrapped callback
  */

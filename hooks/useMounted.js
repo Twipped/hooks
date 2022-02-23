@@ -6,7 +6,7 @@ import { useRef, useEffect } from 'react';
  * properly canceling effects so they don't run after a component is unmounted,
  * but helpful in cases where that isn't feasible, such as a `Promise` resolution.
  *
- * @name useMounted
+ * @function useMounted
  * @returns {Function} Function that returns the current isMounted state of the component
  * @example js
  * const [data, setData] = useState(null)

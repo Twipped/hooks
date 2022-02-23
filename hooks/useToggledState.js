@@ -6,13 +6,14 @@ import useStableMemo from './useStableMemo';
 /**
  * @typedef ToggledState
  * @description Toggled state API interface
+ * @memberof useToggledState
  */
 
 /**
  * Produces a state hook that can only hold a boolean value.
  * Provides callbacks for toggling, activating and deactivating the state.
  *
- * @name useToggledState
+ * @function useToggledState
  * @param  {boolean} initial
  * @returns {ToggledState}
  */

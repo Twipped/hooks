@@ -5,7 +5,7 @@ import useEventHandler from './useEventHandler';
 /**
  * State hook that tracks the page hash (#), triggering an update if it changes.
  *
- * @name usePageHash
+ * @function usePageHash
  * @returns {string} The contents of the url hash, minus the leading hash symbol.
  */
 export default function usePageHash () {

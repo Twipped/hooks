@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 /**
  * Attach a callback that fires when a component unmounts
  *
- * @name useWillUnmount
+ * @function useWillUnmount
  * @param {Function} fn Callback to execute when the component unmounts
  * @returns {void}
  */

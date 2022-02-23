@@ -46,10 +46,10 @@ function flattenChildren (children) {
  * Works much like useMemo, except based upon the component child structure.
  * Memoizes deeply against all descendant properties.
  *
- * @name useChildren
+ * @function useChildren
  * @param  {Children} children The react `children` property
  * @param  {Function} factory The function to evaluate at mount and whenever children changes.
- * @returns {*} The last return value of the factory.
+ * @returns {any} The last return value of the factory.
  */
 export default function useChildren (children, factory) {
   let isValid = true;

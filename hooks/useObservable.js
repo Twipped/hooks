@@ -10,7 +10,7 @@ import useForceUpdate from './useForceUpdate';
 /**
  * Observes the passed mobx observable and triggers an update if it changes.
  *
- * @name useObservable
+ * @function useObservable
  * @param {Observable} observable          The observable to monitor
  * @param {Function}   [onChange] Optional callback to fire when a change happens.
  */

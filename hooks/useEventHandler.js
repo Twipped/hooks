@@ -6,11 +6,6 @@ import useWhenElementRefReady from './useWhenElementRefReady.js';
 import { assert } from '@twipped/utils';
 
 /**
- * @typedef {object} Ref
- * @property {*} current The contents of the ref
- */
-
-/**
  * @typedef {object} EventHandlerInterface
  */
 
@@ -31,7 +26,7 @@ import { assert } from '@twipped/utils';
  * Attaches an event handler to a specified DOM element, bypassing the react synthetic event system.
  * Handler is automatically cleaned up when the calling component unmounts.
  *
- * @name useEventHandler
+ * @function useEventHandler
  * @param {string}   event    Name of the DOM event to listen for.
  * @param {Function} listener An event handler
  * @param {boolean}  capture  Whether or not to listen during the capture event phase
@@ -69,7 +64,7 @@ export default function useEventHandler (event, listener, capture = false) {
 /**
  * Functions identical to useEventHandler, but takes a React Ref object as its first argument
  *
- * @name useEventHandlerOn
+ * @function useEventHandlerOn
  * @param  {Ref} ref            Target ref to attach to, when ready.
  * @param  {string} event       Name of the DOM event to listen for.
  * @param  {Function} listener  An event handler

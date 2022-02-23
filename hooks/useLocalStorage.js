@@ -9,11 +9,11 @@ import useDerivedState from './useDerivedState';
  */
 
 /**
- * @name useWebStorage
+ * @function useWebStorage
  * @param {Storage} store
  * @param {string} key
- * @param {*} [defaultValue]
- * @returns {Array<*, Function, Function>} A three item array containing: state, setState, getState
+ * @param {any} [defaultValue]
+ * @returns {StateHookInterface} A three item array containing: state, setState, getState
  * @private
  */
 function useWebStorage (store, key, defaultValue) {
@@ -56,10 +56,10 @@ function* storageKeys (store) {
 /**
  * Creates a state store that is connected to the browser localStorage
  *
- * @name useLocalStorage
+ * @function useLocalStorage
  * @param  {string} key          Name of the key to store the value into
  * @param  {any} defaultValue    The initial value to use if the key does not exist.
- * @returns {Array<*, Function, Function>} A three item array containing: state, setState, getState
+ * @returns {StateHookInterface} A three item array containing: state, setState, getState
  */
 export default function useLocalStorage (key, defaultValue) {
   return useWebStorage(window.localStorage, key, defaultValue);
@@ -75,10 +75,10 @@ useLocalStorage.keys = () => Array.from(storageKeys(window.localStorage));
 /**
  * Creates a state store that is connected to the browser sessionStorage
  *
- * @name useSessionStorage
+ * @function useSessionStorage
  * @param  {string} key          Name of the key to store the value into
  * @param  {any} defaultValue    The initial value to use if the key does not exist.
- * @returns {Array<*, Function, Function>} A three item array containing: state, setState, getState
+ * @returns {StateHookInterface} A three item array containing: state, setState, getState
  */
 export function useSessionStorage (key, defaultValue) {
   return useWebStorage(window.sessionStorage, key, defaultValue);

@@ -10,7 +10,7 @@ import useStableMemo from './useStableMemo';
  * notably, this is needed to prevent context providers from triggering
  * downstream updates every time they render.
  *
- * @name useMemoObject
+ * @function useMemoObject
  * @param  {object} obj The object to memoize.
  * @returns {object} The first instance of the object passed.
  */

@@ -8,9 +8,9 @@ import { useRef } from 'react';
  * This is helpful for reacting to prop changes. Note that state updates within this function
  * will trigger an error from react.
  *
- * @name useImmediateUpdateEffect
+ * @function useImmediateUpdateEffect
  * @param {Function} effect
- * @param {Array<*>} dependencies
+ * @param {Array} dependencies
  * @example js
  * function Example({ value }) {
  *   const [intermediaryValue, setValue] = useState(value);

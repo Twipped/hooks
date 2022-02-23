@@ -33,7 +33,7 @@ export class HookedSet extends Set {
  * Create and return a [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
  * that triggers rerenders when it's updated.
  *
- * @name useSet
+ * @function useSet
  * @param {...any} args initial Set values
  * @returns {Set}
  * @example

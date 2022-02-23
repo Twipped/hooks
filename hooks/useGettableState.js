@@ -7,15 +7,15 @@ import { isFunction, isObject, shallowEqual, deepEqual } from '@twipped/utils';
  * via a callback passed as the third return element. This always returns
  * the current state regardless of where we are in the render process.
  *
- * @name useGettableState
- * @param  {*}       initial                  Default value passed to useState
+ * @function useGettableState
+ * @param  {any}       initial                  Default value passed to useState
  * @param  {object}  options
  * @param  {boolean} options.alwaysMerge      [description]
  * @param  {boolean} options.alwaysUpdate     [description]
  * @param  {boolean | Function} options.comparison } When alwaysUpdate is false, the comparison
  * function provided will evaluate if the new state differs from the old state. Pass true
  * to perform a deep equal, otherwise the comparison will be shallow.
- * @returns {Array<*, Function, Function>} A three item array containing: state, setState, getState
+ * @returns {StateHookInterface} A three item array containing: state, setState, getState
  */
 export default function useGettableState (initial, { alwaysMerge = false, alwaysUpdate = true, comparison = false } = {}) {
   if (!comparison) comparison = shallowEqual;

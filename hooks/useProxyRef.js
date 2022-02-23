@@ -3,14 +3,9 @@ import useEventCallback from './useEventCallback.js';
 import useStableMemo from './useStableMemo.js';
 
 /**
- * @typedef {object} Ref
- * @property {*} current The contents of the ref
- */
-
-/**
  * Creates a Ref object that triggers a function when its contents change.
  *
- * @name useProxyRef
+ * @function useProxyRef
  * @param  {object}    options
  * @param  {Function}  [options.onChange]   The function to trigger on change. Receives the new
  * value of the ref. If a function is returned, it will be invoked at next change, like useEffect.

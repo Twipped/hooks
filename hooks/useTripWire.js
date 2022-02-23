@@ -5,8 +5,8 @@ import { useRef } from 'react';
  * Returns false as long as the passed value remains falsy. Once the value becomes
  * truthy, the return will also become truthy and remain so until reset.
  *
- * @name useTripWire
- * @param  {*} value  The triggering value.
+ * @function useTripWire
+ * @param  {any} value  The triggering value.
  * @returns {Array<boolean, Function>} Returns an array containing the current
  * value and a function to reset to false.
  */

@@ -6,11 +6,11 @@ import useStableMemo from './useStableMemo';
  * Identical to `useState` _except_ that it does not trigger an update when
  * the state is updated.
  *
- * @name useSilentState
- * @param {*}          initial             The initial value to set the state to.
- * @param {Array<*>}   dependencies        A dependency array. If provided, the state
+ * @function useSilentState
+ * @param {any}          initial             The initial value to set the state to.
+ * @param {Array}   dependencies        A dependency array. If provided, the state
  * will be reset to the passed initial value if a dependency changes.
- * @returns {Array<*, Function, Function>} A three item array containing: state, setState, getState
+ * @returns {StateHookInterface} A three item array containing: state, setState, getState
  */
 export default function useSilentState (initial = null, dependencies) {
   const ref = useRef();

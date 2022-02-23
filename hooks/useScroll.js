@@ -7,15 +7,9 @@ import useStableMemo from './useStableMemo';
 const easingLinear = (v) => v;
 
 /**
- * @typedef {object} Ref
- * @property {*} current The contents of the ref
- */
-
-
-/**
  * Hook to tween the scroll position of an overflow:scroll element.
  *
- * @name useScroll
+ * @function useScroll
  * @param {Ref<Element>} ref          The target element.
  * @param {object}   [baseOptions]
  * @param {number}   [baseOptions.duration]   Duration of the animation, in milliseconds

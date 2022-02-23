@@ -6,7 +6,7 @@ import dft from './default';
 /**
  * Identical to useEffect, except dependencies may be compared deeply.
  *
- * @name useSmartEffect
+ * @function useSmartEffect
  * @param  {Function} effect        The function to execute after render.
  * @param  {object}   dependencies  An object or array of values to compare for changes.
  * @param  {object}   options

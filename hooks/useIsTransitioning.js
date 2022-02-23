@@ -4,11 +4,6 @@ import useEventHandler from './useEventHandler';
 import useWhenElementRefReady from './useWhenElementRefReady';
 
 /**
- * @typedef {object} Ref
- * @property {*} current The contents of the ref
- */
-
-/**
  * @param {Element} parent
  * @param {Element} target
  * @param {string} [selector]
@@ -24,7 +19,7 @@ function matches (parent, target, selector) {
 /**
  * Returns true if the target element is currently animating a css transition
  *
- * @name useIsTransitioning
+ * @function useIsTransitioning
  * @param  {Ref<Element>} elementRef
  * @param  {string} [selector]   Optional css selector to specify the animation delegate
  * @returns {boolean}

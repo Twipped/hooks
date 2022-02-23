@@ -10,6 +10,9 @@
     "jsdoc/require-property": 0,
     "jsdoc/require-param-description": 0,
     "jsdoc/require-returns-description": 0,
-    "jsdoc/require-property-description": 0
+    "jsdoc/require-property-description": 0,
+    "jsdoc/no-undefined-types": ["warn", {
+      "definedTypes":[ "Ref", "StateHookInterface" ]
+    }]
   }
 }

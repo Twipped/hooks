@@ -45,7 +45,7 @@ function makeInterval (method) {
  * if they are in different intervals. Multiple checks may be passed to trigger at
  * different intervals.
  *
- * @name useClock
+ * @function useClock
  * @param  {...Function} checks Interval Check functions
  * @returns {Date} Returns the time of the last interval tick.
  * @example

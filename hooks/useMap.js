@@ -34,7 +34,7 @@ export class HookedMap extends Map {
  * Create and return a [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
  * that triggers rerenders when it is updated.
  *
- * @name useMap
+ * @function useMap
  * @param {...any} args initial Map entries
  * @returns {Map}
  * @example

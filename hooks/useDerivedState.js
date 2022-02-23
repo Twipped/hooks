@@ -10,15 +10,23 @@ const shallow = (...args) => !shallowEqual(...args);
 const deep = (...args) => !deepEqual(...args);
 
 /**
+ * @typedef StateHookInterface
+ * @type {Array}
+ * @property {any}      0 The current state
+ * @property {Function} 1 State setter function
+ * @property {Function} 2 State getter function
+ */
+
+/**
  * Creates a state hook populated by a value derived from dependencies.
  * If the dependencies change, the state will be repopulated based on the new dependencies, IF the results differ.
  * Invoking setState.reset() will change the state back to the last derived value.
  *
- * @name useDerivedState
+ * @function useDerivedState
  * @param  {Function} fn           Handler to run at initialization and when a dependency changes
- * @param  {Array<*>} deps         A dependency array
+ * @param  {Array}    deps         A dependency array
  * @param  {Function} comparator   A function to evaluate if the result of the handler differs from current state
- * @returns {Array<*, Function, Function>} Returns an array containing the current state, an updater function and a getter function.
+ * @returns {StateHookInterface} Returns an array containing the current state, an updater function and a getter function.
  */
 export default function useDerivedState (fn, deps = [ fn ], { comparator = shallow, ...ops } = {}) {
   if (comparator === true) comparator = deep;

@@ -86,13 +86,19 @@ class ChosenOneManager {
 const Managers = new Map;
 
 /**
+ * @typedef ChosenStatus
+ * @property {boolean} first Is the first instance of the component
+ * @property {boolean} last Is the last instance of the component
+ */
+
+/**
  * Tracks component instantiation and reports if the current component is the
  * first and/or last instance of the component. Useful for fullscreen effects such
  * as backdrops where you do not want multiple instances.
  *
- * @name useChosenOne
+ * @function useChosenOne
  * @param  {string | symbol} channel The name/category of the component to be tracked.
- * @returns {object} `first` and `last` keys containing booleans, indicating first and most recent mount, respectively.
+ * @returns {ChosenStatus}
  */
 export default function useChosenOne (channel) {
   if (!Managers.has(channel)) Managers.set(channel, new ChosenOneManager);
@@ -112,7 +118,7 @@ export default function useChosenOne (channel) {
  * Invokes a state setter outside of the current execution stack.
  *
  * @param  {Function} fn    Setter function
- * @param  {*}        state The state to set
+ * @param  {any}        state The state to set
  * @returns {void}
  * @private
  */

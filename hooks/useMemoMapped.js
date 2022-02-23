@@ -6,7 +6,7 @@ import { map, iteratee } from '@twipped/utils';
  * Memoizes the results of mapping a collection (array, object, map, set) per value,
  * thus if the collection is changed, only the values that change will be recomputed.
  *
- * @name useMemoMapped
+ * @function useMemoMapped
  * @param {object|Map|Set|Array} collection
  * @param {Function|object|string} predicate A function or iteratee identity (key name, or truthy evaluating pairing)
  * @returns {object|Map|Set|Array}

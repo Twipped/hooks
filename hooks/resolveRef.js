@@ -1,14 +1,14 @@
 
 /**
  * @typedef {object} Ref
- * @property {*} current The contents of the ref
+ * @property {any} current The contents of the ref
  */
 
 /**
  * Attempts to resolve a value from the passed ref
  *
  * @param  {Ref} ref A React ref object
- * @returns {*}
+ * @returns {any}
  * @private
  */
 export default function resolveRef (ref) {

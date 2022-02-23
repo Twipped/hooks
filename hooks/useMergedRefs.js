@@ -2,13 +2,8 @@ import { useMemo } from 'react';
 import { noop, isFunction } from '@twipped/utils';
 
 /**
- * @typedef {object|Function} Ref
- * @property {*} current The contents of the ref
- */
-
-/**
  * @param {Ref} ref
- * @param {*} value
+ * @param {any} value
  * @private
  */
 export function assignRef (ref, value) {
@@ -42,7 +37,7 @@ export function mergeRefs (...refs) {
 /**
  * Creates a single callback ref composed from two other Refs.
  *
- * @name useMergedRefs
+ * @function useMergedRefs
  * @param {...Ref} refs Two or more callback or mutable Refs
  * @example
  * const Button = React.forwardRef((props, ref) => {

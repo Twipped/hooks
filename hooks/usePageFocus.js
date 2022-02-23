@@ -5,14 +5,9 @@ import useGlobalListener from './useGlobalListener';
 import useForceUpdate from './useForceUpdate';
 
 /**
- * @typedef {object} Ref
- * @property {*} current The contents of the ref
- */
-
-/**
  * State hook which tracks if the current window is focused.
  *
- * @name usePageFocus
+ * @function usePageFocus
  * @param  {object}       [options]
  * @param  {Function}     [options.onChange]         Optional callback to be invoked when the state changes.
  * @param  {boolean}      [options.update]           Controls if the component should update when the state changes. Defaults to true.

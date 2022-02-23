@@ -8,13 +8,13 @@ import { shallowEqual, deepEqual, isObject } from '@twipped/utils';
  * Functionally identical to useMemo, except it takes a dependency object
  * instead of an array (presumably a components props argument).
  *
- * @name usePropsMemo
+ * @function usePropsMemo
  * @param  {Function} factory
  * @param  {object}   props
  * @param  {object}   [options]
  * @param  {boolean}  [options.comparison] The comparison function used to detect if
  * the dependencies change. Defaults to a shallow equal, pass true to use deep equality.
- * @returns {*} The result of the factory function.
+ * @returns {any} The result of the factory function.
  */
 export default function usePropsMemo (factory, props, { comparison = false } = {}) {
   if (comparison === false) comparison = shallowEqual;

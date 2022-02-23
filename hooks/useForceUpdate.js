@@ -7,7 +7,7 @@ import { useReducer } from 'react';
  * is preferable but may be required in some advanced usages of refs for interop or
  * when direct DOM manipulation is required.
  *
- * @name useForceUpdate
+ * @function useForceUpdate
  * @returns {Function} Returns a forceUpdate function.
  * @example
  * const forceUpdate = useForceUpdate();

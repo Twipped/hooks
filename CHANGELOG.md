@@ -1,5 +1,5 @@
 
-0.3.0 / 2022-02-05
+0.3.0 / 2022-02-22
 ==================
 
   * BREAKING: `useComputed` now receives an options object as a third parameter, with `comparison` as a configurable.
@@ -15,12 +15,14 @@
   * DELETED: `useLocalObservable` (use mobx-react-lite)
   * DELETED: `usePageHashContext` (moved to @twipped/react-utils/page-hash-map)
   * DELETED: `useDerivedSet`      (use mobx, this never worked right, anyway)
+  * DELETED: `useSafeState`       (Always felt redundant, and I hated the DX of it)
   * DELETED: `usePosition`        (use useComponentPosition, I somehow ended up with two of these)
   * FIX: `useEventHandlerOn` now detaches if the ref changes.
   * ADD: `useIsomorphicEffect`
   * ADD: `useProxyRef`
   * FEATURE: `useLocalStorage` and `useSessionStorage` will now delete the key from storage if the passed value is `undefined`.
   * FEATURE: `usePromisedState` now returns an error value that updates if a request fails.
+  * DOCS: They exist!
 
 
 0.2.0 / 2022-01-17

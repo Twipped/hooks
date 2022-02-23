@@ -4,12 +4,8 @@ import useEventCallback from './useEventCallback.js';
 import resolveRef from './resolveRef.js';
 
 /**
- * @typedef {object} Ref
- * @property {*} current The contents of the ref
- */
-
-/**
  * @typedef {object} GlobalListenerInterface
+ * @memberof useGlobalListener
  */
 
 /**
@@ -45,6 +41,7 @@ export function useWindowEventListener (eventName, listener, capture) {
 /**
  * Shortcut for useGlobalListener against the document
  *
+ * @function useDocumentEventListener
  * @param {string}   eventName
  * @param {Function} listener
  * @param {boolean}  capture
@@ -58,6 +55,7 @@ export function useDocumentEventListener (eventName, listener, capture) {
  * Attaches an event handler outside directly to the `document`,
  * bypassing the react synthetic event system.
  *
+ * @function useGlobalListener
  * @param {string}  eventName Name of the DOM event to listen for.
  * @param {Function}listener  An event handler
  * @param {boolean} [capture]   Whether or not to listen during the capture event phase
@@ -106,6 +104,7 @@ export default function useGlobalListener (eventName, listener, capture = false,
  * Returns an object containing `remove`, `attach`, and `when` functions.
  * `when` will attach as long as the provided value is truthy.
  *
+ * @function useToggledGlobalListener
  * @param  {string}    eventName          Name of the DOM event to listen for.
  * @param  {Function}  listener           An event handler
  * @param  {boolean}   [capture]          Whether or not to listen during the capture event phase

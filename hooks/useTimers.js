@@ -9,7 +9,7 @@ import useStableMemo from './useStableMemo';
 
 /**
  * @classdesc Timeout/Defer API interface
- * @function TimeoutHandler
+ * @typedef TimeoutHandler
  * @param {Function} fn       Callback to evaluate when the timeout finishes
  * @param {number}   delayMs  Duration of the timeout
  * @param {boolean}  [reset]  If a previous timeout should be reset when this is invoked. Default's to true.
@@ -98,7 +98,7 @@ function useTimeoutGenerator (setter, clearer, rootFn) {
  * Returns a controller object for setting a timeout that is properly cleaned up
  * once the component unmounts. New timeouts cancel and replace existing ones.
  *
- * @name useTimeout
+ * @function useTimeout
  * @param {Function} [fn] A base function for the timeout.
  * @returns {TimeoutHandler}
  * @example
@@ -122,7 +122,7 @@ export function useTimeout (fn) {
  * Returns a controller object for performing a UI deferred task that is properly cleaned up
  * if the component unmounts before the task complete. New deferrals cancel and replace existing ones.
  *
- * @name useDefer
+ * @function useDefer
  * @param {Function} [fn] A base function for the timeout.
  * @returns {TimeoutHandler}
  * @example
@@ -173,7 +173,7 @@ export function useDefer (fn) {
 /**
  * Creates an interval timer that is properly cleaned up when a component is unmounted
  *
- * @name useInterval
+ * @function useInterval
  * @param {Function} fn   A function run on each interval
  * @param {number}   ms   The milliseconds duration of the interval. Set to 0 to loop on animation frames.
  * @returns {IntervalHandler}
@@ -205,7 +205,7 @@ export function useInterval (fn, ms = 0) {
  * Creates an interval timer that loops on the UI thread update and is properly
  * cleaned up when a component is unmounted
  *
- * @name useDeferredLoop
+ * @function useDeferredLoop
  * @param {Function} fn A function run on each interval
  * @returns {IntervalHandler}
  */
@@ -221,7 +221,7 @@ export function useDeferredLoop (fn) {
  * The passed callback is wrapped in useEventCallback so that it is always
  * current across re-renders.
  *
- * @name useDebounce
+ * @function useDebounce
  * @param  {Function} fn
  * @param  {number}   delay Defaults to 100ms
  * @param  {number}   maxDelay
@@ -255,11 +255,11 @@ export function useDebounce (fn, delay = 100, maxDelay = Infinity) {
  * the delay window defined, regardless of how many renders have occurred.
  * If the component unmounts mid-debounce, the invocation will be canceled.
  *
- * @name useDebouncedEffect
+ * @function useDebouncedEffect
  * @param  {Function} fn
  * @param  {number}   delay Defaults to 100ms
  * @param  {number}   maxDelay
- * @param  {Array<*>} deps A dependency array to pass to useEffect
+ * @param  {Array} deps A dependency array to pass to useEffect
  * @returns {void}
  */
 export function useDebouncedEffect (fn, delay = 100, maxDelay = Infinity, deps) {

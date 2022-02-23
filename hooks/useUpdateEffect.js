@@ -6,7 +6,7 @@ import { useEffect, useRef } from 'react';
  * initial "on mount" run. Caution, if the dependency list never changes,
  * the effect is **never run**
  *
- * @name useUpdateEffect
+ * @function useUpdateEffect
  * @param {Function} effect An effect to run on mount
  * @param {Array} dependencies
  * @returns {void}

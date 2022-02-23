@@ -6,19 +6,67 @@ import useLazyRef from './useLazyRef';
 import DEFAULT from './default';
 
 /**
+ * @typedef PromisedState
+ * @description Promised State API interface
+ * @memberof usePromisedState
+ */
+
+/**
+ * @property {boolean} PromisedState#state
+ * @memberof PromisedState
+ * @readonly
+ * @description The current state
+ */
+
+/**
+ * @property {boolean} PromisedState#loading
+ * @memberof PromisedState
+ * @readonly
+ * @description Is the promise unresolved.
+ */
+
+/**
+ * @property {boolean} PromisedState#error
+ * @memberof PromisedState
+ * @readonly
+ * @description If the promise rejects or the factory throws, this will have the error.
+ */
+
+/**
+ * @function PromisedState#get
+ * @memberof PromisedState
+ * @returns {any} The most recent result of the promise
+ */
+
+/**
+ * @function PromisedState#set
+ * @memberof PromisedState
+ * @param {any} value Overwrites the state
+ * @returns {void}
+ */
+
+/**
+ * @function PromisedState#reset
+ * @memberof PromisedState
+ * @returns {void}
+ * @description Clears the state and reruns the promise factory.
+ */
+
+
+/**
  * Creates a state hook populated by a value produced by a promise returning function.
  * If the dependencies change, the function will be re-run, and IF the results differ then the state will be updated.
  * Invoking setState.reset() will re-evaluate the function and force update with the results.
  * Note: State will always be empty at initial invocation until the promise resolves.
  *
- * @name usePromisedState
+ * @function usePromisedState
  * @param {Function} fn                 Handler to run at initialization and when a dependency changes
  * @param {Array}    dependencies       A dependency array
  * @param {object}   options
  * @param {Function} options.comparator A function to evaluate if the result of the handler differs from current state
  * @param {boolean}  options.skipFirst  Should the state me fetched on first render
- * @param {*}        options.initial    Default value of the state before first fetch.
- * @returns {object} Returns an object containing the current `state`, `get`, `set`, and `reset` functions, and the current `loading` state.
+ * @param {any}        options.initial    Default value of the state before first fetch.
+ * @returns {PromisedState}
  */
 export default function usePromisedState (fn, dependencies = [], { comparator = shallowEqual, skipFirst, initial = DEFAULT } = {}) {
 

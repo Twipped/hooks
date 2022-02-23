@@ -4,17 +4,12 @@ import useEventCallback from './useEventCallback.js';
 import resolveRef from './resolveRef.js';
 
 /**
- * @typedef {object} Ref
- * @property {*} current The contents of the ref
- */
-
-/**
  * Executes the passed function once the provided Ref resolves to a value.
  *
- * @name useWhenElementRefReady
+ * @function useWhenElementRefReady
  * @param {Ref} ref
  * @param {Function} onResolved
- * @returns {*}
+ * @returns {any}
  */
 export default function useWhenElementRefReady (ref, onResolved) {
   const [ resolvedRef, setRef ] = useState(() => resolveRef(ref));
