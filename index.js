@@ -33,7 +33,6 @@ export { default as useMounted }                         from './hooks/useMounte
 export { default as useObservable }                      from './hooks/useObservable.js';
 export { default as usePageFocus }                       from './hooks/usePageFocus.js';
 export { default as usePageHash }                        from './hooks/usePageHash.js';
-export { default as usePosition }                        from './hooks/usePosition.js';
 export { default as usePrevious }                        from './hooks/usePrevious.js';
 export { default as usePromisedState }                   from './hooks/usePromisedState.js';
 export { default as usePropsMemo }                       from './hooks/usePropsMemo.js';
