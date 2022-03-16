@@ -1,6 +1,5 @@
 
 import { useRef } from 'react';
-import areHookInputsEqual from './areHookInputsEqual';
 import { shallowEqual, deepEqual } from '@twipped/utils';
 
 /**
@@ -16,7 +15,7 @@ import { shallowEqual, deepEqual } from '@twipped/utils';
  * the dependencies change. Defaults to a shallow equal, pass true to use deep equality.
  * @returns {any}
  */
-export default function useStableMemo (factory, dependencies, { comparison = areHookInputsEqual } = {}) {
+export default function useStableMemo (factory, dependencies, { comparison = shallowEqual } = {}) {
   if (comparison === false) comparison = shallowEqual;
   if (comparison === true) comparison = deepEqual;
 
