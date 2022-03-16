@@ -15,7 +15,8 @@
     "lint": "eslint './**/*.{js,jsx}' --fix",
     "test": "tap",
     "doc": "jsdoc -c jsdocs.json",
-    "docs": "jsdoc2md -t README.hbs hooks/*.js > README.md"
+    "docs": "jsdoc2md -t README.hbs hooks/*.js > README.md",
+    "release": "semantic-release"
   },
   "publishConfig": {
     "access": "public"
@@ -23,6 +24,30 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/Twipped/hooks"
+  },
+  "release": {
+    "branches": [
+      "main"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      [
+        "@semantic-release/changelog",
+        {
+          "changelogFile": "CHANGELOG.md"
+        }
+      ],
+      "@semantic-release/npm",
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "docs/CHANGELOG.md"
+          ]
+        }
+      ],
+      "@semantic-release/github"
+    ]
   },
   "author": "Jocelyn Badgley <joc@twipped.com> (http://twipped.com)",
   "license": "MIT",
@@ -52,6 +77,9 @@
     "@babel/eslint-parser": "^7.17.0",
     "@babel/preset-env": "~7.16.8",
     "@babel/preset-react": "~7.16.7",
+    "@semantic-release/changelog": "^6.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^8.0.2",
     "@testing-library/react-hooks": "^7.0.2",
     "enzyme": "^3.11.0",
     "eslint": "~8.7.0",
@@ -66,7 +94,7 @@
     "minami": "~1.2.3",
     "react": ">=17",
     "react-test-renderer": "^17.0.2",
-    "tap": "^16.0.0",
-    "tapsuite": "^2.0.1"
+    "semantic-release": "^19.0.2",
+    "tap": "^16.0.0"
   }
 }
