@@ -1,4 +1,5 @@
 export { default as useAction }                          from './hooks/useAction.js';
+export { default as useAsyncCallback }                   from './hooks/useAsyncCallback.js';
 export { default as useChildren }                        from './hooks/useChildren.js';
 export { default as useChosenOne }                       from './hooks/useChosenOne.js';
 export { default as useClock }                           from './hooks/useClock.js';
