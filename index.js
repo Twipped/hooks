@@ -6,6 +6,7 @@ export { default as useCommittedRef }                    from './hooks/useCommit
 export { default as useComponentPosition }               from './hooks/useComponentPosition.js';
 export { default as useComputed }                        from './hooks/useComputed.js';
 export { default as useDerivedState }                    from './hooks/useDerivedState.js';
+export { default as useElementInViewport }               from './hooks/useElementInViewport.js';
 export { default as useEmotion }                         from './hooks/useEmotion.js';
 export { default as useEventCallback }                   from './hooks/useEventCallback.js';
 export { default as useEventHandler, useEventHandlerOn } from './hooks/useEventHandler.js';
