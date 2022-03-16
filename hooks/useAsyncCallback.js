@@ -5,6 +5,7 @@ import { warn } from '@twipped/utils';
  * Identical to React.useCallback, except if the callback resolves a rejection,
  * we will forward that rejection to the console.
  *
+ * @function useAsyncCallback
  * @param  {Function} callback
  * @param  {Array}    dependencies
  * @returns {Function}

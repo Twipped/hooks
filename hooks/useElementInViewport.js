@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 /**
  * Tests if a given Ref element exists within a given viewport.
  *
+ * @function useElementInViewport
  * @param  {Ref}     elementRef   Ref to the relevant element.
  * @param  {object}  options
  * @param  {Ref}     [options.root]        The element that is used as the viewport for checking visibility of the target. Defaults to the browser viewport.
