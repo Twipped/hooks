@@ -11,10 +11,13 @@ import useStableMemo from './useStableMemo';
  * downstream updates every time they render.
  *
  * @function useMemoObject
- * @param  {object} obj The object to memoize.
+ * @param {object}    obj The object to memoize.
+ * @param {object}    options
+ * @param {boolean}   options.comparison The comparison function used to detect if
+ * the object properties change. Defaults to a shallow equal, pass true to use deep equality.
  * @returns {object} The first instance of the object passed.
  */
-export default function useMemoObject (obj) {
+export default function useMemoObject (obj, options) {
   if (!isArray(obj) && !isObject(obj)) return obj;
-  return useStableMemo(() => obj, isArray(obj) ? obj : Object.values(obj));
+  return useStableMemo(() => obj, isArray(obj) ? obj : Object.values(obj), options);
 }
