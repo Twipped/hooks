@@ -5,10 +5,20 @@
   "engines": {
     "node": ">=14.13"
   },
+  "type": "module",
+  "main": "./index.js",
+  "exports": {
+    ".": "./index.js",
+    "./*": "./hooks/*.js"
+  },
   "scripts": {
     "lint": "eslint './**/*.{js,jsx}' --fix",
+    "test": "tap",
     "doc": "jsdoc -c jsdocs.json",
     "docs": "jsdoc2md -t README.hbs hooks/*.js > README.md"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "repository": {
     "type": "git",
@@ -16,20 +26,6 @@
   },
   "author": "Jocelyn Badgley <joc@twipped.com> (http://twipped.com)",
   "license": "MIT",
-  "devDependencies": {
-    "@babel/preset-env": "~7.16.8",
-    "@babel/preset-react": "~7.16.7",
-    "eslint": "~8.7.0",
-    "eslint-config-twipped": "~6.1.0",
-    "eslint-plugin-import": "~2.25.4",
-    "eslint-plugin-jsdoc": "~37.9.4",
-    "eslint-plugin-node": "~11.1.0",
-    "eslint-plugin-promise": "~6.0.0",
-    "eslint-plugin-react": "~7.28.0",
-    "jsdoc": "~3.6.10",
-    "jsdoc-to-markdown": "~7.1.1",
-    "minami": "~1.2.3"
-  },
   "files": [
     "hooks",
     "CHANGELOG.md",
@@ -52,12 +48,24 @@
     "mobx-react-lite": ">=3.2.3",
     "qs": ">=6.10.3"
   },
-  "main": "./index.js",
-  "exports": {
-    ".": "./index.js",
-    "./*": "./hooks/*.js"
-  },
-  "publishConfig": {
-    "access": "public"
+  "devDependencies": {
+    "@babel/preset-env": "~7.16.8",
+    "@babel/preset-react": "~7.16.7",
+    "@testing-library/react-hooks": "^7.0.2",
+    "enzyme": "^3.11.0",
+    "eslint": "~8.7.0",
+    "eslint-config-twipped": "~6.1.0",
+    "eslint-plugin-import": "~2.25.4",
+    "eslint-plugin-jsdoc": "~37.9.4",
+    "eslint-plugin-node": "~11.1.0",
+    "eslint-plugin-promise": "~6.0.0",
+    "eslint-plugin-react": "~7.28.0",
+    "jsdoc": "~3.6.10",
+    "jsdoc-to-markdown": "~7.1.1",
+    "minami": "~1.2.3",
+    "react": ">=17",
+    "react-test-renderer": "^17.0.2",
+    "tap": "^16.0.0",
+    "tapsuite": "^2.0.1"
   }
 }
