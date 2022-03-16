@@ -49,6 +49,7 @@
     "qs": ">=6.10.3"
   },
   "devDependencies": {
+    "@babel/eslint-parser": "^7.17.0",
     "@babel/preset-env": "~7.16.8",
     "@babel/preset-react": "~7.16.7",
     "@testing-library/react-hooks": "^7.0.2",
