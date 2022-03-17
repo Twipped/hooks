@@ -2,8 +2,7 @@
 import { computed } from 'mobx';
 import { useRef } from 'react';
 import { shallowEqual, deepEqual } from '@twipped/utils';
-import areHookInputsEqual from './areHookInputsEqual';
-import dft from './default';
+import dft from './default.js';
 
 /**
  * @typedef {object} Observable
@@ -16,10 +15,11 @@ import dft from './default';
  * @param  {Function}  fn         Factory function for generating the observable.
  * @param  {Array}  dependencies       Dependencies array
  * @param  {object}    [options]        Behavioral options
- * @param  {Function|boolean}   options.comparison A comparison method, false for shallow equality, or true for deep equality
+ * @param  {Function|boolean}   options.comparison The comparison function used to detect if
+ * the dependencies change. Defaults to a shallow equal, pass true to use deep equality.
  * @returns {Observable<*>} Returns a MobX Observable containing the derived values
  */
-export default function useComputed (fn, dependencies, { comparison = areHookInputsEqual } = {}) {
+export default function useComputed (fn, dependencies, { comparison = shallowEqual } = {}) {
   if (comparison === false) comparison = shallowEqual;
   if (comparison === true) comparison = deepEqual;
 
