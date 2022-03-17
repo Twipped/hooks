@@ -1,6 +1,6 @@
 
 import { useRef, Children } from 'react';
-import areHookInputsEqual from './areHookInputsEqual';
+import { shallowEqual, deepEqual } from '@twipped/utils';
 
 /**
  * Recursively iterates over the child structure, one child at a time.
@@ -49,9 +49,14 @@ function flattenChildren (children) {
  * @function useChildren
  * @param  {Children} children The react `children` property
  * @param  {Function} factory The function to evaluate at mount and whenever children changes.
+ * @param  {object}   options
+ * @param  {boolean}  options.comparison The comparison function used to detect if
+ * the dependencies change. Defaults to a shallow equal, pass true to use deep equality.
  * @returns {any} The last return value of the factory.
  */
-export default function useChildren (children, factory) {
+export default function useChildren (children, factory, { comparison = shallowEqual } = {}) {
+  if (comparison === false) comparison = shallowEqual;
+  if (comparison === true) comparison = deepEqual;
   let isValid = true;
 
   const deps = flattenChildren(children);
@@ -62,7 +67,7 @@ export default function useChildren (children, factory) {
     isValid = !!(
       deps &&
       valueRef.current.deps &&
-      areHookInputsEqual(deps, valueRef.current.deps)
+      comparison(deps, valueRef.current.deps)
     );
   } else {
     valueRef.current = {
