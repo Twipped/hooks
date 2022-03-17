@@ -1,3 +1,16 @@
+## [0.5.0](https://github.com/Twipped/hooks/compare/v0.4.0...v0.5.0) (2022-03-17)
+
+
+### Features
+
+* **useChildren:** Now supports a third argument for options, with a comparison option. ([8866860](https://github.com/Twipped/hooks/commit/88668606e1cb8c96b5f0214f3069078ad67d01d7))
+
+
+### Bug Fixes
+
+* Corrected a whole host of broken includes. ([251238a](https://github.com/Twipped/hooks/commit/251238a5eb8beeb3827b35b3f6c3ed40c14513dc))
+* **useComputed:** Now uses shallowEqual by default, as the docs say. ([45ae67c](https://github.com/Twipped/hooks/commit/45ae67c5b96e40b4257a481afc353d2fc68bc685))
+
 # [0.4.0](https://github.com/Twipped/hooks/compare/v0.3.1...v0.4.0) (2022-03-16)
 
 
