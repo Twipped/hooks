@@ -26,6 +26,7 @@
     "url": "https://github.com/Twipped/hooks"
   },
   "release": {
+    "preset": "conventionalcommits",
     "branches": [
       "main"
     ],
