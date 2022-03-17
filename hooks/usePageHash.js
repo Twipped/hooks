@@ -1,6 +1,6 @@
 
 import { useStore } from 'react';
-import useEventHandler from './useEventHandler';
+import useEventHandler from './useEventHandler.js';
 
 /**
  * State hook that tracks the page hash (#), triggering an update if it changes.

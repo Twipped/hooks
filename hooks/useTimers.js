@@ -1,11 +1,11 @@
 
 import { useCallback, useEffect, useRef } from 'react';
 import { assert } from '@twipped/utils';
-import useMounted from './useMounted';
-import useCommittedRef from './useCommittedRef';
-import useWillUnmount from './useWillUnmount';
-import useEventCallback from './useEventCallback';
-import useStableMemo from './useStableMemo';
+import useMounted from './useMounted.js';
+import useCommittedRef from './useCommittedRef.js';
+import useWillUnmount from './useWillUnmount.js';
+import useEventCallback from './useEventCallback.js';
+import useStableMemo from './useStableMemo.js';
 
 /**
  * @classdesc Timeout/Defer API interface

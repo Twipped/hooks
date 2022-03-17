@@ -1,6 +1,6 @@
 
 import { useRef } from 'react';
-import usePrevious from './usePrevious';
+import usePrevious from './usePrevious.js';
 
 /**
  * Returns an integer that increments any time the passed value changes

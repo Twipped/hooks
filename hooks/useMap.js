@@ -1,6 +1,6 @@
 
-import useStableMemo from './useStableMemo';
-import useForceUpdate from './useForceUpdate';
+import useStableMemo from './useStableMemo.js';
+import useForceUpdate from './useForceUpdate.js';
 
 export class HookedMap extends Map {
   constructor (listener, ...args) {

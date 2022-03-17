@@ -1,6 +1,6 @@
 
-import useStableMemo from './useStableMemo';
-import useWillUnmount from './useWillUnmount';
+import useStableMemo from './useStableMemo.js';
+import useWillUnmount from './useWillUnmount.js';
 import { useRef } from 'react';
 
 /**

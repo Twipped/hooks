@@ -1,8 +1,8 @@
 
 import { useRef, useCallback } from 'react';
-import useEventCallback from './useEventCallback';
-import useGlobalListener from './useGlobalListener';
-import useForceUpdate from './useForceUpdate';
+import useEventCallback from './useEventCallback.js';
+import useGlobalListener from './useGlobalListener.js';
+import useForceUpdate from './useForceUpdate.js';
 
 /**
  * State hook which tracks if the current window is focused.

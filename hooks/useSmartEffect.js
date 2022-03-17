@@ -1,7 +1,7 @@
 
 import { useEffect, useRef } from 'react';
 import { shallowEqual, deepEqual } from '@twipped/utils';
-import dft from './default';
+import dft from './default.js';
 
 /**
  * Identical to useEffect, except dependencies may be compared deeply.
@@ -10,7 +10,7 @@ import dft from './default';
  * @param  {Function} effect        The function to execute after render.
  * @param  {object}   dependencies  An object or array of values to compare for changes.
  * @param  {object}   options
- * @param  {boolean}  options.comparison The comparison function used to detect if
+ * @param  {Function|boolean}  options.comparison The comparison function used to detect if
  * the dependencies change. Defaults to a shallow equal, pass true to use deep equality.
  * @returns {void}
  */

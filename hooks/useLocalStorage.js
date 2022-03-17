@@ -1,8 +1,8 @@
 
 import { useCallback } from 'react';
 import { jsonSoftParse } from '@twipped/utils';
-import { useWindowEventListener } from './useGlobalListener';
-import useDerivedState from './useDerivedState';
+import { useWindowEventListener } from './useGlobalListener.js';
+import useDerivedState from './useDerivedState.js';
 
 /**
  * @typedef {object} Storage

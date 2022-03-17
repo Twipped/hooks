@@ -1,6 +1,6 @@
 
 import { isObject, isArray } from '@twipped/utils';
-import useStableMemo from './useStableMemo';
+import useStableMemo from './useStableMemo.js';
 
 /**
  * Memoizes a passed object so that the same object is always returned

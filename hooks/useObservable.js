@@ -1,7 +1,7 @@
 
 import { observe, isObservable, isComputed } from 'mobx';
 import { useLayoutEffect } from 'react';
-import useForceUpdate from './useForceUpdate';
+import useForceUpdate from './useForceUpdate.js';
 
 /**
  * @typedef {object} Observable

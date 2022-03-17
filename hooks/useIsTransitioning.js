@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
-import useEventHandler from './useEventHandler';
-import useWhenElementRefReady from './useWhenElementRefReady';
+import useEventHandler from './useEventHandler.js';
+import useWhenElementRefReady from './useWhenElementRefReady.js';
 
 /**
  * @param {Element} parent

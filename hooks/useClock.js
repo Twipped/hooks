@@ -10,8 +10,8 @@ import {
   differenceInDays,
 } from 'date-fns';
 import { useCallback } from 'react';
-import useGettableState from './useGettableState';
-import { useInterval } from './useTimers';
+import useGettableState from './useGettableState.js';
+import { useInterval } from './useTimers.js';
 
 
 export const DAYS    = /* #__PURE__*/isSameDay;

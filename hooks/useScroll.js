@@ -1,8 +1,8 @@
 
 import { useRef } from 'react';
 import { isNotUndefinedOrNull, clamp } from '@twipped/utils';
-import { useDeferredLoop } from './useTimers';
-import useStableMemo from './useStableMemo';
+import { useDeferredLoop } from './useTimers.js';
+import useStableMemo from './useStableMemo.js';
 
 const easingLinear = (v) => v;
 

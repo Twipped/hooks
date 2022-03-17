@@ -13,6 +13,11 @@
     "jsdoc/require-property-description": 0,
     "jsdoc/no-undefined-types": ["warn", {
       "definedTypes":[ "Ref", "StateHookInterface" ]
+    }],
+    "import/extensions": ["error", "ignorePackages", {
+      "js": "always",
+      "mjs": "always",
+      "jsx": "always"
     }]
   }
 }

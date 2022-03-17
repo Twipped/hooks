@@ -1,7 +1,7 @@
 
 
 import { useRef } from 'react';
-import dft from './default';
+import dft from './default.js';
 import { shallowEqual, deepEqual, isObject } from '@twipped/utils';
 
 /**

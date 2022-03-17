@@ -1,6 +1,6 @@
 
 import { useRef, useCallback } from 'react';
-import useStableMemo from './useStableMemo';
+import useStableMemo from './useStableMemo.js';
 
 /**
  * Identical to `useState` _except_ that it does not trigger an update when

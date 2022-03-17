@@ -1,6 +1,6 @@
 
 import { useRef } from 'react';
-import dft from './default';
+import dft from './default.js';
 
 /**
  * Exactly the same as `useRef` except it accepts a function to produce the initial value.

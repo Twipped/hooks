@@ -1,9 +1,9 @@
 
 import { useState, useCallback, useRef, useEffect } from 'react';
-import useGettableState from './useGettableState';
+import useGettableState from './useGettableState.js';
 import { shallowEqual, warn, MultiMap } from '@twipped/utils';
-import useLazyRef from './useLazyRef';
-import DEFAULT from './default';
+import useLazyRef from './useLazyRef.js';
+import DEFAULT from './default.js';
 
 /**
  * @typedef PromisedState

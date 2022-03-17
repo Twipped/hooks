@@ -1,6 +1,6 @@
 
-import useGettableState from './useGettableState';
-import useStableMemo from './useStableMemo';
+import useGettableState from './useGettableState.js';
+import useStableMemo from './useStableMemo.js';
 
 
 /**

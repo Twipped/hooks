@@ -1,7 +1,7 @@
 
 import {  useCallback, useLayoutEffect } from 'react';
 import { isObject, shallowEqual, assert } from '@twipped/utils';
-import useGettableState from './useGettableState';
+import useGettableState from './useGettableState.js';
 
 /**
  * @typedef Position

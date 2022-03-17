@@ -1,8 +1,8 @@
 
-import useImmediateUpdateEffect from './useImmediateUpdateEffect';
+import useImmediateUpdateEffect from './useImmediateUpdateEffect.js';
 import { useCallback } from 'react';
-import useStableMemo from './useStableMemo';
-import useGettableState from './useGettableState';
+import useStableMemo from './useStableMemo.js';
+import useGettableState from './useGettableState.js';
 
 import { shallowEqual, deepEqual, isFunction } from '@twipped/utils';
 
