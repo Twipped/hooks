@@ -1,20 +1,9 @@
 {
 	"extends": [
-    "twipped/react",
-    "plugin:jsdoc/recommended"
-  ],
-  "plugins": [
-    "jsdoc"
+    "twipped/react"
   ],
   "rules": {
-    "jsdoc/require-property": 0,
-    "jsdoc/require-param-description": 0,
-    "jsdoc/require-returns-description": 0,
-    "jsdoc/require-property-description": 0,
-    "jsdoc/no-undefined-types": ["warn", {
-      "definedTypes":[ "Ref", "StateHookInterface" ]
-    }],
-    "import/extensions": ["error", "ignorePackages", {
+    "import/extensions": ["error", {
       "js": "always",
       "mjs": "always",
       "jsx": "always"
