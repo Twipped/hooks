@@ -62,7 +62,7 @@ import DEFAULT from './default.js';
  * @function usePromisedState
  * @param {Function} fn                 Handler to run at initialization and when a dependency changes
  * @param {Array}    dependencies       A dependency array
- * @param {object}   options
+ * @param {Object}   options
  * @param {Function} options.comparator A function to evaluate if the result of the handler differs from current state
  * @param {boolean}  options.skipFirst  Should the state me fetched on first render
  * @param {any}        options.initial    Default value of the state before first fetch.

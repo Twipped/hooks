@@ -4,7 +4,7 @@ import useEventCallback from './useEventCallback.js';
 import resolveRef from './resolveRef.js';
 
 /**
- * @typedef {object} GlobalListenerInterface
+ * @typedef {Object} GlobalListenerInterface
  * @memberof useGlobalListener
  */
 
@@ -66,11 +66,13 @@ export default function useGlobalListener (eventName, listener, capture = false,
 
     if (targetRef.current) remove();
 
-    targetRef.current = { target, eventName, capture, currentEvent: window.event };
+    targetRef.current = {
+      target, eventName, capture, currentEvent: window.event,
+    };
     target.addEventListener(eventName, handler, capture);
 
     return remove;
-  }, [ eventName, handler, capture, ownerElementRef ]);
+  }, [ eventName, handler, capture, ownerElementRef, remove ]);
 }
 
 
@@ -86,7 +88,12 @@ export default function useGlobalListener (eventName, listener, capture = false,
  * @param  {Ref}       [ownerElementRef]  Ref of an element in the document to be bound to.
  * @returns {GlobalListenerInterface}
  */
-export function useToggledGlobalListener (eventName, listener, capture = false, ownerElementRef = null) {
+export function useToggledGlobalListener (
+  eventName,
+  listener,
+  capture = false,
+  ownerElementRef = null
+) {
   const targetRef = useRef(null);
   const prehandler = useEventCallback(listener);
   const handler = useEventCallback((e, ...args) => {
@@ -113,7 +120,9 @@ export function useToggledGlobalListener (eventName, listener, capture = false, 
 
       if (targetRef.current) api.remove();
 
-      targetRef.current = { target, eventName, capture, currentEvent: window.event };
+      targetRef.current = {
+        target, eventName, capture, currentEvent: window.event,
+      };
       target.addEventListener(eventName, handler, capture);
     },
 
@@ -121,7 +130,7 @@ export function useToggledGlobalListener (eventName, listener, capture = false, 
       if (value && !targetRef.current) api.attach();
       else if (!value && targetRef.current) api.remove();
     },
-  }));
+  }), [ capture, eventName, handler, ownerElementRef ]);
 
   useEffect(() => {
     // do not bind immediately, but if we're already bound we need to refresh.
@@ -131,7 +140,7 @@ export function useToggledGlobalListener (eventName, listener, capture = false, 
     }
 
     return api.remove;
-  }, [ eventName, handler, capture, ownerElementRef ]);
+  }, [ eventName, handler, capture, ownerElementRef, api ]);
 
   return api;
 }

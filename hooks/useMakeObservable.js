@@ -3,7 +3,7 @@ import { observable } from 'mobx';
 import { useState, useEffect } from 'react';
 
 /**
- * @typedef {object} Observable
+ * @typedef {Object} Observable
  */
 
 /**

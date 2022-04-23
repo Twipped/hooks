@@ -8,7 +8,7 @@ import useForceUpdate from './useForceUpdate.js';
  * State hook which tracks if the current window is focused.
  *
  * @function usePageFocus
- * @param  {object}       [options]
+ * @param  {Object}       [options]
  * @param  {Function}     [options.onChange]         Optional callback to be invoked when the state changes.
  * @param  {boolean}      [options.update]           Controls if the component should update when the state changes. Defaults to true.
  * @param  {Ref<Element>} [options.ownerElementRef]  Ref of an element in the document to be monitored.

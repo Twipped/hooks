@@ -1,57 +1,5 @@
-
-import { useCallback } from 'react';
-import { jsonSoftParse } from '@twipped/utils';
-import { useWindowEventListener } from './useGlobalListener.js';
-import useDerivedState from './useDerivedState.js';
-
-/**
- * @typedef {object} Storage
- */
-
-/**
- * @function useWebStorage
- * @param {Storage} store
- * @param {string} key
- * @param {any} [defaultValue]
- * @returns {StateHookInterface} A three item array containing: state, setState, getState
- * @private
- */
-function useWebStorage (store, key, defaultValue) {
-  const [ value, writeValue, getValue ] = useDerivedState(() => {
-    const stored = jsonSoftParse(store.getItem(key));
-    return stored || stored === 0 ? stored : defaultValue;
-  }, [ store, key ]);
-
-  const setValue = useCallback((newValue) => {
-    writeValue(() => {
-      if (newValue === undefined) {
-        store.removeItem(key);
-      } else {
-        store.setItem(key, JSON.stringify(newValue));
-      }
-      return newValue;
-    });
-  }, [ key ]);
-
-  useWindowEventListener('storage', (ev) => {
-    if (ev.storageArea === store && ev.key === key) {
-      writeValue(ev.newValue === null ? defaultValue : JSON.parse(ev.newValue));
-    }
-  });
-
-  return [ value, setValue, getValue ];
-}
-
-/**
- * @param {Storage} store
- * @yields {string} Iterates each available key
- * @private
- */
-function* storageKeys (store) {
-  for (var i = 0; i < store.length; i++) {
-    yield store.key(i);
-  }
-}
+/* global StateHookInterface */
+import { useWebStorageApi, storageKeys } from './webStorageApi.js';
 
 /**
  * Creates a state store that is connected to the browser localStorage
@@ -62,31 +10,13 @@ function* storageKeys (store) {
  * @returns {StateHookInterface} A three item array containing: state, setState, getState
  */
 export default function useLocalStorage (key, defaultValue) {
-  return useWebStorage(window.localStorage, key, defaultValue);
+  return useWebStorageApi(window.localStorage, key, defaultValue);
 }
 
 /**
  * Returns an array of the keys present in localStorage
  *
+ * @function useLocalStorage.keys
  * @returns {Array<string>}
  */
 useLocalStorage.keys = () => Array.from(storageKeys(window.localStorage));
-
-/**
- * Creates a state store that is connected to the browser sessionStorage
- *
- * @function useSessionStorage
- * @param  {string} key          Name of the key to store the value into
- * @param  {any} defaultValue    The initial value to use if the key does not exist.
- * @returns {StateHookInterface} A three item array containing: state, setState, getState
- */
-export function useSessionStorage (key, defaultValue) {
-  return useWebStorage(window.sessionStorage, key, defaultValue);
-}
-
-/**
- * Returns an array of the keys present in sessionStorage
- *
- * @returns {Array<string>}
- */
-useSessionStorage.keys = () => Array.from(storageKeys(window.sessionStorage));

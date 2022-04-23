@@ -11,7 +11,7 @@ const easingLinear = (v) => v;
  *
  * @function useScroll
  * @param {Ref<Element>} ref          The target element.
- * @param {object}   [baseOptions]
+ * @param {Object}   [baseOptions]
  * @param {number}   [baseOptions.duration]   Duration of the animation, in milliseconds
  * @param {number}   [baseOptions.top]        Target scrollTop value.
  * @param {number}   [baseOptions.left]       Target scrollLeft value.

@@ -10,7 +10,7 @@ import { shallowEqual, deepEqual } from '@twipped/utils';
  * @function useStableMemo
  * @param {Function}  factory      A function that returns a value to be memoized
  * @param {Array}     dependencies A dependency array
- * @param {object}    [options] Options
+ * @param {Object}    [options] Options
  * @param {Function|boolean}   [options.comparison] The comparison function used to detect if
  * the dependencies change. Defaults to a shallow equal, pass true to use deep equality.
  * @returns {any}

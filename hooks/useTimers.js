@@ -1,7 +1,6 @@
 
 import { useCallback, useEffect, useRef } from 'react';
 import { assert } from '@twipped/utils';
-import useMounted from './useMounted.js';
 import useCommittedRef from './useCommittedRef.js';
 import useWillUnmount from './useWillUnmount.js';
 import useEventCallback from './useEventCallback.js';
@@ -51,7 +50,10 @@ import useStableMemo from './useStableMemo.js';
  * @private
  */
 function useTimeoutGenerator (setter, clearer, rootFn) {
-  const isMounted = useMounted();
+  const mounted = useRef(true);
+  useEffect(() => () => {
+    mounted.current = false;
+  }, []);
 
   const handleRef = useCommittedRef();
 
@@ -78,13 +80,15 @@ function useTimeoutGenerator (setter, clearer, rootFn) {
      * Default's to true.
      */
     function set (fn = rootFn, delayMs = 0, reset = true) {
-      if (!isMounted()) return;
+      if (mounted.current) return;
       if (!reset && handleRef.current) return;
 
+      /* eslint-disable no-param-reassign */
       if (typeof fn !== 'function' && typeof rootFn === 'function') {
         delayMs = fn;
         fn = rootFn;
       }
+      /* eslint-enable no-param-reassign */
 
       assert(typeof fn === 'function', 'useTimeout/useDefer must be provided a function as its first argument');
 
@@ -126,6 +130,8 @@ export function useTimeout (fn) {
   return timer;
 }
 
+const RAF = (typeof requestAnimationFrame === 'undefined') ? requestAnimationFrame : setTimeout;
+const CAF = (typeof cancelAnimationFrame === 'undefined') ? cancelAnimationFrame : clearTimeout;
 /**
  * Returns a controller object for performing a UI deferred task that is properly cleaned up
  * if the component unmounts before the task complete. New deferrals cancel and replace
@@ -146,8 +152,7 @@ export function useTimeout (fn) {
  * );
  */
 export function useDefer (fn) {
-  if (typeof cancelAnimationFrame === 'undefined') return useTimeout();
-  const timer = useTimeoutGenerator(requestAnimationFrame, cancelAnimationFrame, fn);
+  const timer = useTimeoutGenerator(RAF, CAF, fn);
   return timer;
 }
 
@@ -186,7 +191,8 @@ export function useDefer (fn) {
  *
  * @function useInterval
  * @param {Function} fn   A function run on each interval
- * @param {number}   ms   The milliseconds duration of the interval. Set to 0 to loop on animation frames.
+ * @param {number}   ms   The milliseconds duration of the interval.
+ * Pass 0 to loop on animation frames.
  * @returns {IntervalHandler}
  * @example
  *  const [timer, setTimer] = useState(-1)
@@ -208,11 +214,11 @@ export function useInterval (fn, ms = 0) {
   const tick = useCallback(() => {
     fn();
     timer.set(tick);
-  }, [ timer ]);
+  }, [ fn, timer ]);
 
   const start = useCallback(() => {
     timer.set(tick);
-  }, [ timer ]);
+  }, [ tick, timer ]);
 
   return { start, stop: timer.clear, isActive: timer.isActive };
 }
@@ -268,7 +274,7 @@ export function useDebounce (fn, delay = 100, maxDelay = Infinity) {
     lastArgs.current = args;
     if (Date.now() - firstCall.current > maxDelay) callback();
     else set(callback, delay);
-  }, [ callback, delay, maxDelay, firstCall ]);
+  }, [ callback, delay, maxDelay, firstCall, set ]);
 }
 
 /**
@@ -284,7 +290,9 @@ export function useDebounce (fn, delay = 100, maxDelay = Infinity) {
  * @param  {Array} dependencies A dependency array to pass to useEffect
  * @returns {void}
  */
-export function useDebouncedEffect (fn, delay = 100, maxDelay = Infinity, deps) {
+export function useDebouncedEffect (fn, delay = 100, maxDelay = Infinity, dependencies = undefined) {
   fn = useDebounce(fn, delay, maxDelay);
-  useEffect(() => fn(), deps);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => fn(), dependencies);
 }

@@ -7,6 +7,6 @@
  */
 
 /**
- * @typedef {object} Ref
+ * @typedef {Object} Ref
  * @property {any} current The contents of the ref
  */

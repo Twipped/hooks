@@ -10,7 +10,7 @@ import { isFunction, isObject, shallowEqual, deepEqual } from '@twipped/utils';
  *
  * @function useGettableState
  * @param  {any}       initial                  Default value passed to useState
- * @param  {object}    [options] Options
+ * @param  {Object}    [options] Options
  * @param  {boolean}   [options.alwaysMerge=false] Always merge the new state into the old.
  * @param  {boolean}   [options.alwaysUpdate=false] Always trigger an update even if state matches.
  * @param  {boolean|Function} [options.comparison=false] } When alwaysUpdate is false,
@@ -18,10 +18,15 @@ import { isFunction, isObject, shallowEqual, deepEqual } from '@twipped/utils';
  * Pass true to perform a deep equal, otherwise the comparison will be shallow.
  * @returns {StateHookInterface} A three item array containing: state, setState, getState
  */
-export default function useGettableState (initial, { alwaysMerge = false, alwaysUpdate = true, comparison = false } = {}) {
+export default function useGettableState (
+  initial,
+  { alwaysMerge = false, alwaysUpdate = true, comparison = false } = {}
+) {
+  /* eslint-disable no-param-reassign */
   if (!comparison) comparison = shallowEqual;
-  if (comparison === true)  comparison = deepEqual;
+  if (comparison === true) comparison = deepEqual;
   if (!isFunction(comparison)) alwaysUpdate = true;
+  /* eslint-enable no-param-reassign */
 
   const [ state, setState ] = useState(initial);
   const ref = useRef(state);
@@ -33,14 +38,15 @@ export default function useGettableState (initial, { alwaysMerge = false, always
     },
 
     setter (value, { merge = alwaysMerge, forceUpdate = alwaysUpdate } = {}) {
-      if (merge && isObject(value, true)) {
-        value = { ...ref.current, ...value };
-      }
       if (!forceUpdate && comparison(value, ref.current)) return;
-      ref.current = value;
+      if (merge && isObject(value, true)) {
+        ref.current = { ...ref.current, ...value };
+      } else {
+        ref.current = value;
+      }
       setState(value);
     },
-  }));
+  }), [ alwaysMerge, alwaysUpdate, comparison ]);
 
   setter.reset = (options) => setter(isFunction(initial) ? initial() : initial, options);
 

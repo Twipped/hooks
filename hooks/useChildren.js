@@ -38,7 +38,7 @@ function flattenChildren (children) {
       },
     }) => ({
       key, ref, type, props,
-    }),
+    })
   ).flat(1);
 }
 
@@ -49,7 +49,7 @@ function flattenChildren (children) {
  * @function useChildren
  * @param  {Children} children The react `children` property
  * @param  {Function} factory The function to evaluate at mount and whenever children changes.
- * @param  {object}   options
+ * @param  {Object}   options
  * @param  {boolean}  options.comparison The comparison function used to detect if
  * the dependencies change. Defaults to a shallow equal, pass true to use deep equality.
  * @returns {any} The last return value of the factory.

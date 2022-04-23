@@ -4,7 +4,7 @@ import { useLayoutEffect } from 'react';
 import useForceUpdate from './useForceUpdate.js';
 
 /**
- * @typedef {object} Observable
+ * @typedef {Object} Observable
  */
 
 /**

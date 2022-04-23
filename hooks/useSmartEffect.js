@@ -8,8 +8,8 @@ import dft from './default.js';
  *
  * @function useSmartEffect
  * @param  {Function} effect        The function to execute after render.
- * @param  {object}   dependencies  An object or array of values to compare for changes.
- * @param  {object}   options
+ * @param  {Object}   dependencies  An object or array of values to compare for changes.
+ * @param  {Object}   options
  * @param  {Function|boolean}  options.comparison The comparison function used to detect if
  * the dependencies change. Defaults to a shallow equal, pass true to use deep equality.
  * @returns {void}
