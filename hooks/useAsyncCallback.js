@@ -2,12 +2,12 @@ import { useCallback } from 'react';
 import { warn } from '@twipped/utils';
 
 /**
- * Identical to React.useCallback, except if the callback resolves a rejection,
- * we will forward that rejection to the console.
+ * Identical to React.useCallback, except if the callback produces a promise,
+ * we dispose of any resolved value and forward rejections to the console.
  *
  * @function useAsyncCallback
- * @param  {Function} callback
- * @param  {Array}    dependencies
+ * @param  {Function} callback Callback function
+ * @param  {Array}    dependencies Dependencies array
  * @returns {Function}
  */
 export default function useAsyncCallback (callback, dependencies) {

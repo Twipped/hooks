@@ -2,7 +2,7 @@
 import { useEffect, useRef } from 'react';
 
 /**
- * Runs an effect only when the dependencies have changed, skipping the
+ * Runs an effect *only* when the dependencies have changed, skipping the
  * initial "on mount" run. Caution, if the dependency list never changes,
  * the effect is **never run**
  *

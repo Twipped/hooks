@@ -27,39 +27,14 @@ import resolveRef from './resolveRef.js';
  */
 
 /**
- * Shortcut for useGlobalListener against the window
- *
- * @param {string}   eventName
- * @param {Function} listener
- * @param {boolean}  capture
- * @returns {void}
- */
-export function useWindowEventListener (eventName, listener, capture) {
-  return useGlobalListener(eventName, listener, capture, window);
-}
-
-/**
- * Shortcut for useGlobalListener against the document
- *
- * @function useDocumentEventListener
- * @param {string}   eventName
- * @param {Function} listener
- * @param {boolean}  capture
- * @returns {void}
- */
-export function useDocumentEventListener (eventName, listener, capture) {
-  return useGlobalListener(eventName, listener, capture, document);
-}
-
-/**
  * Attaches an event handler outside directly to the `document`,
  * bypassing the react synthetic event system.
  *
  * @function useGlobalListener
  * @param {string}  eventName Name of the DOM event to listen for.
  * @param {Function}listener  An event handler
- * @param {boolean} [capture]   Whether or not to listen during the capture event phase
- * @param {Ref} [ownerElementRef]
+ * @param {boolean} [capture=false]   Whether or not to listen during the capture event phase
+ * @param {Ref} [ownerElementRef] Ref to element to listen to instead of document
  * @example
  * useGlobalListener('keydown', (event) => {
  *  console.log(event.key)
@@ -107,7 +82,7 @@ export default function useGlobalListener (eventName, listener, capture = false,
  * @function useToggledGlobalListener
  * @param  {string}    eventName          Name of the DOM event to listen for.
  * @param  {Function}  listener           An event handler
- * @param  {boolean}   [capture]          Whether or not to listen during the capture event phase
+ * @param  {boolean}   [capture=false]    Whether or not to listen during the capture event phase
  * @param  {Ref}       [ownerElementRef]  Ref of an element in the document to be bound to.
  * @returns {GlobalListenerInterface}
  */
@@ -159,4 +134,29 @@ export function useToggledGlobalListener (eventName, listener, capture = false, 
   }, [ eventName, handler, capture, ownerElementRef ]);
 
   return api;
+}
+
+/**
+ * Shortcut for useGlobalListener against the window
+ *
+ * @param {string}   eventName Event to listen for
+ * @param {Function} listener Callback function
+ * @param {boolean}  [capture=false] Capture events from the top of the DOM tree
+ * @returns {void}
+ */
+export function useWindowEventListener (eventName, listener, capture) {
+  return useGlobalListener(eventName, listener, capture, window);
+}
+
+/**
+ * Shortcut for useGlobalListener against the document
+ *
+ * @function useDocumentEventListener
+ * @param {string}   eventName Event to listen for
+ * @param {Function} listener Callback function
+ * @param {boolean}  [capture=false] Capture events from the top of the DOM tree
+ * @returns {void}
+ */
+export function useDocumentEventListener (eventName, listener, capture) {
+  return useGlobalListener(eventName, listener, capture, document);
 }

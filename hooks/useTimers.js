@@ -12,7 +12,8 @@ import useStableMemo from './useStableMemo.js';
  * @typedef TimeoutHandler
  * @param {Function} fn       Callback to evaluate when the timeout finishes
  * @param {number}   delayMs  Duration of the timeout
- * @param {boolean}  [reset]  If a previous timeout should be reset when this is invoked. Default's to true.
+ * @param {boolean}  [reset]  If a previous timeout should be reset when this is invoked.
+ * Default's to true.
  * @returns {void}
  */
 
@@ -20,9 +21,11 @@ import useStableMemo from './useStableMemo.js';
  * @function TimeoutHandler#set
  * @memberof TimeoutHandler
  * @description Starts or resets the timeout
- * @param {Function} [fn]     Callback to evaluate when the timeout finishes. If omitted, will fallback to the rootFn.
+ * @param {Function} [fn]     Callback to evaluate when the timeout finishes. If omitted,
+ * will fallback to the rootFn.
  * @param {number}   [delayMs]  Duration of the timeout. Defaults to 0 (next event loop).
- * @param {boolean}  [reset]  If a previous timeout should be reset when this is invoked. Default's to true.
+ * @param {boolean}  [reset]  If a previous timeout should be reset when this is invoked.
+ * Default's to true.
  */
 
 /**
@@ -56,6 +59,8 @@ function useTimeoutGenerator (setter, clearer, rootFn) {
 
   return useStableMemo(() => {
     /**
+     * Clears the timeout
+     *
      * @callback clearTimeout
      */
     function clear () {
@@ -64,10 +69,13 @@ function useTimeoutGenerator (setter, clearer, rootFn) {
     }
 
     /**
+     * Starts the timeout
+     *
      * @callback setTimeout
      * @param {Function} [fn]     Callback to evaluate when the timeout finishes
      * @param {number}   [delayMs]  Duration of the timeout. Defaults to 0 (next event loop).
-     * @param {boolean}  [reset]  If a previous timeout should be reset when this is invoked. Default's to true.
+     * @param {boolean}  [reset]  If a previous timeout should be reset when this is invoked.
+     * Default's to true.
      */
     function set (fn = rootFn, delayMs = 0, reset = true) {
       if (!isMounted()) return;
@@ -120,7 +128,8 @@ export function useTimeout (fn) {
 
 /**
  * Returns a controller object for performing a UI deferred task that is properly cleaned up
- * if the component unmounts before the task complete. New deferrals cancel and replace existing ones.
+ * if the component unmounts before the task complete. New deferrals cancel and replace
+ * existing ones.
  *
  * @function useDefer
  * @param {Function} [fn] A base function for the timeout.
@@ -151,9 +160,11 @@ export function useDefer (fn) {
  * @function IntervalHandler#start
  * @memberof IntervalHandler
  * @description Starts or resets the interval loop
- * @param {Function} [fn]     Callback to evaluate when the timeout finishes. If omitted, will fallback to the rootFn.
+ * @param {Function} [fn]     Callback to evaluate when the timeout finishes. If omitted,
+ * will fallback to the rootFn.
  * @param {number}   [delayMs]  Duration of the timeout. Defaults to 0 (next event loop).
- * @param {boolean}  [reset]  If a previous timeout should be reset when this is invoked. Default's to true.
+ * @param {boolean}  [reset]  If a previous timeout should be reset when this is invoked.
+ * Default's to true.
  */
 
 /**
@@ -185,9 +196,14 @@ export function useDefer (fn) {
  *  return <span>{timer} seconds past</span>
  */
 export function useInterval (fn, ms = 0) {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const timer = ms > 0 ? useTimeout() : useDefer();
+  // Both useTimeout and useDefer invoke useTimeoutGenerator, so the hook
+  // order will not change if we switch functions.
 
   fn = useEventCallback(fn);
+  // wrap the callback with an EC so we don't have to worry about it
+  // changing between renders.
 
   const tick = useCallback(() => {
     fn();
@@ -222,14 +238,19 @@ export function useDeferredLoop (fn) {
  * current across re-renders.
  *
  * @function useDebounce
- * @param  {Function} fn
- * @param  {number}   delay Defaults to 100ms
- * @param  {number}   maxDelay
+ * @param  {Function} fn Function to debounce
+ * @param  {number}   delay How long to wait after last invocation, in
+ * milliseconds. Defaults to 100ms
+ * @param  {number}   maxDelay Maximum amount of time to wait, in milliseconds.
  * @returns {Function}
  */
 export function useDebounce (fn, delay = 100, maxDelay = Infinity) {
   fn = useEventCallback(fn);
+  // wrap the callback with an EC so we don't have to worry about it
+  // changing between renders.
+
   if (!maxDelay) maxDelay = Infinity;
+
   const { set } = useTimeout();
 
   const firstCall = useCommittedRef();
@@ -256,10 +277,11 @@ export function useDebounce (fn, delay = 100, maxDelay = Infinity) {
  * If the component unmounts mid-debounce, the invocation will be canceled.
  *
  * @function useDebouncedEffect
- * @param  {Function} fn
- * @param  {number}   delay Defaults to 100ms
- * @param  {number}   maxDelay
- * @param  {Array} deps A dependency array to pass to useEffect
+ * @param  {Function} fn Function to debounce
+ * @param  {number}   [delay] How long to wait after last invocation, in
+ * milliseconds. Defaults to 100ms
+ * @param  {number}   [maxDelay] Maximum amount of time to wait, in milliseconds.
+ * @param  {Array} dependencies A dependency array to pass to useEffect
  * @returns {void}
  */
 export function useDebouncedEffect (fn, delay = 100, maxDelay = Infinity, deps) {

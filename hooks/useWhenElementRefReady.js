@@ -8,7 +8,7 @@ import resolveRef from './resolveRef.js';
  *
  * @function useWhenElementRefReady
  * @param {Ref} ref
- * @param {Function} onResolved
+ * @param {Function} [onResolved] Callback to invoke with the ref resolves
  * @returns {any}
  */
 export default function useWhenElementRefReady (ref, onResolved) {

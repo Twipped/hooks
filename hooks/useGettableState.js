@@ -1,3 +1,4 @@
+/* global StateHookInterface */
 
 import { useState, useMemo, useRef } from 'react';
 import { isFunction, isObject, shallowEqual, deepEqual } from '@twipped/utils';
@@ -9,12 +10,12 @@ import { isFunction, isObject, shallowEqual, deepEqual } from '@twipped/utils';
  *
  * @function useGettableState
  * @param  {any}       initial                  Default value passed to useState
- * @param  {object}  options
- * @param  {boolean} options.alwaysMerge      [description]
- * @param  {boolean} options.alwaysUpdate     [description]
- * @param  {boolean | Function} options.comparison } When alwaysUpdate is false, the comparison
- * function provided will evaluate if the new state differs from the old state. Pass true
- * to perform a deep equal, otherwise the comparison will be shallow.
+ * @param  {object}    [options] Options
+ * @param  {boolean}   [options.alwaysMerge=false] Always merge the new state into the old.
+ * @param  {boolean}   [options.alwaysUpdate=false] Always trigger an update even if state matches.
+ * @param  {boolean|Function} [options.comparison=false] } When alwaysUpdate is false,
+ * the comparison function provided will evaluate if the new state differs from the old state.
+ * Pass true to perform a deep equal, otherwise the comparison will be shallow.
  * @returns {StateHookInterface} A three item array containing: state, setState, getState
  */
 export default function useGettableState (initial, { alwaysMerge = false, alwaysUpdate = true, comparison = false } = {}) {

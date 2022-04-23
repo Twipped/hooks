@@ -9,9 +9,9 @@ import { shallowEqual, deepEqual, isObject } from '@twipped/utils';
  * instead of an array (presumably a components props argument).
  *
  * @function usePropsMemo
- * @param  {Function} factory
- * @param  {object}   props
- * @param  {object}   [options]
+ * @param  {Function} factory Function to memoize
+ * @param  {object}   props Dependencies
+ * @param  {object}   [options] Options
  * @param  {boolean}  [options.comparison] The comparison function used to detect if
  * the dependencies change. Defaults to a shallow equal, pass true to use deep equality.
  * @returns {any} The result of the factory function.

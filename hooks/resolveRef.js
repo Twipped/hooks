@@ -1,9 +1,4 @@
-
-/**
- * @typedef {object} Ref
- * @property {any} current The contents of the ref
- */
-
+/* eslint-disable no-param-reassign */
 /**
  * Attempts to resolve a value from the passed ref
  *

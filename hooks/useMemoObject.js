@@ -12,8 +12,8 @@ import useStableMemo from './useStableMemo.js';
  *
  * @function useMemoObject
  * @param {object}    obj The object to memoize.
- * @param {object}    options
- * @param {boolean}   options.comparison The comparison function used to detect if
+ * @param {object}    [options] Options
+ * @param {boolean}   [options.comparison] The comparison function used to detect if
  * the object properties change. Defaults to a shallow equal, pass true to use deep equality.
  * @returns {object} The first instance of the object passed.
  */

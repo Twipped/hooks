@@ -14,7 +14,7 @@ import useStableMemo from './useStableMemo.js';
  * Provides callbacks for toggling, activating and deactivating the state.
  *
  * @function useToggledState
- * @param  {boolean} initial
+ * @param  {boolean} initial Initial state
  * @returns {ToggledState}
  */
 export default function useToggledState (initial = false) {
@@ -23,10 +23,12 @@ export default function useToggledState (initial = false) {
   return useStableMemo(() => ({
 
     /**
-     * @property {boolean} ToggledState#state
+     * Returns the current state.
+     *
+     * @property {boolean} ToggledState#state The current state
      * @memberof ToggledState
      * @readonly
-     * @returns {boolean} The current state
+     * @returns {boolean}
      */
     get state () {
       return state;
