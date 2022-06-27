@@ -1,6 +1,7 @@
 
 import { useRef } from 'react';
-import { shallowEqual, deepEqual } from '@twipped/utils';
+import shallowEqual from '@twipped/utils/shallowEqual';
+import deepEqual from '@twipped/utils/deepEqual';
 
 /**
  * Identical to `useCallback` _except_ that it provides a semantic guarantee that
@@ -10,7 +11,7 @@ import { shallowEqual, deepEqual } from '@twipped/utils';
  * @function useStableCallback
  * @param  {Function} fn            A function that returns a value to be memoized
  * @param  {Array}    dependencies  A dependency array
- * @param  {object}   options
+ * @param  {Object}   options
  * @param  {Function|boolean}  options.comparison The comparison function used to detect if
  * the dependencies change. Defaults to a shallow equal, pass true to use deep equality.
  * @returns {Function}

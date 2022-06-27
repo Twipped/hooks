@@ -1,7 +1,9 @@
 /* global StateHookInterface */
 
 import { useState, useMemo, useRef } from 'react';
-import { isFunction, isObject, shallowEqual, deepEqual } from '@twipped/utils';
+import { isFunction, isObject } from '@twipped/utils/types';
+import shallowEqual from '@twipped/utils/shallowEqual';
+import deepEqual from '@twipped/utils/deepEqual';
 
 /**
  * Functions identical to useState, except the state is retrievable
@@ -10,7 +12,7 @@ import { isFunction, isObject, shallowEqual, deepEqual } from '@twipped/utils';
  *
  * @function useGettableState
  * @param  {any}       initial                  Default value passed to useState
- * @param  {object}    [options] Options
+ * @param  {Object}    [options] Options
  * @param  {boolean}   [options.alwaysMerge=false] Always merge the new state into the old.
  * @param  {boolean}   [options.alwaysUpdate=false] Always trigger an update even if state matches.
  * @param  {boolean|Function} [options.comparison=false] } When alwaysUpdate is false,
@@ -40,7 +42,7 @@ export default function useGettableState (initial, { alwaysMerge = false, always
       ref.current = value;
       setState(value);
     },
-  }));
+  }), [ alwaysMerge, alwaysUpdate, comparison ]);
 
   setter.reset = (options) => setter(isFunction(initial) ? initial() : initial, options);
 

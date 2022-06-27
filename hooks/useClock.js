@@ -72,6 +72,8 @@ export default function useClock (...checks) {
         return;
       }
     }
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ setDate, getDate, ...checks ]), 1000).start();
 
   return date;

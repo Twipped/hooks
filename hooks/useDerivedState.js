@@ -4,7 +4,9 @@ import { useCallback } from 'react';
 import useStableMemo from './useStableMemo.js';
 import useGettableState from './useGettableState.js';
 
-import { shallowEqual, deepEqual, isFunction } from '@twipped/utils';
+import { isFunction } from '@twipped/utils/types';
+import shallowEqual from '@twipped/utils/shallowEqual';
+import deepEqual from '@twipped/utils/deepEqual';
 
 const shallow = (...args) => !shallowEqual(...args);
 const deep = (...args) => !deepEqual(...args);
@@ -25,12 +27,13 @@ const deep = (...args) => !deepEqual(...args);
  * @function useDerivedState
  * @param  {Function} fn Handler to run at initialization and when a dependency changes
  * @param  {Array}    dependencies A dependency array
- * @param  {Function} comparator   A function to evaluate if the result
+ * @param  {Object}   options
+ * @param  {Function} options.comparator   A function to evaluate if the result
  * of the handler differs from current state
  * @returns {StateHookInterface} Returns an array containing the current state,
  * an updater function and a getter function.
  */
-export default function useDerivedState (fn, deps = [ fn ], { comparator = shallow, ...ops } = {}) {
+export default function useDerivedState (fn, dependencies = [ fn ], { comparator = shallow, ...ops } = {}) {
   if (comparator === true) comparator = deep;
 
   if (!isFunction(fn)) {
@@ -38,7 +41,7 @@ export default function useDerivedState (fn, deps = [ fn ], { comparator = shall
     fn = () => v;
   }
 
-  const initial = useStableMemo(fn, deps);
+  const initial = useStableMemo(fn, dependencies);
 
   var [ state, writeState, readState ] = useGettableState(initial, ops);
   useImmediateUpdateEffect(() => {
@@ -47,7 +50,7 @@ export default function useDerivedState (fn, deps = [ fn ], { comparator = shall
       setTimeout(() => writeState(initial));
     }
     // console.log({ state, initial, diff });
-  }, [ initial, ...deps ]);
+  }, [ initial, ...dependencies ]);
 
   writeState.reset = useCallback(() => writeState(initial), [ writeState, initial ]);
 

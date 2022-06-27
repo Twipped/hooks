@@ -23,11 +23,12 @@ export default function useSilentState (initial = null, dependencies) {
   const setter = useCallback((value) => {
     ref.current = value;
     return value;
-  }, [ ref ]);
+  }, []);
 
   const getter = useCallback(() => ref.current, [ ref ]);
 
-  setter.reset = useCallback(() => setter(initial));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  setter.reset = useCallback(() => setter(initial), []);
 
   return [ ref.current, setter, getter ];
 }

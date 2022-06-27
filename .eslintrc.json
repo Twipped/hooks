@@ -18,6 +18,7 @@
       "js": "always",
       "mjs": "always",
       "jsx": "always"
-    }]
+    }],
+    "import/no-extraneous-dependencies": "warn"
   }
 }

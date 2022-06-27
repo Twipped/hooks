@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
-import { noop, isFunction } from '@twipped/utils';
+import { isFunction } from '@twipped/utils/types';
+import noop from '@twipped/utils/noop';
 
 /**
  * @param {Ref} ref
@@ -49,5 +50,6 @@ export function mergeRefs (...refs) {
  * @returns {Function}
  */
 export default function useMergedRefs (...refs) {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   return useMemo(() => mergeRefs(...refs), refs);
 }

@@ -14,6 +14,10 @@ import { useRef, useEffect } from 'react';
 export default function useWillMount (onMount, onWillUnmount) {
   const mounted = useRef(null);
 
+  // create a ref that always contains the latest unmount function
+  const owu = useRef(onWillUnmount);
+  owu.current = onWillUnmount;
+
   if (!mounted.current) {
     mounted.current = [ onMount() ];
   }
@@ -21,9 +25,9 @@ export default function useWillMount (onMount, onWillUnmount) {
   useEffect(
     () => () => {
       mounted.current = null;
-      onWillUnmount && onWillUnmount();
+      owu.current && owu.current();
     },
-    [],
+    []
   );
 
   return mounted.current[0];

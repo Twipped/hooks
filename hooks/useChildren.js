@@ -1,6 +1,7 @@
 
 import { useRef, Children } from 'react';
-import { shallowEqual, deepEqual } from '@twipped/utils';
+import shallowEqual from '@twipped/utils/shallowEqual';
+import deepEqual from '@twipped/utils/deepEqual';
 
 /**
  * Recursively iterates over the child structure, one child at a time.
@@ -38,7 +39,7 @@ function flattenChildren (children) {
       },
     }) => ({
       key, ref, type, props,
-    }),
+    })
   ).flat(1);
 }
 
@@ -49,7 +50,7 @@ function flattenChildren (children) {
  * @function useChildren
  * @param  {Children} children The react `children` property
  * @param  {Function} factory The function to evaluate at mount and whenever children changes.
- * @param  {object}   options
+ * @param  {Object}   options
  * @param  {boolean}  options.comparison The comparison function used to detect if
  * the dependencies change. Defaults to a shallow equal, pass true to use deep equality.
  * @returns {any} The last return value of the factory.

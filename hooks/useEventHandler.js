@@ -3,10 +3,10 @@ import { useMemo, useRef } from 'react';
 import useWillUnmount from './useWillUnmount.js';
 import useEventCallback from './useEventCallback.js';
 import useWhenElementRefReady from './useWhenElementRefReady.js';
-import { assert } from '@twipped/utils';
+import assert from '@twipped/utils/assert';
 
 /**
- * @typedef {object} EventHandlerInterface
+ * @typedef {Object} EventHandlerInterface
  */
 
 /**
@@ -54,7 +54,7 @@ export default function useEventHandler (event, listener, capture = false) {
       targetRef.current = { target, event, capture };
       target.addEventListener(event, handler, capture);
     },
-  }));
+  }), [ event, capture, handler ]);
 
   useWillUnmount(api.remove);
 

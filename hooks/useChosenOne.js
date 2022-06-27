@@ -109,7 +109,7 @@ export default function useChosenOne (channel) {
   useEffect(() => {
     setState(manager.push(setState));
     return () => manager.remove(setState);
-  }, []);
+  }, [ manager ]);
 
   return { first, last };
 }

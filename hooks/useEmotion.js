@@ -7,7 +7,7 @@ import { useTheme } from '@emotion/react';
  *
  * @function useEmotion
  * @param  {string | object | Function} stylesElement Style definition
- * @returns {object} Collection of scoped css classes, keyed to their original names
+ * @returns {Object} Collection of scoped css classes, keyed to their original names
  */
 export default function useEmotion (stylesElement) {
   const theme = useTheme();

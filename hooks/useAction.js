@@ -11,5 +11,6 @@ import { action } from 'mobx';
  * @returns {void}
  */
 export default function useAction (fn, dependencies) {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   return useCallback(action(fn), dependencies);
 }

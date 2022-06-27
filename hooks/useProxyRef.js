@@ -6,7 +6,7 @@ import useStableMemo from './useStableMemo.js';
  * Creates a Ref object that triggers a function when its contents change.
  *
  * @function useProxyRef
- * @param  {object}    options
+ * @param  {Object}    options
  * @param  {Function}  [options.onChange]   The function to trigger on change. Receives the new
  * value of the ref. If a function is returned, it will be invoked at next change, like useEffect.
  * @param  {boolean}   [options.deferred]   If true, the function will be triggered asynchronously

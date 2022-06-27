@@ -1,6 +1,10 @@
 
 import {  useCallback, useLayoutEffect } from 'react';
-import { isObject, shallowEqual, assert } from '@twipped/utils';
+import { isObject } from '@twipped/utils/types';
+import shallowEqual from '@twipped/utils/shallowEqual';
+import assert from '@twipped/utils/assert';
+import useEventCallback from './useEventCallback.js';
+
 import useGettableState from './useGettableState.js';
 
 /**
@@ -22,6 +26,8 @@ import useGettableState from './useGettableState.js';
 export default function useComponentPosition (ref, onUpdate) {
   assert(isObject(ref) && 'current' in ref, 'First argument of useComponentPosition must be a React Ref object.');
 
+  const onUpdateSafe = useEventCallback((dims) => onUpdate && onUpdate(dims));
+
   var [ componentSize, setComponentSize, getComponentSize ] = useGettableState(getSize(ref?.current));
 
   var handleResize = useCallback(() => {
@@ -29,9 +35,11 @@ export default function useComponentPosition (ref, onUpdate) {
       const dims = getSize(ref.current);
       if (!shallowEqual(dims, getComponentSize())) {
         setComponentSize(dims);
-        onUpdate && onUpdate(dims);
+        onUpdateSafe(dims);
       }
     }
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ ref ]);
 
   useLayoutEffect(() => {
@@ -59,7 +67,8 @@ export default function useComponentPosition (ref, onUpdate) {
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, [ ref.current ]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ ref.current, handleResize ]);
 
   return componentSize;
 }

@@ -1,8 +1,9 @@
 
-
 import { useRef } from 'react';
 import dft from './default.js';
-import { shallowEqual, deepEqual, isObject } from '@twipped/utils';
+import { isObject } from '@twipped/utils/types';
+import shallowEqual from '@twipped/utils/shallowEqual';
+import deepEqual from '@twipped/utils/deepEqual';
 
 /**
  * Functionally identical to useMemo, except it takes a dependency object
@@ -10,8 +11,8 @@ import { shallowEqual, deepEqual, isObject } from '@twipped/utils';
  *
  * @function usePropsMemo
  * @param  {Function} factory Function to memoize
- * @param  {object}   props Dependencies
- * @param  {object}   [options] Options
+ * @param  {Object}   props Dependencies
+ * @param  {Object}   [options] Options
  * @param  {boolean}  [options.comparison] The comparison function used to detect if
  * the dependencies change. Defaults to a shallow equal, pass true to use deep equality.
  * @returns {any} The result of the factory function.

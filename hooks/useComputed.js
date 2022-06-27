@@ -1,11 +1,12 @@
 
 import { computed } from 'mobx';
 import { useRef } from 'react';
-import { shallowEqual, deepEqual } from '@twipped/utils';
+import shallowEqual from '@twipped/utils/shallowEqual';
+import deepEqual from '@twipped/utils/deepEqual';
 import dft from './default.js';
 
 /**
- * @typedef {object} Observable
+ * @typedef {Object} Observable
  */
 
 /**
@@ -14,7 +15,7 @@ import dft from './default.js';
  * @function useComputed
  * @param  {Function}  fn         Factory function for generating the observable.
  * @param  {Array}  dependencies       Dependencies array
- * @param  {object}    [options]        Behavioral options
+ * @param  {Object}    [options]        Behavioral options
  * @param  {Function|boolean}   options.comparison The comparison function used to detect if
  * the dependencies change. Defaults to a shallow equal, pass true to use deep equality.
  * @returns {Observable<*>} Returns a MobX Observable containing the derived values

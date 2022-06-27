@@ -2,7 +2,7 @@
 /**
  * A Symbol identifying a default state.
  *
- * @type {symbol}
+ * @type {Symbol}
  * @private
  */
 const DEFAULT = Symbol('default value signal');

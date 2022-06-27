@@ -1,7 +1,11 @@
 
 import { useState, useCallback, useRef, useEffect } from 'react';
 import useGettableState from './useGettableState.js';
-import { shallowEqual, warn, MultiMap } from '@twipped/utils';
+import useUpdatedRef from './useUpdatedRef.js';
+import deepEqual from '@twipped/utils/deepEqual';
+import shallowEqual from '@twipped/utils/shallowEqual';
+import warn from '@twipped/utils/warn';
+import MultiMap from '@twipped/utils/multimap';
 import useLazyRef from './useLazyRef.js';
 import DEFAULT from './default.js';
 
@@ -62,13 +66,19 @@ import DEFAULT from './default.js';
  * @function usePromisedState
  * @param {Function} fn                 Handler to run at initialization and when a dependency changes
  * @param {Array}    dependencies       A dependency array
- * @param {object}   options
+ * @param {Object}   options
  * @param {Function} options.comparator A function to evaluate if the result of the handler differs from current state
  * @param {boolean}  options.skipFirst  Should the state me fetched on first render
  * @param {any}        options.initial    Default value of the state before first fetch.
  * @returns {PromisedState}
  */
 export default function usePromisedState (fn, dependencies = [], { comparator = shallowEqual, skipFirst, initial = DEFAULT } = {}) {
+  if (!comparator) comparator = shallowEqual;
+  if (comparator === true)  comparator = deepEqual;
+
+  const fnRef = useUpdatedRef(fn);
+  const dependenciesRef = useUpdatedRef(dependencies);
+  const comparatorRef = useUpdatedRef(comparator);
 
   const [ error, setError ] = useState();
   const [ state, writeState, readState ] = useGettableState(initial);
@@ -78,12 +88,14 @@ export default function usePromisedState (fn, dependencies = [], { comparator = 
   const ticker  = useRef(0);
 
   const refresh = useCallback((force) => {
+    // eslint-disable-next-line no-shadow
+    const dependencies = dependenciesRef.current;
 
     var flight = dependencies && cache.get(dependencies);
 
     if (!flight || force) {
       // this request hasn't been seen before, so initiate and cache it.
-      flight = (async () => fn())();
+      flight = (async () => fnRef.current())();
 
       if (dependencies) {
         // if we received a dependency array, we need to cache the request.
@@ -107,7 +119,7 @@ export default function usePromisedState (fn, dependencies = [], { comparator = 
       if (flights.size && ticker.current > id) return;
 
 
-      if (force || !comparator(res, readState())) {
+      if (force || !comparatorRef.current(res, readState())) {
         setError(null);
         writeState(res);
       }
@@ -116,14 +128,18 @@ export default function usePromisedState (fn, dependencies = [], { comparator = 
     });
 
     return flight;
-  });
 
-  useEffect(async () => {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
     if (isFirst.current) {
       isFirst.current = false;
       if (skipFirst) return;
     }
     refresh();
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, dependencies);
 
   const reset = useCallback(() => refresh(true), [ refresh ]);

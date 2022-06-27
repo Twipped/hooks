@@ -4,7 +4,7 @@ import { useLayoutEffect } from 'react';
 import useForceUpdate from './useForceUpdate.js';
 
 /**
- * @typedef {object} Observable
+ * @typedef {Object} Observable
  */
 
 /**
@@ -25,5 +25,5 @@ export default function useObservable (observable, onChange) {
       update();
     });
     return dispose;
-  }, [ observable ]);
+  }, [ observable, onChange, update ]);
 }

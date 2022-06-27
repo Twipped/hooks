@@ -23,7 +23,7 @@ export { default as useImmediateUpdateEffect }           from './hooks/useImmedi
 export { default as useIncrementer }                     from './hooks/useIncrementer.js';
 export { default as useIsTransitioning }                 from './hooks/useIsTransitioning.js';
 export { default as useLazyRef }                         from './hooks/useLazyRef.js';
-export { default as useLocalStorage, useSessionStorage } from './hooks/useLocalStorage.js';
+export { default as useLocalStorage }                    from './hooks/useLocalStorage.js';
 export { default as useMakeObservable }                  from './hooks/useMakeObservable.js';
 export { default as useMap }                             from './hooks/useMap.js';
 export { default as useMemoMapped }                      from './hooks/useMemoMapped.js';
@@ -37,6 +37,7 @@ export { default as usePrevious }                        from './hooks/usePrevio
 export { default as usePromisedState }                   from './hooks/usePromisedState.js';
 export { default as usePropsMemo }                       from './hooks/usePropsMemo.js';
 export { default as useScroll }                          from './hooks/useScroll.js';
+export { default as useSessionStorage }                  from './hooks/useSessionStorage.js';
 export { default as useSet }                             from './hooks/useSet.js';
 export { default as useSilentState }                     from './hooks/useSilentState.js';
 export { default as useSmartEffect }                     from './hooks/useSmartEffect.js';

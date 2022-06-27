@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { warn } from '@twipped/utils';
+import warn from '@twipped/utils/warn';
 
 /**
  * Identical to React.useCallback, except if the callback produces a promise,
@@ -19,5 +19,6 @@ export default function useAsyncCallback (callback, dependencies) {
       });
     }
     return ret;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, dependencies);
 }
