@@ -85,16 +85,13 @@
     "@semantic-release/changelog": "^6.0.1",
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/github": "^8.0.4",
-    "@testing-library/react-hooks": "^8.0.1",
+    "@testing-library/react": "^13.0.1",
     "conventional-changelog-conventionalcommits": "^5.0.0",
-    "enzyme": "^3.11.0",
     "eslint": "~8.18.0",
     "eslint-config-twipped": "~7.2.0",
     "jsdoc": "~3.6.10",
     "jsdoc-to-markdown": "~7.1.1",
-    "minami": "~1.2.3",
     "react": "^18.2.0",
-    "react-test-renderer": "^18.2.0",
     "semantic-release": "^19.0.3",
     "tap": "^16.3.0"
   }
