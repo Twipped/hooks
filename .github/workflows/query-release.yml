@@ -1,0 +1,55 @@
+name: Semantic Release Dry-Run
+
+on:
+  pull_request:
+    branches:
+      - main
+
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Attach dryrun message to PR
+        uses: thollander/actions-comment-pull-request@v1
+        with:
+          comment_includes: ':shipit: Expected Semantic Release:'
+          message: |
+            :shipit: Expected Semantic Release:
+            ### Pending...
+            ![Spinner](https://user-images.githubusercontent.com/231157/174851639-213d4b1b-0c9f-4d0e-94c1-2dce31eaa049.gif)
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Check out Git repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install dependencies from npm
+        run: npm ci
+
+      - name: Dryrun publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          echo 'semrel_dryrun<<EOF' >> $GITHUB_ENV
+          npm run release-dry 2>&1 >> $GITHUB_ENV
+          echo 'EOF' >> $GITHUB_ENV
+
+      - name: Echo Result
+        run: echo $semrel_dryrun
+
+      - name: Attach dryrun to PR
+        uses: thollander/actions-comment-pull-request@v1
+        with:
+          comment_includes: ':shipit: Expected Semantic Release:'
+          message: |
+            :shipit: Expected Semantic Release:
+            ```
+            ${{ env.semrel_dryrun }}
+            ```
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
