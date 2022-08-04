@@ -3,7 +3,6 @@ import { useMemo, useRef } from 'react';
 import useWillUnmount from './useWillUnmount.js';
 import useEventCallback from './useEventCallback.js';
 import useWhenElementRefReady from './useWhenElementRefReady.js';
-import assert from '@twipped/utils/assert';
 
 /**
  * @typedef {Object} EventHandlerInterface
@@ -47,14 +46,15 @@ export default function useEventHandler (event, listener, capture = false) {
     attach (target) {
       if (targetRef.current) api.remove();
 
+      // if we received a proper Ref object, destructure it.
       if ('current' in target) target = target.current;
-      assert(typeof target !== 'function', 'useEventHandler cannot take refs as functions.');
-      assert(typeof target.addEventListener === 'function', 'Did not receive a valid DOM element.');
+      if (typeof target === 'function') throw new TypeError('useEventHandler cannot take refs as functions.');
+      if (typeof target.addEventListener !== 'function') throw new TypeError('Did not receive a valid DOM element.');
 
       targetRef.current = { target, event, capture };
       target.addEventListener(event, handler, capture);
     },
-  }), [ event, capture, handler ]);
+  }), [ capture, event, handler ]);
 
   useWillUnmount(api.remove);
 
@@ -73,7 +73,7 @@ export default function useEventHandler (event, listener, capture = false) {
  */
 export function useEventHandlerOn (ref, event, listener, capture = false) {
 
-  assert('current' in ref, 'Did not receive a valid ref.');
+  if (!('current' in ref)) throw new TypeError('Did not receive a valid ref.');
 
   const { attach, remove } = useEventHandler(event, listener, capture);
 
@@ -82,6 +82,6 @@ export function useEventHandlerOn (ref, event, listener, capture = false) {
       attach(el);
       return remove;
     }
+    return null;
   });
-
 }

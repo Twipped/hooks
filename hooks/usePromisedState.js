@@ -1,13 +1,14 @@
 
-import { useState, useCallback, useRef, useEffect } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import useGettableState from './useGettableState.js';
 import useUpdatedRef from './useUpdatedRef.js';
 import deepEqual from '@twipped/utils/deepEqual';
 import shallowEqual from '@twipped/utils/shallowEqual';
 import warn from '@twipped/utils/warn';
 import MultiMap from '@twipped/utils/multimap';
+import { DEFAULT } from '@twipped/utils/types';
 import useLazyRef from './useLazyRef.js';
-import DEFAULT from './default.js';
+import useAsyncEffect from './useAsyncEffect.js';
 
 /**
  * @typedef PromisedState
@@ -132,7 +133,7 @@ export default function usePromisedState (fn, dependencies = [], { comparator = 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
+  useAsyncEffect(async () => {
     if (isFirst.current) {
       isFirst.current = false;
       if (skipFirst) return;

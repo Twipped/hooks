@@ -1,4 +1,5 @@
 import { useCallback } from 'react';
+import { isPromise } from '@twipped/utils/types';
 import warn from '@twipped/utils/warn';
 
 /**
@@ -12,13 +13,16 @@ import warn from '@twipped/utils/warn';
  */
 export default function useAsyncCallback (callback, dependencies) {
   return useCallback((...args) => {
-    const ret = callback(...args);
-    if (typeof ret === 'object' && typeof ret.then === 'function') {
-      ret.then(null, (err) => {
-        warn(typeof err === 'object' && 'message' in err ? err.message : err);
-      });
+    try {
+      const ret = callback(...args);
+      if (isPromise(ret)) {
+        ret.then(null, (err) => {
+          warn(err);
+        });
+      }
+    } catch (err) {
+      warn(err);
     }
-    return ret;
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, dependencies);
 }

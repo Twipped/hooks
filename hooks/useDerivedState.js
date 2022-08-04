@@ -1,6 +1,7 @@
 
-import useImmediateUpdateEffect from './useImmediateUpdateEffect.js';
 import { useCallback } from 'react';
+import { isFunction, deepEqual, shallowEqual } from '@twipped/utils';
+import useUpdateEffect from './useUpdateEffect.js';
 import useStableMemo from './useStableMemo.js';
 import useGettableState from './useGettableState.js';
 
@@ -22,6 +23,7 @@ const deep = (...args) => !deepEqual(...args);
 /**
  * Creates a state hook populated by a value derived from dependencies.
  * If the dependencies change, the state will be repopulated based on the
+ * new dependencies, IF the results differ.
  * Invoking setState.reset() will change the state back to the last derived value.
  *
  * @function useDerivedState
@@ -33,21 +35,25 @@ const deep = (...args) => !deepEqual(...args);
  * @returns {StateHookInterface} Returns an array containing the current state,
  * an updater function and a getter function.
  */
-export default function useDerivedState (fn, dependencies = [ fn ], { comparator = shallow, ...ops } = {}) {
+export default function useDerivedState (
+  fn,
+  dependencies = [ fn ],
+  { comparator = shallow, ...ops } = {}
+) {
+  // eslint-disable-next-line no-param-reassign
   if (comparator === true) comparator = deep;
 
   if (!isFunction(fn)) {
-    const v = fn;
-    fn = () => v;
+    throw new TypeError('useDerivedState did not receive a function for first argument.');
   }
 
   const initial = useStableMemo(fn, dependencies);
 
-  var [ state, writeState, readState ] = useGettableState(initial, ops);
-  useImmediateUpdateEffect(() => {
+  const [ state, writeState, readState ] = useGettableState(initial, ops);
+  useUpdateEffect(() => {
     const diff = comparator(state, initial);
     if (diff) {
-      setTimeout(() => writeState(initial));
+      writeState(initial);
     }
     // console.log({ state, initial, diff });
   }, [ initial, ...dependencies ]);

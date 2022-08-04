@@ -22,13 +22,10 @@ export default function useWillMount (onMount, onWillUnmount) {
     mounted.current = [ onMount() ];
   }
 
-  useEffect(
-    () => () => {
-      mounted.current = null;
-      owu.current && owu.current();
-    },
-    []
-  );
+  useEffect(() => () => {
+    mounted.current = null;
+    if (onWillUnmount) onWillUnmount();
+  }, [ onWillUnmount ]);
 
   return mounted.current[0];
 }

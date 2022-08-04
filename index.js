@@ -8,7 +8,6 @@ export { default as useComponentPosition }               from './hooks/useCompon
 export { default as useComputed }                        from './hooks/useComputed.js';
 export { default as useDerivedState }                    from './hooks/useDerivedState.js';
 export { default as useElementInViewport }               from './hooks/useElementInViewport.js';
-export { default as useEmotion }                         from './hooks/useEmotion.js';
 export { default as useEventCallback }                   from './hooks/useEventCallback.js';
 export { default as useEventHandler, useEventHandlerOn } from './hooks/useEventHandler.js';
 export { default as useForceUpdate }                     from './hooks/useForceUpdate.js';
@@ -19,11 +18,13 @@ export {
   useDocumentEventListener,
   useToggledGlobalListener,
 }                                                        from './hooks/useGlobalListener.js';
+export { default as useImmediateEffect }                 from './hooks/useImmediateEffect.js';
 export { default as useImmediateUpdateEffect }           from './hooks/useImmediateUpdateEffect.js';
 export { default as useIncrementer }                     from './hooks/useIncrementer.js';
 export { default as useIsTransitioning }                 from './hooks/useIsTransitioning.js';
 export { default as useLazyRef }                         from './hooks/useLazyRef.js';
 export { default as useLocalStorage }                    from './hooks/useLocalStorage.js';
+export { default as useSessionStorage }                  from './hooks/useSessionStorage.js';
 export { default as useMakeObservable }                  from './hooks/useMakeObservable.js';
 export { default as useMap }                             from './hooks/useMap.js';
 export { default as useMemoMapped }                      from './hooks/useMemoMapped.js';

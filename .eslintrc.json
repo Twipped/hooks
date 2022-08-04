@@ -1,13 +1,33 @@
 {
 	"extends": [
-    "twipped/react"
+    "@twipped/eslint-config/react",
+    "@twipped/eslint-config/jsdoc"
   ],
   "rules": {
     "import/extensions": ["error", {
-      "js": "always",
-      "mjs": "always",
-      "jsx": "always"
-    }],
-    "import/no-extraneous-dependencies": "warn"
-  }
+      "ignorePackages": true,
+      "pattern": {
+        "js": "always",
+        "mjs": "always",
+        "jsx": "always"
+      }
+    }]
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/__tests__/**",
+        "**/__mocks__/**",
+        "*.{test,spec}.{js,jsx}"
+      ],
+      "extends": [
+        "@twipped/eslint-config/jest"
+      ],
+      "rules": {
+        "react/prop-types": "off",
+        "react-hooks/exhaustive-deps": "off",
+        "react/jsx-no-constructed-context-values": "off"
+      }
+    }
+  ]
 }

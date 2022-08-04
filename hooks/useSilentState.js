@@ -1,4 +1,4 @@
-
+/* global StateHookInterface */
 import { useRef, useCallback } from 'react';
 import useStableMemo from './useStableMemo.js';
 
@@ -28,7 +28,7 @@ export default function useSilentState (initial = null, dependencies) {
   const getter = useCallback(() => ref.current, [ ref ]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  setter.reset = useCallback(() => setter(initial), []);
+  setter.reset = useCallback(() => setter(initial), [ initial, setter ]);
 
   return [ ref.current, setter, getter ];
 }

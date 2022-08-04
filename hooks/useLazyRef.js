@@ -1,6 +1,6 @@
 
 import { useRef } from 'react';
-import dft from './default.js';
+import { DEFAULT } from '@twipped/utils';
 
 /**
  * Exactly the same as `useRef` except it accepts a function to produce the initial value.
@@ -11,7 +11,7 @@ import dft from './default.js';
  * @returns {Ref}
  */
 export default function useLazyRef (fn) {
-  const ref = useRef(dft);
-  if (ref.current === dft) ref.current = (typeof fn === 'function' ? fn() : fn);
+  const ref = useRef(DEFAULT);
+  if (ref.current === DEFAULT) ref.current = (typeof fn === 'function' ? fn() : fn);
   return ref;
 }

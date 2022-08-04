@@ -1,7 +1,6 @@
 
 import { useRef } from 'react';
-import dft from './default.js';
-import { isObject } from '@twipped/utils/types';
+import { isObject, DEFAULT } from '@twipped/utils/types';
 import shallowEqual from '@twipped/utils/shallowEqual';
 import deepEqual from '@twipped/utils/deepEqual';
 
@@ -21,10 +20,10 @@ export default function usePropsMemo (factory, props, { comparison = false } = {
   if (comparison === false) comparison = shallowEqual;
   if (comparison === true) comparison = deepEqual;
 
-  const resultRef = useRef(dft);
+  const resultRef = useRef(DEFAULT);
 
   if (!isObject(props, true)) throw new TypeError('Did not receive a props object');
-  if (resultRef.current === dft || !comparison(props, resultRef.current[0])) {
+  if (resultRef.current === DEFAULT || !comparison(props, resultRef.current[0])) {
     resultRef.current = [ props, factory() ];
     return resultRef.current[1];
   }

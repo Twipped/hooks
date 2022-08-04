@@ -1,7 +1,6 @@
 
 import { useCallback, useEffect, useRef } from 'react';
 import assert from '@twipped/utils/assert';
-import useMounted from './useMounted.js';
 import useCommittedRef from './useCommittedRef.js';
 import useWillUnmount from './useWillUnmount.js';
 import useEventCallback from './useEventCallback.js';
@@ -51,7 +50,10 @@ import useStableMemo from './useStableMemo.js';
  * @private
  */
 function useTimeoutGenerator (setter, clearer, rootFn) {
-  const isMounted = useMounted();
+  const mounted = useRef(true);
+  useEffect(() => () => {
+    mounted.current = false;
+  }, []);
 
   const handleRef = useCommittedRef();
 
@@ -78,13 +80,15 @@ function useTimeoutGenerator (setter, clearer, rootFn) {
      * Default's to true.
      */
     function set (fn = rootFn, delayMs = 0, reset = true) {
-      if (!isMounted()) return;
+      if (mounted.current) return;
       if (!reset && handleRef.current) return;
 
+      /* eslint-disable no-param-reassign */
       if (typeof fn !== 'function' && typeof rootFn === 'function') {
         delayMs = fn;
         fn = rootFn;
       }
+      /* eslint-enable no-param-reassign */
 
       assert(typeof fn === 'function', 'useTimeout/useDefer must be provided a function as its first argument');
 
@@ -187,7 +191,8 @@ export function useDefer (fn) {
  *
  * @function useInterval
  * @param {Function} fn   A function run on each interval
- * @param {number}   ms   The milliseconds duration of the interval. Set to 0 to loop on animation frames.
+ * @param {number}   ms   The milliseconds duration of the interval.
+ * Pass 0 to loop on animation frames.
  * @returns {IntervalHandler}
  * @example
  *  const [timer, setTimer] = useState(-1)

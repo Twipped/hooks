@@ -6,7 +6,6 @@ import { useEffect, useLayoutEffect } from 'react';
  * @function useIsomorphicEffect
  * @param {Function} callback Callback function to be called on mount
  */
-const useIsomorphicEffect =
-  typeof window === 'undefined' ? useEffect : useLayoutEffect;
+const useIsomorphicEffect = typeof window === 'undefined' ? useEffect : useLayoutEffect;
 
 export default useIsomorphicEffect;

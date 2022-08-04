@@ -2,7 +2,7 @@
 import { useEffect, useRef } from 'react';
 import shallowEqual from '@twipped/utils/shallowEqual';
 import deepEqual from '@twipped/utils/deepEqual';
-import dft from './default.js';
+import { DEFAULT } from '@twipped/utils/types';
 
 /**
  * Identical to useEffect, except dependencies may be compared deeply.
@@ -19,11 +19,11 @@ export default function useSmartEffect (effect, dependencies, { comparison = fal
   if (comparison === false) comparison = shallowEqual;
   if (comparison === true) comparison = deepEqual;
 
-  const depsRef = useRef(dft);
+  const depsRef = useRef(DEFAULT);
   const exitFn = useRef();
 
   useEffect(() => {
-    if (depsRef.current === dft || !comparison(depsRef.current, dependencies)) {
+    if (depsRef.current === DEFAULT || !comparison(depsRef.current, dependencies)) {
       // update dependencies to newest value
       depsRef.current = dependencies;
 

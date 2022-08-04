@@ -3,7 +3,7 @@ import { computed } from 'mobx';
 import { useRef } from 'react';
 import shallowEqual from '@twipped/utils/shallowEqual';
 import deepEqual from '@twipped/utils/deepEqual';
-import dft from './default.js';
+import { DEFAULT } from '@twipped/utils/types';
 
 /**
  * @typedef {Object} Observable
@@ -24,18 +24,18 @@ export default function useComputed (fn, dependencies, { comparison = shallowEqu
   if (comparison === false) comparison = shallowEqual;
   if (comparison === true) comparison = deepEqual;
 
-  const depsRef = useRef(dft);
-  const computedRef = useRef(dft);
+  const depsRef = useRef(DEFAULT);
+  const computedRef = useRef(DEFAULT);
   // fn = useEventCallback(fn);
 
-  if (computedRef.current === dft) {
+  if (computedRef.current === DEFAULT) {
     computedRef.current = computed(fn);
   }
   const c = computedRef.current;
 
   c.derivation = fn;
 
-  if (depsRef.current === dft) {
+  if (depsRef.current === DEFAULT) {
     depsRef.current = dependencies;
   } else if (c.dependenciesState_ === 0 && !comparison(depsRef.current, dependencies)) {
     depsRef.current = dependencies;
