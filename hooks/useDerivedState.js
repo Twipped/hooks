@@ -1,13 +1,12 @@
 
 import { useCallback } from 'react';
-import { isFunction, deepEqual, shallowEqual } from '@twipped/utils';
-import useUpdateEffect from './useUpdateEffect.js';
-import useStableMemo from './useStableMemo.js';
-import useGettableState from './useGettableState.js';
-
 import { isFunction } from '@twipped/utils/types';
 import shallowEqual from '@twipped/utils/shallowEqual';
 import deepEqual from '@twipped/utils/deepEqual';
+
+import useUpdateEffect from './useUpdateEffect.js';
+import useStableMemo from './useStableMemo.js';
+import useGettableState from './useGettableState.js';
 
 const shallow = (...args) => !shallowEqual(...args);
 const deep = (...args) => !deepEqual(...args);
