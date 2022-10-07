@@ -1,3 +1,23 @@
+# Changelog
+
+## [0.6.0](https://github.com/Twipped/hooks/compare/v0.5.0...v0.6.0) (2022-10-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* **useAsyncCallback:** Now throws caught errors up the component tree
+
+### Features
+
+* **useAsyncCallback:** Now throws caught errors up the component tree ([24eb92f](https://github.com/Twipped/hooks/commit/24eb92f6484d70c9f067754eaa3fbc3273748e4b))
+* **useAsyncEffect:** New hook for running async effect functions ([d40a114](https://github.com/Twipped/hooks/commit/d40a11439af2f35681463c128d9a88c41a51f1f8))
+
+
+### Bug Fixes
+
+* Clean up duplicate imports ([8e48306](https://github.com/Twipped/hooks/commit/8e483065d364e985e4141f04177d7c4c091f2613))
+* Fixed a whole bunch of little bugs caught by react-hooks linter ([76986a2](https://github.com/Twipped/hooks/commit/76986a29b05da1b185ed63b06b168ff6c77ee7d2))
+
 ## [0.5.0](https://github.com/Twipped/hooks/compare/v0.4.0...v0.5.0) (2022-03-17)
 
 
@@ -11,7 +31,7 @@
 * Corrected a whole host of broken includes. ([251238a](https://github.com/Twipped/hooks/commit/251238a5eb8beeb3827b35b3f6c3ed40c14513dc))
 * **useComputed:** Now uses shallowEqual by default, as the docs say. ([45ae67c](https://github.com/Twipped/hooks/commit/45ae67c5b96e40b4257a481afc353d2fc68bc685))
 
-# [0.4.0](https://github.com/Twipped/hooks/compare/v0.3.1...v0.4.0) (2022-03-16)
+## [0.4.0](https://github.com/Twipped/hooks/compare/v0.3.1...v0.4.0) (2022-03-16)
 
 
 ### Bug Fixes
