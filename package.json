@@ -12,7 +12,8 @@
     "./*": "./hooks/*.js"
   },
   "scripts": {
-    "lint": "eslint './**/*.{js,jsx}' --fix",
+    "lint": "eslint .",
+    "lint-fix": "eslint --fix .",
     "test": "jest",
     "doc": "jsdoc -c jsdocs.json",
     "docs": "jsdoc2md -t README.hbs hooks/*.js > README.md",

@@ -3,13 +3,7 @@ import { useState } from 'react';
 import useEventHandler from './useEventHandler.js';
 import useWhenElementRefReady from './useWhenElementRefReady.js';
 
-/**
- * @param {Element} parent
- * @param {Element} target
- * @param {string} [selector]
- * @returns {boolean}
- * @private
- */
+
 function matches (parent, target, selector) {
   if (!selector) return parent === target;
   const nodes = Array.from(parent.querySelectorAll(selector));

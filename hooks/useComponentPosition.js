@@ -73,11 +73,6 @@ export default function useComponentPosition (ref, onUpdate) {
   return componentSize;
 }
 
-/**
- * @param {Element} el
- * @returns {Position}
- * @private
- */
 function getSize (el) {
   if (!el) {
     return {

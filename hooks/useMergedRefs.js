@@ -3,6 +3,8 @@ import { isFunction } from '@twipped/utils/types';
 import noop from '@twipped/utils/noop';
 
 /**
+ * Assigns a value to a given ref object or function.
+ *
  * @param {Ref} ref
  * @param {any} value
  * @private
@@ -12,11 +14,7 @@ export function assignRef (ref, value) {
   if (ref && 'current' in ref) ref.current = value;
 }
 
-/**
- * @param {Ref} ref
- * @returns {Function}
- * @private
- */
+
 function toFnRef (ref) {
   if (isFunction(ref)) return ref;
   if (ref && 'current' in ref) return (value) => { ref.current = value; };
@@ -24,6 +22,8 @@ function toFnRef (ref) {
 }
 
 /**
+ * Combines multiple ref objects or functions under a single assignable ref function
+ *
  * @param {...Ref} refs
  * @returns {Function}
  * @private
