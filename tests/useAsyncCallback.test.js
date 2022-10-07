@@ -1,9 +1,9 @@
-import { renderHook } from '@testing-library/react';
-
+import { renderHook, act, waitFor } from '@testing-library/react';
+import TestBoundary from './test-boundary.js';
 import useAsyncCallback from '../hooks/useAsyncCallback.js';
 
 describe('useAsyncCallback', () => {
-  it('should only produce a new function of the dependencies change', () => {
+  it('should only produce a new function of the dependencies change', async () => {
     const spy = jest.fn();
 
     const { result, rerender } = renderHook(({ name }) => useAsyncCallback(spy, [ name ]), {
@@ -15,9 +15,9 @@ describe('useAsyncCallback', () => {
     expect(spy).not.toHaveBeenCalled();
     expect(typeof callback).toBe('function');
 
-    callback();
+    await act(callback);
 
-    expect(spy).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(spy).toHaveBeenCalledTimes(1));
 
     rerender({ name: 'Alice' });
 
@@ -32,33 +32,52 @@ describe('useAsyncCallback', () => {
     expect(spy).toHaveBeenCalledTimes(2);
   });
 
-  it('should send rejections to the console', async () => {
+  it('should throw errors up the render chain', async () => {
+    jest.spyOn(console, 'error').mockImplementation(() => { });
+
     const mockFunction = async () => {
       throw new Error('ERROR');
     };
-    const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+    const onError = jest.fn();
 
-    const { result: { current: callback } } = renderHook(() => useAsyncCallback(mockFunction, []));
+    const wrapper = (props) => (
+      <TestBoundary {...props} onError={onError} />
+    );
 
-    expect(consoleSpy).not.toHaveBeenCalled();
+    const { result: { current: callback } } = renderHook(
+      () => useAsyncCallback(mockFunction, []),
+      { wrapper }
+    );
 
-    await callback();
+    expect(onError).not.toHaveBeenCalled();
 
-    expect(consoleSpy).toHaveBeenCalledTimes(1);
+    await act(callback);
 
-    const [ error ] = consoleSpy.mock.lastCall;
+    await waitFor(() => expect(onError).toHaveBeenCalledTimes(1));
+
+    const [ error ] = onError.mock.lastCall;
 
     expect(error).toBeInstanceOf(Error);
     expect(error.message).toBe('ERROR');
   });
 
-  it('should return nothing', () => {
+  it('should return nothing', async () => {
+    jest.spyOn(console, 'error').mockImplementation(() => { });
     const mockFunction = async () => 'Foo';
-    const consoleSpy = jest.spyOn(console, 'error');
+    const onError = jest.fn();
 
-    const { result: { current: callback } } = renderHook(() => useAsyncCallback(mockFunction, []));
+    const wrapper = (props) => (
+      <TestBoundary {...props} onError={onError} />
+    );
 
-    expect(callback()).toBeUndefined();
-    expect(consoleSpy).not.toHaveBeenCalled();
+    const { result: { current: callback } } = renderHook(
+      () => useAsyncCallback(mockFunction, []),
+      { wrapper }
+    );
+
+    const result = await act(callback);
+
+    expect(result).toBeUndefined();
+    expect(onError).not.toHaveBeenCalled();
   });
 });
