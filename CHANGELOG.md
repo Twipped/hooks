@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.2](https://github.com/Twipped/hooks/compare/v0.6.1...v0.6.2) (2022-10-10)
+
+
+### Bug Fixes
+
+* Bump @twipped/utils to 7.0.0 ([f27aaa6](https://github.com/Twipped/hooks/commit/f27aaa6a12ea7c585e748cac7e5ecae04c0feb02))
+
 ## [0.6.1](https://github.com/Twipped/hooks/compare/v0.6.0...v0.6.1) (2022-10-10)
 
 
