@@ -1,6 +1,6 @@
 
 import { useRef } from 'react';
-import { DEFAULT } from '@twipped/utils';
+import DEFAULT from '@twipped/utils/default';
 
 /**
  * Exactly the same as `useRef` except it accepts a function to produce the initial value.
