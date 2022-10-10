@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.1](https://github.com/Twipped/hooks/compare/v0.6.0...v0.6.1) (2022-10-10)
+
+
+### Bug Fixes
+
+* **useLazyRef:** Fixed incorrect loading of DEFAULT from @twipped/utils ([f701034](https://github.com/Twipped/hooks/commit/f70103420e80ff0220b689086e35746ac41e3275))
+
 ## [0.6.0](https://github.com/Twipped/hooks/compare/v0.5.0...v0.6.0) (2022-10-07)
 
 
