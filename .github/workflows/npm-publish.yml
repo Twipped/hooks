@@ -65,8 +65,6 @@ jobs:
           token: ${{secrets.GITHUB_TOKEN}}
           default-branch: main
           release-type: node
-          bump-minor-pre-major: true
-          bump-patch-for-minor-pre-major: true
 
       - name: Echo results
         run: |
