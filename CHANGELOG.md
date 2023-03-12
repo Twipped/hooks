@@ -1,5 +1,26 @@
 # Changelog
 
+## [1.0.0](https://github.com/Twipped/hooks/compare/v0.6.2...v1.0.0) (2023-03-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* Deleted the root export. All hooks should be imported directly from their named subpath imports
+* Deleted all mobx hooks.
+
+### New Hook!
+
+* **useScrollToElement:** Smoothly tweens the page scroll until the target element is in view. ([7ba08e9](https://github.com/Twipped/hooks/commit/7ba08e99bad8631aad7cc9a1030d2d193573d9a4))
+
+### Features
+
+* **useLocalStorage:** Now accepts a third argument for options. Pass `isJSON: false` to treat the state as plain text without JSON serialization. ([1aa4a9d](https://github.com/Twipped/hooks/commit/1aa4a9db9d0e32c15e655ce4b13c2e22930a25d4))
+
+### Bug Fixes
+
+* **useToggledState:** Fixed the state just never changing from its default ([96be6d5](https://github.com/Twipped/hooks/commit/96be6d5ac66dac35e8898e67f4605ce7f321449a))
+* **useWhenElementRefReady:** Now actually works! ([0b5202b](https://github.com/Twipped/hooks/commit/0b5202b335cfed9facd07b22526da0510a02aed1))
+
 ## [0.6.2](https://github.com/Twipped/hooks/compare/v0.6.1...v0.6.2) (2022-10-10)
 
 
