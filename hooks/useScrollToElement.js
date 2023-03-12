@@ -1,6 +1,6 @@
 import {
   useCallback,
-  useRef
+  useRef,
 } from 'react';
 import useWhenElementRefReady from './useWhenElementRefReady.js';
 
@@ -9,7 +9,7 @@ const NEXT_STATE_CONTINUE = 1;
 export const DEFAULT_DURATION = 480;
 
 // acceleration until halfway, then deceleration
-const easeInOutQuad = (t) => (t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t);
+const easeInOutQuad = (t) => (t < 0.5 ? 2 * t * t : -1 + ((4 - (2 * t)) * t));
 
 // locally override the globals so that if they don't exist (such as in tests or in SSR)
 // we gracefully fallback to setTimeout.
@@ -22,7 +22,7 @@ const cancelAnimationFrame = (
 ) ? window.cancelAnimationFrame : clearTimeout;
 
 // eslint-disable-next-line jsdoc/require-jsdoc
-function animationLoop(next) {
+function animationLoop (next) {
   let i;
   const loop = () => {
     if (next() === NEXT_STATE_STOP) {
@@ -35,7 +35,7 @@ function animationLoop(next) {
 }
 
 // eslint-disable-next-line jsdoc/require-jsdoc
-function animate(callback, opts) {
+function animate (callback, opts) {
   const start = Date.now();
   const { duration, delay, easing } = opts;
   animationLoop(() => {
@@ -51,7 +51,7 @@ function animate(callback, opts) {
 }
 
 // eslint-disable-next-line jsdoc/require-jsdoc
-function lift(value) {
+function lift (value) {
   return (x) => (typeof value === 'function' ? value(x) : value);
 }
 
@@ -74,12 +74,12 @@ function lift(value) {
  * receiving 1 or -1 to indicate scroll direction.
  * @returns {{Function(target: HTMLElement)}} Returns a callback that receives a target element.
  */
-export default function useScrollToElement({ auto, ...options } = {}) {
+export default function useScrollToElement ({ auto, ...options } = {}) {
   const optionsRef = useRef(options);
   // ensure always current for last update
   optionsRef.current = options;
 
-  const scroll = useCallback(function scrollTo(element) {
+  const scroll = useCallback(function scrollTo (element) {
     if (!element) {
       return;
     }
@@ -92,7 +92,7 @@ export default function useScrollToElement({ auto, ...options } = {}) {
         offsetLeft = 0,
         offsetTop = 0,
         onEnter,
-        onEntering
+        onEntering,
       } = optionsRef.current;
 
       const { top, left } = element.getBoundingClientRect();
@@ -109,14 +109,14 @@ export default function useScrollToElement({ auto, ...options } = {}) {
           onEntered,
           onExiting,
           onExit,
-          onExited
+          onExited,
         } = optionsRef.current;
 
         if (onEntered) onEntered();
         window?.scrollTo({
           top: startTop + targetTop,
           left: startLeft + targetLeft,
-          behavior: 'auto'
+          behavior: 'auto',
         });
         if (onExiting) onExiting();
         if (onExit) onExit();
@@ -130,7 +130,7 @@ export default function useScrollToElement({ auto, ...options } = {}) {
           onEntered,
           onExiting,
           onExit,
-          onExited
+          onExited,
         } = optionsRef.current;
 
         if (progress === 0 && onEntering) onEntering();
@@ -139,9 +139,9 @@ export default function useScrollToElement({ auto, ...options } = {}) {
           if (onEntered) onEntered();
         }
         window?.scrollTo({
-          top: startTop + progress * targetTop,
-          left: startLeft + progress * targetLeft,
-          behavior: 'auto'
+          top: startTop + (progress * targetTop),
+          left: startLeft + (progress * targetLeft),
+          behavior: 'auto',
         });
         if (progress === 1) {
           if (onExiting) onExiting();

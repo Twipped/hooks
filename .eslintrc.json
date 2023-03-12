@@ -17,6 +17,43 @@
     }],
     "jsdoc/valid-types": "off"
   },
+  "settings": {
+    "jsdoc": {
+      "mode": "typescript",
+      "preferredTypes": {
+        "object": "object",
+        "object.<>": "object<>",
+        "Object.<>": "object<>",
+        "object<>": "object<>",
+        "symbol": "Symbol"
+      }
+    },
+    "import/resolver": {
+      "node": {
+        "extensions": [
+          ".mjs",
+          ".js",
+          ".jsx",
+          ".cjs",
+          ".json"
+        ]
+      },
+      "enhanced-resolve": {
+        "extensions": [
+          ".mjs",
+          ".js",
+          ".jsx",
+          ".cjs",
+          ".json"
+        ],
+        "conditionNames": [
+          "node",
+          "import",
+          "require"
+        ]
+      }
+    }
+  },
   "overrides": [
     {
       "files": "**.cjs",
