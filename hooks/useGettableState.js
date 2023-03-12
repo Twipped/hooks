@@ -15,10 +15,11 @@ import deepEqual from '@twipped/utils/deepEqual';
  * @param  {Object}    [options] Options
  * @param  {boolean}   [options.alwaysMerge=false] Always merge the new state into the old.
  * @param  {boolean}   [options.alwaysUpdate=false] Always trigger an update even if state matches.
- * @param  {boolean|Function} [options.comparison=false] } When alwaysUpdate is false,
+ * @param  {boolean|Function} [options.comparison=false] When alwaysUpdate is false,
  * the comparison function provided will evaluate if the new state differs from the old state.
  * Pass true to perform a deep equal, otherwise the comparison will be shallow.
- * @returns {StateHookInterface} A three item array containing: state, setState, getState
+ * @returns {[state: any, setState: Function, getState: Function]} A three item
+ * array containing: state, setState, getState
  */
 export default function useGettableState (
   initial,
