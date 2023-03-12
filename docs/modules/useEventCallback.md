@@ -32,4 +32,4 @@ The stable wrapped callback
 
 #### Defined in
 
-[hooks/useEventCallback.js:11](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useEventCallback.js#L11)
+[hooks/useEventCallback.js:11](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useEventCallback.js#L11)

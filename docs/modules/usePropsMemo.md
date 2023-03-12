@@ -37,4 +37,4 @@ The result of the factory function.
 
 #### Defined in
 
-[hooks/usePropsMemo.js:20](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/usePropsMemo.js#L20)
+[hooks/usePropsMemo.js:20](https://github.com/Twipped/hooks/blob/86a2b07/hooks/usePropsMemo.js#L20)

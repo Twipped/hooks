@@ -40,4 +40,4 @@ containing: state, setState, getState
 
 #### Defined in
 
-[hooks/useSessionStorage.js:16](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useSessionStorage.js#L16)
+[hooks/useSessionStorage.js:16](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useSessionStorage.js#L16)

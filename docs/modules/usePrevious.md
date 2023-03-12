@@ -32,4 +32,4 @@ usePrevious
 
 #### Defined in
 
-[hooks/usePrevious.js:13](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/usePrevious.js#L13)
+[hooks/usePrevious.js:13](https://github.com/Twipped/hooks/blob/86a2b07/hooks/usePrevious.js#L13)

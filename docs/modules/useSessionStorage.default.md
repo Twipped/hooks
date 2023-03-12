@@ -26,4 +26,4 @@ useSessionStorage.keys
 
 #### Defined in
 
-[hooks/useSessionStorage.js:26](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useSessionStorage.js#L26)
+[hooks/useSessionStorage.js:26](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useSessionStorage.js#L26)

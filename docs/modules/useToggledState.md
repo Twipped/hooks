@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[hooks/useToggledState.js:7](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useToggledState.js#L7)
+[hooks/useToggledState.js:7](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useToggledState.js#L7)
 
 ## Functions
 
@@ -45,4 +45,4 @@ useToggledState
 
 #### Defined in
 
-[hooks/useToggledState.js:20](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useToggledState.js#L20)
+[hooks/useToggledState.js:20](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useToggledState.js#L20)

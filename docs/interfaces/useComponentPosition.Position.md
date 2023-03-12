@@ -19,7 +19,7 @@
 
 #### Defined in
 
-[hooks/useComponentPosition.js:17](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useComponentPosition.js#L17)
+[hooks/useComponentPosition.js:17](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useComponentPosition.js#L17)
 
 ___
 
@@ -29,7 +29,7 @@ ___
 
 #### Defined in
 
-[hooks/useComponentPosition.js:15](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useComponentPosition.js#L15)
+[hooks/useComponentPosition.js:15](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useComponentPosition.js#L15)
 
 ___
 
@@ -39,7 +39,7 @@ ___
 
 #### Defined in
 
-[hooks/useComponentPosition.js:14](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useComponentPosition.js#L14)
+[hooks/useComponentPosition.js:14](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useComponentPosition.js#L14)
 
 ___
 
@@ -49,4 +49,4 @@ ___
 
 #### Defined in
 
-[hooks/useComponentPosition.js:16](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useComponentPosition.js#L16)
+[hooks/useComponentPosition.js:16](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useComponentPosition.js#L16)

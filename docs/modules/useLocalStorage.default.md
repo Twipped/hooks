@@ -26,4 +26,4 @@ useLocalStorage.keys
 
 #### Defined in
 
-[hooks/useLocalStorage.js:26](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useLocalStorage.js#L26)
+[hooks/useLocalStorage.js:26](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useLocalStorage.js#L26)

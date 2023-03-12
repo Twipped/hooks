@@ -52,7 +52,7 @@ Set.constructor
 
 #### Defined in
 
-[hooks/useSet.js:6](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useSet.js#L6)
+[hooks/useSet.js:6](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useSet.js#L6)
 
 ## Properties
 
@@ -76,7 +76,7 @@ ___
 
 #### Defined in
 
-[hooks/useSet.js:9](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useSet.js#L9)
+[hooks/useSet.js:9](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useSet.js#L9)
 
 ___
 
@@ -148,7 +148,7 @@ Set.add
 
 #### Defined in
 
-[hooks/useSet.js:12](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useSet.js#L12)
+[hooks/useSet.js:12](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useSet.js#L12)
 
 ___
 
@@ -166,7 +166,7 @@ Set.clear
 
 #### Defined in
 
-[hooks/useSet.js:26](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useSet.js#L26)
+[hooks/useSet.js:26](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useSet.js#L26)
 
 ___
 
@@ -190,7 +190,7 @@ Set.delete
 
 #### Defined in
 
-[hooks/useSet.js:20](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useSet.js#L20)
+[hooks/useSet.js:20](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useSet.js#L20)
 
 ___
 

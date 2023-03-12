@@ -38,7 +38,7 @@
 
 #### Defined in
 
-[hooks/useClock.js:82](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useClock.js#L82)
+[hooks/useClock.js:82](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useClock.js#L82)
 
 ___
 
@@ -63,7 +63,7 @@ ___
 
 #### Defined in
 
-[hooks/useClock.js:83](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useClock.js#L83)
+[hooks/useClock.js:83](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useClock.js#L83)
 
 ___
 
@@ -73,7 +73,7 @@ ___
 
 #### Defined in
 
-[hooks/useClock.js:86](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useClock.js#L86)
+[hooks/useClock.js:86](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useClock.js#L86)
 
 ___
 
@@ -83,7 +83,7 @@ ___
 
 #### Defined in
 
-[hooks/useClock.js:87](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useClock.js#L87)
+[hooks/useClock.js:87](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useClock.js#L87)
 
 ___
 
@@ -93,7 +93,7 @@ ___
 
 #### Defined in
 
-[hooks/useClock.js:88](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useClock.js#L88)
+[hooks/useClock.js:88](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useClock.js#L88)
 
 ___
 
@@ -103,7 +103,7 @@ ___
 
 #### Defined in
 
-[hooks/useClock.js:89](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useClock.js#L89)
+[hooks/useClock.js:89](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useClock.js#L89)
 
 ___
 
@@ -128,7 +128,7 @@ ___
 
 #### Defined in
 
-[hooks/useClock.js:84](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useClock.js#L84)
+[hooks/useClock.js:84](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useClock.js#L84)
 
 ___
 
@@ -153,4 +153,4 @@ ___
 
 #### Defined in
 
-[hooks/useClock.js:85](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useClock.js#L85)
+[hooks/useClock.js:85](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useClock.js#L85)

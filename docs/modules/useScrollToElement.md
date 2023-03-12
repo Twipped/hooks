@@ -18,7 +18,7 @@
 
 #### Defined in
 
-hooks/useScrollToElement.js:9
+[hooks/useScrollToElement.js:9](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useScrollToElement.js#L9)
 
 ## Functions
 
@@ -57,4 +57,4 @@ Returns a callback that receives a target element.
 
 #### Defined in
 
-hooks/useScrollToElement.js:77
+[hooks/useScrollToElement.js:77](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useScrollToElement.js#L77)

@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[hooks/resolveRef.js:1](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/resolveRef.js#L1)
+[hooks/resolveRef.js:1](https://github.com/Twipped/hooks/blob/86a2b07/hooks/resolveRef.js#L1)
 
 ## Functions
 
@@ -40,4 +40,4 @@ Attempts to resolve a value from the passed ref
 
 #### Defined in
 
-[hooks/resolveRef.js:10](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/resolveRef.js#L10)
+[hooks/resolveRef.js:10](https://github.com/Twipped/hooks/blob/86a2b07/hooks/resolveRef.js#L10)

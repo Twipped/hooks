@@ -36,4 +36,4 @@ useChosenOne
 
 #### Defined in
 
-[hooks/useChosenOne.js:103](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useChosenOne.js#L103)
+[hooks/useChosenOne.js:103](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useChosenOne.js#L103)

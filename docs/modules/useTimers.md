@@ -33,7 +33,7 @@
 
 #### Defined in
 
-[hooks/useTimers.js:164](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useTimers.js#L164)
+[hooks/useTimers.js:164](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useTimers.js#L164)
 
 ___
 
@@ -51,7 +51,7 @@ ___
 
 #### Defined in
 
-[hooks/useTimers.js:12](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useTimers.js#L12)
+[hooks/useTimers.js:12](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useTimers.js#L12)
 
 ## Functions
 
@@ -83,7 +83,7 @@ useDebounce
 
 #### Defined in
 
-[hooks/useTimers.js:256](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useTimers.js#L256)
+[hooks/useTimers.js:256](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useTimers.js#L256)
 
 ___
 
@@ -114,7 +114,7 @@ useDebouncedEffect
 
 #### Defined in
 
-[hooks/useTimers.js:296](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useTimers.js#L296)
+[hooks/useTimers.js:296](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useTimers.js#L296)
 
 ___
 
@@ -156,7 +156,7 @@ return (
 
 #### Defined in
 
-[hooks/useTimers.js:155](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useTimers.js#L155)
+[hooks/useTimers.js:155](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useTimers.js#L155)
 
 ___
 
@@ -183,7 +183,7 @@ useDeferredLoop
 
 #### Defined in
 
-[hooks/useTimers.js:237](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useTimers.js#L237)
+[hooks/useTimers.js:237](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useTimers.js#L237)
 
 ___
 
@@ -220,7 +220,7 @@ const [timer, setTimer] = useState(-1)
 
 #### Defined in
 
-[hooks/useTimers.js:207](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useTimers.js#L207)
+[hooks/useTimers.js:207](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useTimers.js#L207)
 
 ___
 
@@ -262,4 +262,4 @@ return (
 
 #### Defined in
 
-[hooks/useTimers.js:129](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useTimers.js#L129)
+[hooks/useTimers.js:129](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useTimers.js#L129)

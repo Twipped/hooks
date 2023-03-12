@@ -47,4 +47,4 @@ function Example({ value }) {
 
 #### Defined in
 
-[hooks/useImmediateEffect.js:24](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useImmediateEffect.js#L24)
+[hooks/useImmediateEffect.js:24](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useImmediateEffect.js#L24)

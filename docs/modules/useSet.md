@@ -51,4 +51,4 @@ return (
 
 #### Defined in
 
-[hooks/useSet.js:52](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useSet.js#L52)
+[hooks/useSet.js:52](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useSet.js#L52)

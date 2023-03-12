@@ -29,7 +29,7 @@ Assigns a value to a given ref object or function.
 
 #### Defined in
 
-[hooks/useMergedRefs.js:12](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useMergedRefs.js#L12)
+[hooks/useMergedRefs.js:12](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useMergedRefs.js#L12)
 
 ___
 
@@ -66,7 +66,7 @@ const Button = React.forwardRef((props, ref) => {
 
 #### Defined in
 
-[hooks/useMergedRefs.js:52](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useMergedRefs.js#L52)
+[hooks/useMergedRefs.js:52](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useMergedRefs.js#L52)
 
 ___
 
@@ -88,4 +88,4 @@ Combines multiple ref objects or functions under a single assignable ref functio
 
 #### Defined in
 
-[hooks/useMergedRefs.js:31](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useMergedRefs.js#L31)
+[hooks/useMergedRefs.js:31](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useMergedRefs.js#L31)

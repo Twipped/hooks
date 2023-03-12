@@ -39,4 +39,4 @@ The first instance of the object passed.
 
 #### Defined in
 
-[hooks/useMemoObject.js:19](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useMemoObject.js#L19)
+[hooks/useMemoObject.js:19](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useMemoObject.js#L19)

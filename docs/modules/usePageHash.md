@@ -26,4 +26,4 @@ The contents of the url hash, minus the leading hash symbol.
 
 #### Defined in
 
-[hooks/usePageHash.js:11](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/usePageHash.js#L11)
+[hooks/usePageHash.js:11](https://github.com/Twipped/hooks/blob/86a2b07/hooks/usePageHash.js#L11)

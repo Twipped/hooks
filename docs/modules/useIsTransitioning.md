@@ -31,4 +31,4 @@ useIsTransitioning
 
 #### Defined in
 
-[hooks/useIsTransitioning.js:21](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useIsTransitioning.js#L21)
+[hooks/useIsTransitioning.js:21](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useIsTransitioning.js#L21)

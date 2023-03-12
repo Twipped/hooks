@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[hooks/useElementInViewport.js:2](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useElementInViewport.js#L2)
+[hooks/useElementInViewport.js:2](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useElementInViewport.js#L2)
 
 ## Functions
 
@@ -48,4 +48,4 @@ useElementInViewport
 
 #### Defined in
 
-[hooks/useElementInViewport.js:15](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useElementInViewport.js#L15)
+[hooks/useElementInViewport.js:15](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useElementInViewport.js#L15)

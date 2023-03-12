@@ -29,7 +29,7 @@
 
 #### Defined in
 
-[hooks/useClock.js:24](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useClock.js#L24)
+[hooks/useClock.js:24](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useClock.js#L24)
 
 ___
 
@@ -39,7 +39,7 @@ ___
 
 #### Defined in
 
-[hooks/useClock.js:23](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useClock.js#L23)
+[hooks/useClock.js:23](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useClock.js#L23)
 
 ___
 
@@ -49,7 +49,7 @@ ___
 
 #### Defined in
 
-[hooks/useClock.js:22](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useClock.js#L22)
+[hooks/useClock.js:22](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useClock.js#L22)
 
 ___
 
@@ -59,7 +59,7 @@ ___
 
 #### Defined in
 
-[hooks/useClock.js:21](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useClock.js#L21)
+[hooks/useClock.js:21](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useClock.js#L21)
 
 ## Functions
 
@@ -187,4 +187,4 @@ Returns the time of the last interval tick.
 
 #### Defined in
 
-[hooks/useClock.js:60](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useClock.js#L60)
+[hooks/useClock.js:60](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useClock.js#L60)

@@ -39,4 +39,4 @@ array containing: state, setState, getState
 
 #### Defined in
 
-[hooks/useGettableState.js:24](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useGettableState.js#L24)
+[hooks/useGettableState.js:24](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useGettableState.js#L24)

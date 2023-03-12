@@ -38,4 +38,4 @@ useStableMemo
 
 #### Defined in
 
-[hooks/useStableMemo.js:22](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useStableMemo.js#L22)
+[hooks/useStableMemo.js:22](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useStableMemo.js#L22)

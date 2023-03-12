@@ -33,7 +33,7 @@
 
 #### Defined in
 
-[hooks/useGlobalListener.js:16](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useGlobalListener.js#L16)
+[hooks/useGlobalListener.js:16](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useGlobalListener.js#L16)
 
 ___
 
@@ -43,7 +43,7 @@ ___
 
 #### Defined in
 
-[hooks/useGlobalListener.js:8](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useGlobalListener.js#L8)
+[hooks/useGlobalListener.js:8](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useGlobalListener.js#L8)
 
 ## Functions
 
@@ -81,7 +81,7 @@ useGlobalListener('keydown', (event) => {
 
 #### Defined in
 
-[hooks/useGlobalListener.js:53](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useGlobalListener.js#L53)
+[hooks/useGlobalListener.js:53](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useGlobalListener.js#L53)
 
 ___
 
@@ -109,7 +109,7 @@ useDocumentEventListener
 
 #### Defined in
 
-[hooks/useGlobalListener.js:184](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useGlobalListener.js#L184)
+[hooks/useGlobalListener.js:184](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useGlobalListener.js#L184)
 
 ___
 
@@ -140,7 +140,7 @@ useToggledGlobalListener
 
 #### Defined in
 
-[hooks/useGlobalListener.js:106](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useGlobalListener.js#L106)
+[hooks/useGlobalListener.js:106](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useGlobalListener.js#L106)
 
 ___
 
@@ -164,4 +164,4 @@ Shortcut for useGlobalListener against the window
 
 #### Defined in
 
-[hooks/useGlobalListener.js:171](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useGlobalListener.js#L171)
+[hooks/useGlobalListener.js:171](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useGlobalListener.js#L171)

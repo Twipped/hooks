@@ -41,4 +41,4 @@ Returns a forceUpdate function.
 
 #### Defined in
 
-[hooks/useForceUpdate.js:21](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useForceUpdate.js#L21)
+[hooks/useForceUpdate.js:21](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useForceUpdate.js#L21)

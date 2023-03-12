@@ -44,4 +44,4 @@ Function that returns the current isMounted state of the component
 
 #### Defined in
 
-[hooks/useMounted.js:23](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useMounted.js#L23)
+[hooks/useMounted.js:23](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useMounted.js#L23)

@@ -18,4 +18,4 @@
 
 #### Defined in
 
-[hooks/typedefs.js:2](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/typedefs.js#L2)
+[hooks/typedefs.js:2](https://github.com/Twipped/hooks/blob/86a2b07/hooks/typedefs.js#L2)

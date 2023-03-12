@@ -53,7 +53,7 @@ Map.constructor
 
 #### Defined in
 
-[hooks/useMap.js:6](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useMap.js#L6)
+[hooks/useMap.js:6](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useMap.js#L6)
 
 ## Properties
 
@@ -77,7 +77,7 @@ ___
 
 #### Defined in
 
-[hooks/useMap.js:9](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useMap.js#L9)
+[hooks/useMap.js:9](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useMap.js#L9)
 
 ___
 
@@ -143,7 +143,7 @@ Map.clear
 
 #### Defined in
 
-[hooks/useMap.js:26](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useMap.js#L26)
+[hooks/useMap.js:26](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useMap.js#L26)
 
 ___
 
@@ -167,7 +167,7 @@ Map.delete
 
 #### Defined in
 
-[hooks/useMap.js:20](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useMap.js#L20)
+[hooks/useMap.js:20](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useMap.js#L20)
 
 ___
 
@@ -312,7 +312,7 @@ Map.set
 
 #### Defined in
 
-[hooks/useMap.js:12](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useMap.js#L12)
+[hooks/useMap.js:12](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useMap.js#L12)
 
 ___
 

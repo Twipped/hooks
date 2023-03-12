@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[hooks/useWhenElementRefReady.js:5](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useWhenElementRefReady.js#L5)
+[hooks/useWhenElementRefReady.js:5](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useWhenElementRefReady.js#L5)
 
 ## Functions
 
@@ -45,4 +45,4 @@ useWhenElementRefReady
 
 #### Defined in
 
-[hooks/useWhenElementRefReady.js:15](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useWhenElementRefReady.js#L15)
+[hooks/useWhenElementRefReady.js:15](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useWhenElementRefReady.js#L15)

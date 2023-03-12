@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[hooks/useUpdatedRef.js:3](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useUpdatedRef.js#L3)
+[hooks/useUpdatedRef.js:3](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useUpdatedRef.js#L3)
 
 ## Functions
 
@@ -44,4 +44,4 @@ useUpdatedRef
 
 #### Defined in
 
-[hooks/useUpdatedRef.js:12](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useUpdatedRef.js#L12)
+[hooks/useUpdatedRef.js:12](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useUpdatedRef.js#L12)

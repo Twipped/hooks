@@ -32,4 +32,4 @@ useMemoMapped
 
 #### Defined in
 
-[hooks/useMemoMapped.js:15](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useMemoMapped.js#L15)
+[hooks/useMemoMapped.js:15](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useMemoMapped.js#L15)

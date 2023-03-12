@@ -19,7 +19,7 @@
 
 #### Defined in
 
-[hooks/webStorageApi.js:9](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/webStorageApi.js#L9)
+[hooks/webStorageApi.js:9](https://github.com/Twipped/hooks/blob/86a2b07/hooks/webStorageApi.js#L9)
 
 ## Functions
 
@@ -45,7 +45,7 @@ Iterates each available key
 
 #### Defined in
 
-[hooks/webStorageApi.js:82](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/webStorageApi.js#L82)
+[hooks/webStorageApi.js:82](https://github.com/Twipped/hooks/blob/86a2b07/hooks/webStorageApi.js#L82)
 
 ___
 
@@ -77,4 +77,4 @@ A three item array containing: state, setState, getState
 
 #### Defined in
 
-[hooks/webStorageApi.js:24](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/webStorageApi.js#L24)
+[hooks/webStorageApi.js:24](https://github.com/Twipped/hooks/blob/86a2b07/hooks/webStorageApi.js#L24)

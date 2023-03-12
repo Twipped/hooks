@@ -34,4 +34,4 @@ useSmartEffect
 
 #### Defined in
 
-[hooks/useAsyncEffect.js:43](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useAsyncEffect.js#L43)
+[hooks/useAsyncEffect.js:43](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useAsyncEffect.js#L43)

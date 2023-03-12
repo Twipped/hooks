@@ -45,4 +45,4 @@ function Example({ value }) {
 
 #### Defined in
 
-[hooks/useImmediateUpdateEffect.js:22](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useImmediateUpdateEffect.js#L22)
+[hooks/useImmediateUpdateEffect.js:22](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useImmediateUpdateEffect.js#L22)

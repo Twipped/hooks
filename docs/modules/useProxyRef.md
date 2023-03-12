@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[hooks/useProxyRef.js:4](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useProxyRef.js#L4)
+[hooks/useProxyRef.js:4](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useProxyRef.js#L4)
 
 ## Functions
 
@@ -47,4 +47,4 @@ useProxyRef
 
 #### Defined in
 
-[hooks/useProxyRef.js:17](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useProxyRef.js#L17)
+[hooks/useProxyRef.js:17](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useProxyRef.js#L17)

@@ -27,7 +27,7 @@
 
 #### Defined in
 
-[hooks/useEventHandler.js:11](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useEventHandler.js#L11)
+[hooks/useEventHandler.js:11](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useEventHandler.js#L11)
 
 ## Functions
 
@@ -58,7 +58,7 @@ The attachment interface
 
 #### Defined in
 
-[hooks/useEventHandler.js:37](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useEventHandler.js#L37)
+[hooks/useEventHandler.js:37](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useEventHandler.js#L37)
 
 ___
 
@@ -87,4 +87,4 @@ useEventHandlerOn
 
 #### Defined in
 
-[hooks/useEventHandler.js:77](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useEventHandler.js#L77)
+[hooks/useEventHandler.js:77](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useEventHandler.js#L77)

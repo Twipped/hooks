@@ -42,4 +42,4 @@ array containing: state, setState, getState
 
 #### Defined in
 
-[hooks/useDerivedState.js:32](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useDerivedState.js#L32)
+[hooks/useDerivedState.js:32](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useDerivedState.js#L32)

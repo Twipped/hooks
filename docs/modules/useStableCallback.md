@@ -35,4 +35,4 @@ useStableCallback
 
 #### Defined in
 
-[hooks/useStableCallback.js:19](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useStableCallback.js#L19)
+[hooks/useStableCallback.js:19](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useStableCallback.js#L19)

@@ -32,4 +32,4 @@ useAsyncCallback
 
 #### Defined in
 
-[hooks/useAsyncCallback.js:13](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useAsyncCallback.js#L13)
+[hooks/useAsyncCallback.js:13](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useAsyncCallback.js#L13)

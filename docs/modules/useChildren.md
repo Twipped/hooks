@@ -36,7 +36,7 @@ The current child
 
 #### Defined in
 
-[hooks/useChildren.js:13](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useChildren.js#L13)
+[hooks/useChildren.js:13](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useChildren.js#L13)
 
 ___
 
@@ -73,4 +73,4 @@ The last return value of the factory.
 
 #### Defined in
 
-[hooks/useChildren.js:58](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useChildren.js#L58)
+[hooks/useChildren.js:58](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useChildren.js#L58)

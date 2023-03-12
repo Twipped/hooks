@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[hooks/usePromisedState.js:14](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/usePromisedState.js#L14)
+[hooks/usePromisedState.js:14](https://github.com/Twipped/hooks/blob/86a2b07/hooks/usePromisedState.js#L14)
 
 ## Functions
 
@@ -52,4 +52,4 @@ usePromisedState
 
 #### Defined in
 
-[hooks/usePromisedState.js:76](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/usePromisedState.js#L76)
+[hooks/usePromisedState.js:76](https://github.com/Twipped/hooks/blob/86a2b07/hooks/usePromisedState.js#L76)

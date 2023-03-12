@@ -34,4 +34,4 @@ value and a function to reset to false.
 
 #### Defined in
 
-[hooks/useTripWire.js:13](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useTripWire.js#L13)
+[hooks/useTripWire.js:13](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useTripWire.js#L13)

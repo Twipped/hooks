@@ -30,4 +30,4 @@ useWillUnmount
 
 #### Defined in
 
-[hooks/useWillUnmount.js:11](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useWillUnmount.js#L11)
+[hooks/useWillUnmount.js:11](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useWillUnmount.js#L11)

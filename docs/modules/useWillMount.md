@@ -34,4 +34,4 @@ Returns the result of the onMount function.
 
 #### Defined in
 
-[hooks/useWillMount.js:14](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useWillMount.js#L14)
+[hooks/useWillMount.js:14](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useWillMount.js#L14)

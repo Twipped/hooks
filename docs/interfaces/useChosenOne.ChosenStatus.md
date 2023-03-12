@@ -19,7 +19,7 @@ Is the first instance of the component
 
 #### Defined in
 
-[hooks/useChosenOne.js:90](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useChosenOne.js#L90)
+[hooks/useChosenOne.js:90](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useChosenOne.js#L90)
 
 ___
 
@@ -31,4 +31,4 @@ Is the last instance of the component
 
 #### Defined in
 
-[hooks/useChosenOne.js:91](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useChosenOne.js#L91)
+[hooks/useChosenOne.js:91](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useChosenOne.js#L91)

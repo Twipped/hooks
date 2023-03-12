@@ -54,4 +54,4 @@ return (
 
 #### Defined in
 
-[hooks/useMap.js:56](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useMap.js#L56)
+[hooks/useMap.js:56](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useMap.js#L56)

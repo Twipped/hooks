@@ -35,4 +35,4 @@ array containing: state, setState, getState
 
 #### Defined in
 
-[hooks/useSilentState.js:16](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useSilentState.js#L16)
+[hooks/useSilentState.js:16](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useSilentState.js#L16)

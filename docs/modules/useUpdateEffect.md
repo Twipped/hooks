@@ -48,4 +48,4 @@ js
 
 #### Defined in
 
-[hooks/useUpdateEffect.js:24](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useUpdateEffect.js#L24)
+[hooks/useUpdateEffect.js:24](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useUpdateEffect.js#L24)

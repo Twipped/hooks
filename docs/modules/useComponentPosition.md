@@ -22,7 +22,7 @@
 
 #### Defined in
 
-[hooks/useComponentPosition.js:10](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useComponentPosition.js#L10)
+[hooks/useComponentPosition.js:10](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useComponentPosition.js#L10)
 
 ## Functions
 
@@ -51,4 +51,4 @@ useComponentPosition
 
 #### Defined in
 
-[hooks/useComponentPosition.js:28](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useComponentPosition.js#L28)
+[hooks/useComponentPosition.js:28](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useComponentPosition.js#L28)

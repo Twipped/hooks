@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[hooks/useLazyRef.js:4](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useLazyRef.js#L4)
+[hooks/useLazyRef.js:4](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useLazyRef.js#L4)
 
 ## Functions
 
@@ -45,4 +45,4 @@ useLazyRef
 
 #### Defined in
 
-[hooks/useLazyRef.js:14](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useLazyRef.js#L14)
+[hooks/useLazyRef.js:14](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useLazyRef.js#L14)

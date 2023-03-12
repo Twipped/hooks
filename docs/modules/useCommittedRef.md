@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[hooks/useCommittedRef.js:1](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useCommittedRef.js#L1)
+[hooks/useCommittedRef.js:1](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useCommittedRef.js#L1)
 
 ## Functions
 
@@ -50,4 +50,4 @@ The committed value
 
 #### Defined in
 
-[hooks/useCommittedRef.js:16](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useCommittedRef.js#L16)
+[hooks/useCommittedRef.js:16](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useCommittedRef.js#L16)

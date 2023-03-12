@@ -33,4 +33,4 @@ The incrementing value
 
 #### Defined in
 
-[hooks/useIncrementer.js:13](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useIncrementer.js#L13)
+[hooks/useIncrementer.js:13](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useIncrementer.js#L13)

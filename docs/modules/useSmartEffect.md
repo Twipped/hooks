@@ -33,4 +33,4 @@ useSmartEffect
 
 #### Defined in
 
-[hooks/useSmartEffect.js:18](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useSmartEffect.js#L18)
+[hooks/useSmartEffect.js:18](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useSmartEffect.js#L18)

@@ -45,4 +45,4 @@ return <div style={{ overflow: scroll }} ref={ref} onClick={scrolltoTop} />;
 
 #### Defined in
 
-[hooks/useScroll.js:28](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/useScroll.js#L28)
+[hooks/useScroll.js:28](https://github.com/Twipped/hooks/blob/86a2b07/hooks/useScroll.js#L28)

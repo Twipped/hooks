@@ -35,4 +35,4 @@ Focus state, a function to focus the window, and a function to get the focus sta
 
 #### Defined in
 
-[hooks/usePageFocus.js:17](https://github.com/Twipped/hooks/blob/f27aaa6/hooks/usePageFocus.js#L17)
+[hooks/usePageFocus.js:17](https://github.com/Twipped/hooks/blob/86a2b07/hooks/usePageFocus.js#L17)
