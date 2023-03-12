@@ -7,10 +7,14 @@ import { useWebStorageApi, storageKeys } from './webStorageApi.js';
  * @function useSessionStorage
  * @param  {string} key          Name of the key to store the value into
  * @param  {any} defaultValue    The initial value to use if the key does not exist.
- * @returns {StateHookInterface} A three item array containing: state, setState, getState
+ * @param  {Object} options
+ * @param  {boolean} options.isJSON Controls if the value should be
+ * serialized/deserialized as JSON. Defaults to true.
+ * @returns {[state: any, setState: Function, getState: Function]} A three item array
+ * containing: state, setState, getState
  */
-export default function useSessionStorage (key, defaultValue) {
-  return useWebStorageApi(window.sessionStorage, key, defaultValue);
+export default function useSessionStorage (key, defaultValue, options) {
+  return useWebStorageApi(window.sessionStorage, key, defaultValue, options);
 }
 
 /**

@@ -1,3 +1,4 @@
+/** @typedef {import('@types/react').Ref} Ref */
 
 import { useRef, useEffect } from 'react';
 
@@ -9,7 +10,7 @@ import { useRef, useEffect } from 'react';
  * This is safe to access in an event handler.
  *
  * @function useCommittedRef
- * @param {Ref} value The `Ref` value
+ * @param {Ref|HTMLElement} value The `Ref` value
  * @returns {any} The committed value
  */
 export default function useCommittedRef (value) {

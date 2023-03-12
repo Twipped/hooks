@@ -1,9 +1,19 @@
-import { useEffect, useMemo, useRef, useCallback } from 'react';
+import {
+  useEffect, useMemo, useRef, useCallback,
+} from 'react';
 import useEventCallback from './useEventCallback.js';
 import resolveRef from './resolveRef.js';
 
 /**
- * @typedef {Object} GlobalListenerInterface
+ * @typedef {any} Truthy
+ */
+
+/**
+ * @typedef {{
+ *   attach: {Function: void},
+ *   remove: {Function: void},
+ *   when: {Function(value: Truthy): void}
+ * }} GlobalListenerInterface
  * @memberof useGlobalListener
  */
 
@@ -33,7 +43,8 @@ import resolveRef from './resolveRef.js';
  * @param {string}  eventName Name of the DOM event to listen for.
  * @param {Function}listener  An event handler
  * @param {boolean} [capture=false]   Whether or not to listen during the capture event phase
- * @param {Ref} [ownerElementRef] Ref to element to listen to instead of document
+ * @param {import('react').RefObject<HTMLElement>|HTMLElement} [ownerElementRef] Ref to element to
+ * listen to instead of document
  * @example
  * useGlobalListener('keydown', (event) => {
  *  console.log(event.key)
@@ -88,7 +99,8 @@ export default function useGlobalListener (
  * @param  {string}    eventName          Name of the DOM event to listen for.
  * @param  {Function}  listener           An event handler
  * @param  {boolean}   [capture=false]    Whether or not to listen during the capture event phase
- * @param  {Ref}       [ownerElementRef]  Ref of an element in the document to be bound to.
+ * @param  {import('react').RefObject<HTMLElement>|HTMLElement} [ownerElementRef]  Ref of an element
+ * in the document to be bound to.
  * @returns {GlobalListenerInterface}
  */
 export function useToggledGlobalListener (

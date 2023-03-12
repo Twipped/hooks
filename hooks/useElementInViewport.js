@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
+/** @typedef {import('@types/react').Ref} Ref */
 
 /**
  * Tests if a given Ref element exists within a given viewport.
  *
  * @function useElementInViewport
- * @param  {Ref}     elementRef   Ref to the relevant element.
+ * @param  {Ref|HTMLElement} elementRef Ref to the relevant element.
  * @param  {Object}  options
- * @param  {Ref}     [options.root]        The element that is used as the viewport for checking visibility of the target. Defaults to the browser viewport.
+ * @param  {Ref|HTMLElement} [options.root] The element that is used as the viewport for checking visibility of the target. Defaults to the browser viewport.
  * @param  {string}  [options.rootMargin]  Margin to draw around the root element for detecting overlap. Identical to CSS `margin` definition. Defaults to 0 on all sides.
  * @param  {number}  [options.threshold]   How much of the target element must be on screen to be considered visible, from 0 to 1.
  * @returns {boolean}

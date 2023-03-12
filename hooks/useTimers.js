@@ -1,14 +1,15 @@
 
 import { useCallback, useEffect, useRef } from 'react';
-import assert from '@twipped/utils/assert';
 import useCommittedRef from './useCommittedRef.js';
 import useWillUnmount from './useWillUnmount.js';
 import useEventCallback from './useEventCallback.js';
 import useStableMemo from './useStableMemo.js';
 
 /**
- * @classdesc Timeout/Defer API interface
- * @typedef TimeoutHandler
+ * @typedef {{
+ *   set: {Function(fn: Function, delayMs: number, reset: boolean): void},
+ *   clear: Function
+ * }} TimeoutHandler
  * @param {Function} fn       Callback to evaluate when the timeout finishes
  * @param {number}   delayMs  Duration of the timeout
  * @param {boolean}  [reset]  If a previous timeout should be reset when this is invoked.
@@ -90,7 +91,7 @@ function useTimeoutGenerator (setter, clearer, rootFn) {
       }
       /* eslint-enable no-param-reassign */
 
-      assert(typeof fn === 'function', 'useTimeout/useDefer must be provided a function as its first argument');
+      if (typeof fn !== 'function') throw new Error('useTimeout/useDefer must be provided a function as its first argument');
 
       clear();
 
@@ -156,9 +157,11 @@ export function useDefer (fn) {
   return timer;
 }
 
-
 /**
- * @typedef IntervalHandler
+ * @typedef {{
+ *   start: {Function(fn: Function, delayMs: number, reset: boolean): void},
+ *   stop: {Function: void}
+ * }} IntervalHandler
  */
 
 /**
@@ -179,7 +182,7 @@ export function useDefer (fn) {
  */
 
 /**
- * @property {boolean} IntervalHandler#isActive
+ * @property {boolean} IntervalHandler#isActive Is the interval running
  * @memberof IntervalHandler
  * @readonly
  * @description Identifies if the interval is currently running.

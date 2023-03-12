@@ -5,14 +5,17 @@ import useEventCallback from './useEventCallback.js';
 import useWhenElementRefReady from './useWhenElementRefReady.js';
 
 /**
- * @typedef {Object} EventHandlerInterface
+ * @typedef {{
+ *  attach: {Function(target: HTMLElement)},
+ *  remove: Function
+ * }} EventHandlerInterface
  */
 
 /**
  * @function EventHandlerInterface#attach
  * @description Attaches the handler to the provided target.
  * @memberof EventHandlerInterface
- * @param {Element} target
+ * @param {HTMLElement} target
  */
 
 /**
@@ -28,7 +31,7 @@ import useWhenElementRefReady from './useWhenElementRefReady.js';
  * @function useEventHandler
  * @param {string}   event    Name of the DOM event to listen for.
  * @param {Function} listener An event handler
- * @param {boolean}  capture  Whether or not to listen during the capture event phase
+ * @param {boolean}  [capture]  Whether or not to listen during the capture event phase
  * @returns {EventHandlerInterface} The attachment interface
  */
 export default function useEventHandler (event, listener, capture = false) {
@@ -65,7 +68,7 @@ export default function useEventHandler (event, listener, capture = false) {
  * Functions identical to useEventHandler, but takes a React Ref object as its first argument
  *
  * @function useEventHandlerOn
- * @param  {Ref} ref            Target ref to attach to, when ready.
+ * @param  {import('react').Ref|HTMLElement} ref Target ref to attach to, when ready.
  * @param  {string} event       Name of the DOM event to listen for.
  * @param  {Function} listener  An event handler
  * @param  {boolean} capture    Whether or not to listen during the capture event phase

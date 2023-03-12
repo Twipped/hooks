@@ -1,8 +1,9 @@
-/* eslint-disable no-param-reassign */
+/** @typedef {import('@types/react').Ref} Ref */
+
 /**
  * Attempts to resolve a value from the passed ref
  *
- * @param  {Ref} ref A React ref object
+ * @param  {Ref|HTMLElement} ref A React ref object
  * @returns {any}
  * @private
  */

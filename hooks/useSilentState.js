@@ -7,10 +7,11 @@ import useStableMemo from './useStableMemo.js';
  * the state is updated.
  *
  * @function useSilentState
- * @param {any}          initial             The initial value to set the state to.
- * @param {Array}   dependencies        A dependency array. If provided, the state
+ * @param {any}     initial The initial value to set the state to.
+ * @param {Array}   dependencies A dependency array. If provided, the state
  * will be reset to the passed initial value if a dependency changes.
- * @returns {StateHookInterface} A three item array containing: state, setState, getState
+ * @returns {[state: any, setState: Function, getState: Function]} A three item
+ * array containing: state, setState, getState
  */
 export default function useSilentState (initial = null, dependencies) {
   const ref = useRef();

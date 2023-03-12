@@ -7,6 +7,8 @@ import useEventCallback from './useEventCallback.js';
 
 import useGettableState from './useGettableState.js';
 
+/** @typedef {import('@types/react').Ref} Ref */
+
 /**
  * @typedef Position
  * @property {number} top
@@ -19,7 +21,7 @@ import useGettableState from './useGettableState.js';
  * Retrieves the current page position of the element Ref passed.
  *
  * @function useComponentPosition
- * @param  {Ref}      ref        React ref (from createRef or useRef) that will contain an element reference.
+ * @param  {Ref|HTMLElement} ref React ref (from createRef or useRef) that will contain an element reference.
  * @param  {Function} [onUpdate] Optional function to fire when the position changes.
  * @returns {Position} `top` and `left` properties, relative to the top left of the document. `width` and `height` of the element.
  */

@@ -9,11 +9,12 @@ import deepEqual from '@twipped/utils/deepEqual';
  * instead of an array (presumably a components props argument).
  *
  * @function usePropsMemo
- * @param  {Function} factory Function to memoize
- * @param  {Object}   props Dependencies
+ * @param  {{Function: any}} factory Function to memoize
+ * @param  {object | Array}   props Dependencies
  * @param  {Object}   [options] Options
- * @param  {boolean}  [options.comparison] The comparison function used to detect if
- * the dependencies change. Defaults to a shallow equal, pass true to use deep equality.
+ * @param  {boolean|{Function(a: any, b: any)}}  [options.comparison] The comparison
+ * function used to detect if the dependencies change. Defaults to a shallow equal,
+ * pass true to use deep equality.
  * @returns {any} The result of the factory function.
  */
 export default function usePropsMemo (factory, props, { comparison = false } = {}) {

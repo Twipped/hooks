@@ -1,5 +1,6 @@
 
 import { useRef } from 'react';
+/** @typedef {import('@types/react').Ref} Ref */
 
 /**
  * Returns a ref that is immediately updated with the new value

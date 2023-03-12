@@ -1,6 +1,7 @@
 
 import useEventCallback from './useEventCallback.js';
 import useStableMemo from './useStableMemo.js';
+/** @typedef {import('@types/react').Ref} Ref */
 
 /**
  * Creates a Ref object that triggers a function when its contents change.

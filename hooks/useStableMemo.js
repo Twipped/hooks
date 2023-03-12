@@ -8,11 +8,14 @@ import deepEqual from '@twipped/utils/deepEqual';
  * values will not be invalidated unless the dependencies change. This is unlike
  * the built in `useMemo` which may discard memoized values for performance reasons.
  *
+ * useStableMemo also provides the ability to perform a deep equality check on dependencies,
+ * and also allows you pass an object as the dependencies value.
+ *
  * @function useStableMemo
  * @param {Function}  factory      A function that returns a value to be memoized
- * @param {Array}     dependencies A dependency array
- * @param {Object}    [options] Options
- * @param {Function|boolean}   [options.comparison] The comparison function used to detect if
+ * @param {Array|Object} dependencies A dependency array or object
+ * @param {Object} [options] Options
+ * @param {Function|boolean} [options.comparison] The comparison function used to detect if
  * the dependencies change. Defaults to a shallow equal, pass true to use deep equality.
  * @returns {any}
  */

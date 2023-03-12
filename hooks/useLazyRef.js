@@ -1,6 +1,7 @@
 
 import { useRef } from 'react';
 import DEFAULT from '@twipped/utils/default';
+/** @typedef {import('@types/react').Ref} Ref */
 
 /**
  * Exactly the same as `useRef` except it accepts a function to produce the initial value.

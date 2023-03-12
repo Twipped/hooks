@@ -8,17 +8,6 @@ import useUpdateEffect from './useUpdateEffect.js';
 import useStableMemo from './useStableMemo.js';
 import useGettableState from './useGettableState.js';
 
-const shallow = (...args) => !shallowEqual(...args);
-const deep = (...args) => !deepEqual(...args);
-
-/**
- * @typedef StateHookInterface
- * @type {Array}
- * @property {any}      0 The current state
- * @property {Function} 1 State setter function
- * @property {Function} 2 State getter function
- */
-
 /**
  * Creates a state hook populated by a value derived from dependencies.
  * If the dependencies change, the state will be repopulated based on the
@@ -28,19 +17,25 @@ const deep = (...args) => !deepEqual(...args);
  * @function useDerivedState
  * @param  {Function} fn Handler to run at initialization and when a dependency changes
  * @param  {Array}    dependencies A dependency array
- * @param  {Object}   options
- * @param  {Function} options.comparator   A function to evaluate if the result
- * of the handler differs from current state
- * @returns {StateHookInterface} Returns an array containing the current state,
- * an updater function and a getter function.
+ * @param {Object} [options]
+ * @param  {boolean|{Function(a: any, b: any)}} [options.comparator=false] A function
+ * to evaluate if the result of the handler differs from current state. Pass true to perform
+ * a deep equal, otherwise the comparison will be shallow.
+ * @param  {boolean}   [options.alwaysMerge=false] Always merge the new state into the old.
+ * @param  {boolean}   [options.alwaysUpdate=false] Always trigger an update even if state matches.
+ * @param  {boolean|{Function(a: any, b: any)}} [options.comparison=false] When alwaysUpdate
+ * is false, the comparison function provided will evaluate if the new state differs from the
+ * old state. Pass true to perform a deep equal, otherwise the comparison will be shallow.
+ * @returns {[state: any, setState: Function, getState: Function]} A three item
+ * array containing: state, setState, getState
  */
 export default function useDerivedState (
   fn,
   dependencies = [ fn ],
-  { comparator = shallow, ...ops } = {}
+  { comparator = shallowEqual, ...ops } = {}
 ) {
   // eslint-disable-next-line no-param-reassign
-  if (comparator === true) comparator = deep;
+  if (comparator === true) comparator = deepEqual;
 
   if (!isFunction(fn)) {
     throw new TypeError('useDerivedState did not receive a function for first argument.');
@@ -50,11 +45,10 @@ export default function useDerivedState (
 
   const [ state, writeState, readState ] = useGettableState(initial, ops);
   useUpdateEffect(() => {
-    const diff = comparator(state, initial);
+    const diff = !comparator(state, initial);
     if (diff) {
       writeState(initial);
     }
-    // console.log({ state, initial, diff });
   }, [ initial, ...dependencies ]);
 
   writeState.reset = useCallback(() => writeState(initial), [ writeState, initial ]);
