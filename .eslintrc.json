@@ -3,6 +3,9 @@
     "@twipped/eslint-config/react",
     "@twipped/eslint-config/jsdoc"
   ],
+  "env": {
+    "browser": true
+  },
   "rules": {
     "import/extensions": ["error", {
       "ignorePackages": true,
@@ -11,9 +14,14 @@
         "mjs": "always",
         "jsx": "always"
       }
-    }]
+    }],
+    "jsdoc/valid-types": "off"
   },
   "overrides": [
+    {
+      "files": "**.cjs",
+      "extends": "@twipped/eslint-config/node-cjs"
+    },
     {
       "files": [
         "**/__tests__/**",
