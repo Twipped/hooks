@@ -18,7 +18,7 @@ import useStableMemo from './useStableMemo.js';
  * @returns {ToggledState}
  */
 export default function useToggledState (initial = false) {
-  const [ state, setter, getter ] = useGettableState(!!initial);
+  const [ , setter, getter ] = useGettableState(!!initial);
 
   return useStableMemo(() => ({
 
@@ -31,7 +31,7 @@ export default function useToggledState (initial = false) {
      * @returns {boolean}
      */
     get state () {
-      return state;
+      return getter();
     },
 
     /**
