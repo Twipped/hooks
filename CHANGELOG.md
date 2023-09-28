@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.0](https://github.com/Twipped/hooks/compare/v1.0.0...v1.1.0) (2023-09-28)
+
+
+### Features
+
+* Added a base export ([4285983](https://github.com/Twipped/hooks/commit/42859839ca638eba120a9176fcb6c209edf71216))
+
+
+### Bug Fixes
+
+* Hopefully corrected typescript exports ([04eeda3](https://github.com/Twipped/hooks/commit/04eeda3f65f87efe54652eaeff6d90e340bf874f))
+
 ## [1.0.0](https://github.com/Twipped/hooks/compare/v0.6.2...v1.0.0) (2023-03-12)
 
 
