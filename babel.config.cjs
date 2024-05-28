@@ -1,8 +1,7 @@
 module.exports = exports = {
   presets: [
     [
-      '@babel/preset-env',
-      {
+      '@babel/preset-env', {
         useBuiltIns: 'entry',
         corejs: 3,
         exclude: [ 'transform-typeof-symbol' ],
@@ -10,18 +9,13 @@ module.exports = exports = {
         targets: 'maintained node versions',
       },
     ],
-    [
-      "@babel/preset-react",
-      {
-        "runtime": "automatic",
-      },
-    ],
+    [ '@babel/preset-react', {
+      runtime: 'automatic',
+    } ],
   ],
   plugins: process.env.NODE_ENV === 'test'
     ? []
     : [
-      [ 'babel-plugin-add-import-extension',
-        { extension: process.env.ESM ? 'mjs' : 'cjs',
-        } ],
+      [ 'babel-plugin-add-import-extension', { extension: process.env.ESM ? 'mjs' : 'cjs' } ],
     ],
 };

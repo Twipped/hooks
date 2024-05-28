@@ -8,10 +8,11 @@ import usePrevious from './usePrevious.js';
  * @function useIncrementer
  * @param  {any}      value Value to watch for changes
  * @param  {number} step  Amount to increment by.
- * @returns {number} The incrementing value
+ * @returns {[number, () => void]} The incrementing value
  */
 export default function useIncrementer (value, step = 1) {
   const ref = useRef(-step);
+  /** @type {ReturnType<typeof usePrevious<number>>} */
   const prev = usePrevious(value);
   const resetRef = useRef(() => { ref.current = 0; });
 

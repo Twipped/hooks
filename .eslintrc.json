@@ -15,7 +15,8 @@
         "jsx": "always"
       }
     }],
-    "jsdoc/valid-types": "off"
+    "jsdoc/valid-types": "off",
+    "no-param-reassign": "off"
   },
   "settings": {
     "jsdoc": {
@@ -71,7 +72,8 @@
       "rules": {
         "react/prop-types": "off",
         "react-hooks/exhaustive-deps": "off",
-        "react/jsx-no-constructed-context-values": "off"
+        "react/jsx-no-constructed-context-values": "off",
+        "import/no-nodejs-modules": "off"
       }
     }
   ]

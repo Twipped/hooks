@@ -1,5 +1,4 @@
-/** @typedef {import('@types/react').Ref} Ref */
-
+/* eslint-disable jsdoc/require-returns */
 import { useRef, useEffect } from 'react';
 
 /**
@@ -9,9 +8,20 @@ import { useRef, useEffect } from 'react';
  *
  * This is safe to access in an event handler.
  *
- * @function useCommittedRef
- * @param {Ref|HTMLElement} value The `Ref` value
- * @returns {any} The committed value
+ * @param {any} value The `Ref` value
+ * @template T
+ * @returns {import('react').MutableRefObject<T>}
+ * @example ```jsx
+ * import { useCallback } from 'react';
+ * import useCommittedRef from '@zenbusiness/application-commons-hooks/useCommittedRef';
+ * function MyComponent ({ someProp }) {
+ *   const somePropRef = useCommittedRef(someProp);
+ *   const onClick = useCallback(() => {
+ *     const safePropRef = somePropRef.current;
+ *   }, []); // no dependency needed
+ *   return <button onClick={onClick}>Click Me!</button>;
+ * }
+ * ```
  */
 export default function useCommittedRef (value) {
   const ref = useRef(value);

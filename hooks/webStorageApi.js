@@ -1,13 +1,10 @@
-/* global StateHookInterface */
 import { useCallback } from 'react';
 import jsonSoftParse from '@twipped/utils/jsonSoftParse';
 import DEFAULT from '@twipped/utils/default';
 import { useWindowEventListener } from './useGlobalListener.js';
 import useDerivedState from './useDerivedState.js';
 
-/**
- * @typedef {Object} Storage
- */
+/** @typedef {import('./types').WebStorageStateHookInterface} WebStorageStateHookInterface */
 
 /**
  * Abstract function for WebStorage API
@@ -16,9 +13,9 @@ import useDerivedState from './useDerivedState.js';
  * @param {Storage} store Which API to use
  * @param {string} key Name of the key to store the value into
  * @param {any} [defaultValue] The initial value to use if the key does not exist
- * @param {Object} options
- * @param {boolean} options.isJSON
- * @returns {StateHookInterface} A three item array containing: state, setState, getState
+ * @param {object} [options]
+ * @param {boolean} [options.isJSON]
+ * @returns {import('./types').WebStorageStateHookInterface}
  * @private
  */
 export function useWebStorageApi (store, key, defaultValue = DEFAULT, { isJSON = true } = {}) {
@@ -46,7 +43,7 @@ export function useWebStorageApi (store, key, defaultValue = DEFAULT, { isJSON =
     return stored;
   }, [ store, key ]);
 
-  const setValue = useCallback((newValue) => {
+  const setValue = useCallback((/** @type {string|object} */ newValue) => {
     if (newValue && !isJSON && typeof newValue !== 'string') {
       throw new TypeError('setValue cannot receive anything other than string or undefined when using isJSON=false');
     }
@@ -57,13 +54,13 @@ export function useWebStorageApi (store, key, defaultValue = DEFAULT, { isJSON =
       } else if (isJSON) {
         store.setItem(key, JSON.stringify(newValue));
       } else {
-        store.setItem(key, newValue);
+        store.setItem(key, String(newValue));
       }
       return newValue;
     });
   }, [ key, store, writeValue, isJSON ]);
 
-  useWindowEventListener('storage', (ev) => {
+  useWindowEventListener('storage', (/** @type {StorageEvent} */ ev) => {
     if (ev.storageArea === store && ev.key === key) {
       setValue(ev.newValue === null ? defaultValue : JSON.parse(ev.newValue));
     }

@@ -1,6 +1,6 @@
 
-import { useStore } from 'react';
-import useEventHandler from './useEventHandler.js';
+import { useState } from 'react';
+import { useWindowEventListener } from './useGlobalListener.js';
 
 /**
  * State hook that tracks the page hash (#), triggering an update if it changes.
@@ -10,17 +10,17 @@ import useEventHandler from './useEventHandler.js';
  */
 export default function usePageHash () {
 
-  const [ hashState, setHash ] = useStore({
+  const [ hashState, setHash ] = useState({
     hash: window.location.hash.slice(1),
     prevHash: null,
   });
 
-  useEventHandler('hashchange', () => {
+  useWindowEventListener('hashchange', () => {
     setHash({
       hash: window.location.hash.slice(1),
       prevHash: hashState.hash,
     });
-  }).attach(window);
+  });
 
-  return hashState;
+  return hashState.hash;
 }

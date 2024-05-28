@@ -1,18 +1,18 @@
 
 import useEventCallback from './useEventCallback.js';
 import useStableMemo from './useStableMemo.js';
-/** @typedef {import('@types/react').Ref} Ref */
+/** @typedef {import('react').MutableRefObject} MutableRefObject */
 
 /**
  * Creates a Ref object that triggers a function when its contents change.
  *
  * @function useProxyRef
- * @param  {Object}    options
+ * @param  {object}    options
  * @param  {Function}  [options.onChange]   The function to trigger on change. Receives the new
  * value of the ref. If a function is returned, it will be invoked at next change, like useEffect.
  * @param  {boolean}   [options.deferred]   If true, the function will be triggered asynchronously
  * @param  {any}       [options.defaultValue]  The initial value of the ref.
- * @returns {Ref}
+ * @returns {MutableRefObject}
  */
 export default function useProxyRef ({ onChange, deferred = false, defaultValue } = {}) {
   onChange = useEventCallback(onChange);

@@ -1,16 +1,21 @@
-/** @typedef {import('@types/react').Ref} Ref */
+/* eslint-disable no-param-reassign */
+
+/**
+ * @template T
+ * @typedef {T | import('react').MutableRefObject<T>|((value: any) => T)} Resolvable
+ */
 
 /**
  * Attempts to resolve a value from the passed ref
  *
- * @param  {Ref|HTMLElement} ref A React ref object
+ * @param  {Resolvable<any>} ref
  * @returns {any}
  * @private
  */
 export default function resolveRef (ref) {
-  if (typeof document === 'undefined' || !ref) { return null; }
+  if (!ref) { return null; }
   if (typeof ref === 'function') { ref = ref(); }
   if (ref && 'current' in ref) { ref = ref.current; }
-  if (ref?.nodeType) { return ref || null; }
+  if (ref && 'nodeType' in ref) { return ref || null; }
   return null;
 }

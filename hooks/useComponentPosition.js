@@ -1,13 +1,11 @@
 
-import {  useCallback, useLayoutEffect } from 'react';
+import { useCallback, useLayoutEffect } from 'react';
 import { isObject } from '@twipped/utils/types';
 import shallowEqual from '@twipped/utils/shallowEqual';
 import assert from '@twipped/utils/assert';
 import useEventCallback from './useEventCallback.js';
 
 import useGettableState from './useGettableState.js';
-
-/** @typedef {import('@types/react').Ref} Ref */
 
 /**
  * @typedef Position
@@ -21,7 +19,7 @@ import useGettableState from './useGettableState.js';
  * Retrieves the current page position of the element Ref passed.
  *
  * @function useComponentPosition
- * @param  {Ref|HTMLElement} ref React ref (from createRef or useRef) that will contain an element reference.
+ * @param  {import('react').MutableRefObject<HTMLElement>} ref React ref (from createRef or useRef) that will contain an element reference.
  * @param  {Function} [onUpdate] Optional function to fire when the position changes.
  * @returns {Position} `top` and `left` properties, relative to the top left of the document. `width` and `height` of the element.
  */
@@ -46,7 +44,7 @@ export default function useComponentPosition (ref, onUpdate) {
 
   useLayoutEffect(() => {
     if (!ref.current) {
-      return;
+      return undefined;
     }
 
     const el = ref.current;

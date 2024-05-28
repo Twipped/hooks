@@ -1,4 +1,3 @@
-
 import { useRef, useEffect } from 'react';
 
 /**
@@ -6,9 +5,10 @@ import { useRef, useEffect } from 'react';
  * storing the current value for the next render
  *
  * @function usePrevious
- * @param {any} value
- * @param {any} initialDefault
- * @returns {any}
+ * @template T
+ * @param {T} value Value
+ * @param {T} [initialDefault] Value at mount time.
+ * @returns {T}
  */
 export default function usePrevious (value, initialDefault) {
   const ref = useRef(initialDefault);

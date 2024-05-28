@@ -49,7 +49,7 @@ class ChosenOneManager {
   pop () {
     const ref = this.hooks.pop();
     const last = this.last;
-    if (!last) return;
+    if (!last) return undefined;
     // if there's only one ref, then it's the first.
     invokeState(last, [ this.hooks.length === 1, true ]);
     return ref;
@@ -58,7 +58,7 @@ class ChosenOneManager {
   shift () {
     const ref = this.hooks.shift();
     const first = this.first;
-    if (!first) return;
+    if (!first) return undefined;
     invokeState(first, [ true, this.hooks.length === 1 ]);
     return ref;
   }
@@ -77,7 +77,7 @@ class ChosenOneManager {
     }
 
     const idx = this.hooks.indexOf(ref);
-    if (idx < 0) return;
+    if (idx < 0) return undefined;
     return this.cut();
   }
 

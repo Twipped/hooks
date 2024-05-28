@@ -11,7 +11,7 @@ import deepEqual from '@twipped/utils/deepEqual';
  * @function useStableCallback
  * @param  {Function} fn            A function that returns a value to be memoized
  * @param  {Array}    dependencies  A dependency array
- * @param  {Object}   options
+ * @param  {object}   options
  * @param  {Function|boolean}  options.comparison The comparison function used to detect if
  * the dependencies change. Defaults to a shallow equal, pass true to use deep equality.
  * @returns {Function}
@@ -22,6 +22,7 @@ export default function useStableCallback (fn, dependencies, { comparison = fals
 
   let isValid = true;
 
+  /** @type {import('react').MutableRefObject<{ dependencies: any[]; fn: Function; }>} */
   const valueRef = useRef();
 
   if (valueRef.current) {

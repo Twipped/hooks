@@ -1,89 +1,67 @@
-
-import {
-  isSameDay,
-  isSameHour,
-  isSameMinute,
-  isSameSecond,
-  differenceInSeconds,
-  differenceInMinutes,
-  differenceInHours,
-  differenceInDays,
-} from 'date-fns';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import useGettableState from './useGettableState.js';
-import { useInterval } from './useTimers.js';
-
-
-export const DAYS    = /* #__PURE__*/isSameDay;
-export const HOURS   = /* #__PURE__*/isSameHour;
-export const MINUTES = /* #__PURE__*/isSameMinute;
-export const SECONDS = /* #__PURE__*/isSameSecond;
-export const INTERVAL_SECONDS = /* #__PURE__*/makeInterval(differenceInSeconds);
-export const INTERVAL_MINUTES = /* #__PURE__*/makeInterval(differenceInMinutes);
-export const INTERVAL_HOURS   = /* #__PURE__*/makeInterval(differenceInHours);
-export const INTERVAL_DAYS    = /* #__PURE__*/makeInterval(differenceInDays);
+import useInterval from './useInterval.js';
 
 /**
- * Define an interval checker using a computational function
+ * Triggers a component refresh at each "tick" of the clock, determined by the interval checks
+ * passed in to the arguments.
  *
- * @param  {Function} method The function to use.
- * @returns {Function} The produced checker
- * @private
- */
-function makeInterval (method) {
-  return (interval) => useCallback((a, b) => {
-    const diff = Math.abs(method(a, b));
-    const step = diff / interval;
-    return step < 1;
-  }, [ interval ]);
-}
-
-/**
- * Triggers a component refresh at the interval checks passed in to the arguments.
- * Interval Checks are functions which compare the last tick value against the current
- * time and returns true if they have NOT changed within the interval, false
- * if they are in different intervals. Multiple checks may be passed to trigger at
- * different intervals.
+ * Interval Checks are functions which receive two dates (the last tick value and the current
+ * time) and returns true if they are the same interval, false if they are in different intervals.
+ *
+ * Multiple checks may be passed to tick at multiple intervals.
  *
  * @function useClock
- * @param  {...Function} checks Interval Check functions
+ * @param  {...Function} ticks Interval Check functions
  * @returns {Date} Returns the time of the last interval tick.
  * @example
- * useClock(useClock.INTERVAL_SECONDS(10)) // ticks every ten seconds
- * useClock(useClock.INTERVAL_MINUTES(30)) // ticks every 30 minutes
- * useClock(useClock.INTERVAL_HOURS(2)) // ticks every 2 hours
- * useClock(useClock.SECONDS) // ticks once per second
- * useClock(useClock.MINUTES) // ticks at the top of each minute
- * useClock(useClock.HOURS) // ticks at the top of each hour
- * useClock(useClock.DAYS) // ticks at midnight
+ * import useClock from '@zenbusiness/application-commons-hooks/useClock';
+ * import { isSameSecond, isSameMinute, isSameHour } from 'date-fns';
+ * useClock(isSameMinute) // ticks at the top of each minute
+ * useClock(isSameHour) // ticks at the top of each hour
+ * useClock(useClock.interval(differenceInSeconds, 30)) // ticks every 30 seconds
  */
-export default function useClock (...checks) {
-  checks = checks.flat(Infinity).filter((c) => typeof c === 'function');
-  if (!checks.length) throw new Error('You must provide tick functions to check against.');
+export default function useClock (...ticks) {
+  ticks = ticks.flat(Infinity).filter((c) => typeof c === 'function');
+  if (!ticks.length) throw new Error('You must provide tick functions to check against.');
 
   const [ date, setDate, getDate ] = useGettableState(new Date());
 
-  useInterval(useCallback(() => {
+  const interval = useInterval(() => {
     const now = new Date();
 
-    for (const check of checks) {
-      if (!check(getDate(), now)) {
+    for (const tickCheck of ticks) {
+      if (!tickCheck(getDate(), now)) {
         setDate(now);
         return;
       }
     }
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, 1000);
+
+  useEffect(() => {
+    interval.start();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ setDate, getDate, ...checks ]), 1000).start();
+  }, []);
 
   return date;
 }
 
-useClock.DAYS    = DAYS;
-useClock.HOURS   = HOURS;
-useClock.MINUTES = MINUTES;
-useClock.SECONDS = SECONDS;
-useClock.INTERVAL_DAYS    = INTERVAL_DAYS;
-useClock.INTERVAL_HOURS   = INTERVAL_HOURS;
-useClock.INTERVAL_MINUTES = INTERVAL_MINUTES;
-useClock.INTERVAL_SECONDS = INTERVAL_SECONDS;
+/**
+ * Define an interval checker callback using a computational function
+ *
+ * @param {Function} method The function to use.
+ * @param {number} interval The number of iterations of that function to expect
+ * @returns {Function} The produced checker
+ * @private
+ */
+function useTick (method, interval = 1) {
+  return useCallback((a, b) => {
+    const diff = Math.abs(method(a, b));
+    const step = diff / interval;
+    return step < 1;
+  }, [ method, interval ]);
+}
+
+useClock.interval = useTick;

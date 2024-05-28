@@ -1,0 +1,13 @@
+{
+  "out": "docs/API",
+  "entryPoints": ["hooks/*.js"],
+  "tsconfig": "tsconfig.json",
+  "plugin": [
+    "typedoc-plugin-markdown",
+    "typedoc-plugin-merge-modules",
+  ],
+  "readme": "none",
+  "hideBreadcrumbs": true,
+  "gitRevision": "main",
+  "mergeModulesMergeMode": "module"
+}

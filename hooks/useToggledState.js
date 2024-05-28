@@ -1,12 +1,15 @@
-
 import useGettableState from './useGettableState.js';
 import useStableMemo from './useStableMemo.js';
 
-
 /**
- * @typedef ToggledState
+ * @typedef {{
+ *  state: boolean,
+ *  toggle: (onoff: boolean) => boolean
+ *  on: () => void
+ *  off: () => void
+ *  get: () => boolean
+ * }} ToggledState
  * @description Toggled state API interface
- * @memberof useToggledState
  */
 
 /**
@@ -43,6 +46,7 @@ export default function useToggledState (initial = false) {
      * @returns {boolean}
      */
     toggle (onoff) {
+      // eslint-disable-next-line no-param-reassign
       if (onoff !== true && onoff !== false) onoff = !getter();
       setter(onoff);
       return onoff;
@@ -78,5 +82,5 @@ export default function useToggledState (initial = false) {
      * @returns {boolean}
      */
     get: getter,
-  }));
+  }), []);
 }

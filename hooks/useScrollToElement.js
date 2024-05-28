@@ -8,8 +8,13 @@ const NEXT_STATE_STOP = 0;
 const NEXT_STATE_CONTINUE = 1;
 export const DEFAULT_DURATION = 480;
 
-// acceleration until halfway, then deceleration
-const easeInOutQuad = (t) => (t < 0.5 ? 2 * t * t : -1 + ((4 - (2 * t)) * t));
+/**
+ * acceleration until halfway, then deceleration
+ *
+ * @param {number} t
+ * @returns {number}
+ */
+const easeInOutQuad = (t) => (t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t); // eslint-disable-line no-mixed-operators
 
 // locally override the globals so that if they don't exist (such as in tests or in SSR)
 // we gracefully fallback to setTimeout.
@@ -21,9 +26,13 @@ const cancelAnimationFrame = (
   typeof window !== 'undefined' && typeof window.cancelAnimationFrame !== 'undefined'
 ) ? window.cancelAnimationFrame : clearTimeout;
 
-// eslint-disable-next-line jsdoc/require-jsdoc
+/**
+ * Tweening Loop
+ *
+ * @param {() => NEXT_STATE_STOP | NEXT_STATE_CONTINUE} next
+ */
 function animationLoop (next) {
-  let i;
+  let i = 0;
   const loop = () => {
     if (next() === NEXT_STATE_STOP) {
       cancelAnimationFrame(i);
@@ -34,7 +43,19 @@ function animationLoop (next) {
   i = requestAnimationFrame(loop);
 }
 
-// eslint-disable-next-line jsdoc/require-jsdoc
+/**
+ * @callback easing
+ * @param {number} x
+ * @returns {number}
+ */
+
+/**
+ * Tweener
+ *
+ * @internal
+ * @param {(a: number) => void} callback
+ * @param {{ duration: number, delay: number, easing: easing }} opts
+ */
 function animate (callback, opts) {
   const start = Date.now();
   const { duration, delay, easing } = opts;
@@ -50,7 +71,12 @@ function animate (callback, opts) {
   });
 }
 
-// eslint-disable-next-line jsdoc/require-jsdoc
+/**
+ * Lifts
+ *
+ * @param {any|((x:any) => any)} value
+ * @returns {(x:any) => any}
+ */
 function lift (value) {
   return (x) => (typeof value === 'function' ? value(x) : value);
 }
@@ -59,27 +85,34 @@ function lift (value) {
  * Provides a mechanism to smoothly scroll to the target element.
  *
  * @function useScrollToElement
- * @param {Object} options
- * @param {import('react').RefObject<HTMLElement>|HTMLElement} options.auto If given an element
- * or ref, will automatically scroll to that element the moment it becomes available.
- * @param {number} options.delay Milliseconds to pause until starting to scroll
- * @param {number} options.duration Duration of the scroll animation, in milliseconds
- * @param {{Function(input: number): number}} options.easing Easing function for the animation.
+ * @param {object} [options]
+ * @param {import('react').MutableRefObject<HTMLElement>|HTMLElement} [options.auto]
+ * If given an element or ref, will automatically scroll to that element the moment
+ * it becomes available.
+ * @param {number} [options.delay] Milliseconds to pause until starting to scroll
+ * @param {number} [options.duration] Duration of the scroll animation, in milliseconds
+ * @param {easing} [options.easing] Easing function for the animation.
  * Defaults to ease-in-out-quad https://easings.net/#easeInOutQuad
- * @param {number|{Function(delta: -1|1)}} options.offsetLeft Offset delta from the left edge
+ * @param {number|((delta: -1|1) => number)} [options.offsetLeft] Offset delta from the left edge
  * of the component, in pixels. May also be a function that is invoked at start of scroll,
  * receiving 1 or -1 to indicate scroll direction.
- * @param {number|{Function(delta: -1|1)}} options.offsetTop Offset delta from the top edge
+ * @param {number|((delta: -1|1) => number)} [options.offsetTop] Offset delta from the top edge
  * of the component, in pixels. May also be a function that is invoked at start of scroll,
  * receiving 1 or -1 to indicate scroll direction.
- * @returns {{Function(target: HTMLElement)}} Returns a callback that receives a target element.
+ * @param {Function} [options.onEnter]
+ * @param {Function} [options.onEntered]
+ * @param {Function} [options.onEntering]
+ * @param {Function} [options.onExiting]
+ * @param {Function} [options.onExit]
+ * @param {Function} [options.onExited]
+ * @returns {(target: HTMLElement) => void} Returns a callback that receives a target element.
  */
 export default function useScrollToElement ({ auto, ...options } = {}) {
   const optionsRef = useRef(options);
   // ensure always current for last update
   optionsRef.current = options;
 
-  const scroll = useCallback(function scrollTo (element) {
+  const scroll = useCallback(function scrollTo (/** @type {HTMLElement} */ element) {
     if (!element) {
       return;
     }
@@ -124,8 +157,8 @@ export default function useScrollToElement ({ auto, ...options } = {}) {
         return;
       }
 
-      let entered;
-      animate((progress) => {
+      let entered = false;
+      animate((/** @type {number} */ progress) => {
         const {
           onEntered,
           onExiting,

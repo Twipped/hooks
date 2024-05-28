@@ -1,4 +1,3 @@
-
 import { useRef } from 'react';
 
 /**
@@ -7,7 +6,7 @@ import { useRef } from 'react';
  *
  * @function useTripWire
  * @param  {any} value  The triggering value.
- * @returns {[state: boolean, reset: Function]} Returns an array containing the current
+ * @returns {[state: boolean, reset: () => void]} Returns an array containing the current
  * value and a function to reset to false.
  */
 export default function useTripWire (value) {

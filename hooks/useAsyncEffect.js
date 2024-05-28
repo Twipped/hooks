@@ -9,8 +9,8 @@ import deepEqual from '@twipped/utils/deepEqual';
 /**
  * Executes an async function and sends rejections to the console.
  *
- * @param   {Function} fn
- * @param   {Function} onError
+ * @param   {void | Function} fn
+ * @param   {(e: Error) => void} onError
  *
  * @private
  * @returns {void}
@@ -28,17 +28,30 @@ function asyncInterrupt (fn, onError = warn) {
   return undefined;
 }
 
+/** @typedef {import('./types').AsyncDestructor} AsyncDestructor */
+/** @typedef {import('./types').AsyncEffectCallback} AsyncEffectCallback */
+/** @typedef {import('./types').Comparison} Comparison */
+
 /**
  * Identical to useEffect, except the effect can be an async function, the returned
  * disposer may be async, and it supports deep dependency comparison.
  *
- * @function useSmartEffect
- * @param  {Function} effect        The function to execute after render.
- * @param  {Object}   dependencies  An object or array of values to compare for changes.
- * @param  {Object}   options
- * @param  {Function|boolean}  options.comparison The comparison function used to detect if
+ * @function useAsyncEffect
+ * @param  {AsyncEffectCallback} effect        The function to execute after render.
+ * @param  {any} dependencies  An object or array of values to compare for changes.
+ * @param  {object} [options]
+ * @param  {Comparison}  [options.comparison] The comparison function used to detect if
  * the dependencies change. Defaults to a shallow equal, pass true to use deep equality.
  * @returns {void}
+ * @example ```jsx
+ * import useAsyncEffect from '@zenbusiness/application-commons-hooks/useAsyncEffect';
+ * function MyComponent ({ someProp }) {
+ *   useAsyncEffect(async () => {
+ *     await somethingThatReturnsAPromise(someProp);
+ *   }, [someProp]);
+ *   return null;
+ * }
+ * ```
  */
 export default function useAsyncEffect (effect, dependencies, { comparison = false } = {}) {
   /* eslint-disable no-param-reassign */
@@ -50,11 +63,17 @@ export default function useAsyncEffect (effect, dependencies, { comparison = fal
   if (error) throw error;
 
   const depsRef = useRef(DEFAULT);
+
+  /** @type {import('react').MutableRefObject<void | AsyncDestructor>} */
   const exitFn = useRef();
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => asyncInterrupt(async () => {
-    if (depsRef.current === DEFAULT || !comparison(depsRef.current, dependencies)) {
+    if (
+      depsRef.current === DEFAULT
+      || !(typeof comparison === 'function')
+      || !comparison(depsRef.current, dependencies)
+    ) {
       // update dependencies to newest value
       depsRef.current = dependencies;
 
