@@ -1,3 +1,4 @@
+/* eslint-disable testing-library/no-manual-cleanup */
 /* global JSX */
 import { Fragment, StrictMode, cloneElement } from 'react';
 import { render as originalRender, cleanup } from '@testing-library/react';

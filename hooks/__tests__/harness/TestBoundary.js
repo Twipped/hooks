@@ -9,7 +9,7 @@ import Intercept from './intercept.js';
  * It should not ever be used in production code!!
  */
 
-export function ErrorDisplay({ error }) {
+export function ErrorDisplay ({ error }) {
   return (
     <div data-testid="error">
       {error.stack || error.message}
@@ -19,18 +19,18 @@ export function ErrorDisplay({ error }) {
 }
 
 export default class TestBoundary extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = { error: false };
   }
 
-  componentDidCatch(error, { componentStack }) {
+  componentDidCatch (error, { componentStack }) {
     this.setState({ error });
     error.componentStack = componentStack;
     Intercept.report(error, 'render');
   }
 
-  render() {
+  render () {
     const { children } = this.props;
     const { error } = this.state;
 
@@ -41,5 +41,5 @@ export default class TestBoundary extends Component {
 }
 
 TestBoundary.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
 };

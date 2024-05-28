@@ -3,33 +3,33 @@
 export default class WebStorage {
   #store = new Map();
 
-  getItem(key) {
+  getItem (key) {
     return this.#store.get(key);
   }
 
-  setItem(key, value) {
+  setItem (key, value) {
     this.#store.set(key, String(value));
   }
 
-  removeItem(key) {
+  removeItem (key) {
     this.#store.delete(key);
   }
 
-  clear() {
+  clear () {
     this.#store.clear();
   }
 
-  key(n) {
+  key (n) {
     return this.#store.get(
       Array.from(this.#store.keys())[n]
     );
   }
 
-  get length() {
+  get length () {
     return this.#store.size;
   }
 
-  reset(entries) {
+  reset (entries) {
     if (typeof entries === 'object' && !Array.isArray(entries)) {
       // eslint-disable-next-line no-param-reassign
       entries = Object.entries(entries);
@@ -37,17 +37,17 @@ export default class WebStorage {
     this.#store = new Map(entries);
   }
 
-  entries() {
+  entries () {
     return Array.from(this.#store.entries());
   }
 
-  static setup() {
+  static setup () {
     Object.defineProperty(window, 'localStorage', {
-      value: new WebStorage()
+      value: new WebStorage(),
     });
 
     Object.defineProperty(window, 'sessionStorage', {
-      value: new WebStorage()
+      value: new WebStorage(),
     });
 
     beforeEach(() => {
