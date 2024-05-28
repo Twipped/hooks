@@ -43,7 +43,7 @@ function asyncInterrupt (fn, onError = warn) {
  * @param  {Comparison}  [options.comparison] The comparison function used to detect if
  * the dependencies change. Defaults to a shallow equal, pass true to use deep equality.
  * @returns {void}
- * @example ```jsx
+ * @example
  * import useAsyncEffect from '@zenbusiness/application-commons-hooks/useAsyncEffect';
  * function MyComponent ({ someProp }) {
  *   useAsyncEffect(async () => {
@@ -51,7 +51,6 @@ function asyncInterrupt (fn, onError = warn) {
  *   }, [someProp]);
  *   return null;
  * }
- * ```
  */
 export default function useAsyncEffect (effect, dependencies, { comparison = false } = {}) {
   /* eslint-disable no-param-reassign */

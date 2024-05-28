@@ -10,7 +10,7 @@ import { isPromise } from '@twipped/utils/types';
  * @param  {T} callback Callback function
  * @param  {Array<any>}    dependencies Dependencies array
  * @returns {T}
- * @example ```jsx
+ * @example
  * import { useState } from 'react';
  * import useAsyncCallback from '@zenbusiness/application-commons-hooks/useAsyncCallback';
  * import { fetchCompletions } from './fetchRequests.js';
@@ -25,7 +25,6 @@ import { isPromise } from '@twipped/utils/types';
  *     {completions.map((c) => <option value={c} />}
  *   </datalist>
  * );
- * ```
  */
 export default function useAsyncCallback (callback, dependencies) {
   const [ error, setError ] = useState(null);

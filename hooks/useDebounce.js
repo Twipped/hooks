@@ -17,7 +17,7 @@ import useTimeout from './useTimeout.js';
  * milliseconds. Defaults to 100ms
  * @param  {number}   maxDelay Maximum amount of time to wait, in milliseconds.
  * @returns {T}
- * @example ```jsx
+ * @example
  * import { useState } from 'react';
  * import useDebounce from '@zenbusiness/application-commons-hooks/useDebounce';
  * function MyComponent () {
@@ -28,7 +28,6 @@ import useTimeout from './useTimeout.js';
  *   }, 50, 200);
  *   return <div onMouseMove={onMouseMove}>X: {position.x}, Y: {position.y}</div>;
  * }
- * ```
  */
 export default function useDebounce (fn, delay = 100, maxDelay = Infinity) {
   /* eslint-disable no-param-reassign */

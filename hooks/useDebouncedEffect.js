@@ -21,7 +21,7 @@ import useSmartEffect from './useSmartEffect.js';
  * @param  {Comparison}  [options.comparison] The comparison function used to detect if
  * the dependencies change. Defaults to a shallow equal, pass true to use deep equality.
  * @returns {void}
- * @example ```jsx
+ * @example
  * import { useState } from 'react';
  * import useDebouncedEffect from '@zenbusiness/application-commons-hooks/useDebouncedEffect';
  * function SomeComponentThatReRendersConstantly () {

@@ -11,7 +11,7 @@ import { useRef, useEffect } from 'react';
  * @param {any} value The `Ref` value
  * @template T
  * @returns {import('react').MutableRefObject<T>}
- * @example ```jsx
+ * @example
  * import { useCallback } from 'react';
  * import useCommittedRef from '@zenbusiness/application-commons-hooks/useCommittedRef';
  * function MyComponent ({ someProp }) {
@@ -21,7 +21,6 @@ import { useRef, useEffect } from 'react';
  *   }, []); // no dependency needed
  *   return <button onClick={onClick}>Click Me!</button>;
  * }
- * ```
  */
 export default function useCommittedRef (value) {
   const ref = useRef(value);
