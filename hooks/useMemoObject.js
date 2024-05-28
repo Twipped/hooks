@@ -1,4 +1,3 @@
-import { isArray, isObject } from '@twipped/utils/types';
 import useStableMemo from './useStableMemo.js';
 
 /**
@@ -10,16 +9,17 @@ import useStableMemo from './useStableMemo.js';
  * downstream updates every time they render.
  *
  * @function useMemoObject
- * @param {Object}    obj The object to memoize.
- * @param {Object}    [options] Options
+ * @template T
+ * @param {T}    obj The object to memoize.
+ * @param {object}    [options] Options
  * @param {boolean}   [options.comparison] The comparison function used to detect if
  * the object properties change. Defaults to a shallow equal, pass true to use deep equality.
- * @returns {Object} The first instance of the object passed.
+ * @returns {T} The first instance of the object passed.
  */
 export default function useMemoObject (obj, options) {
   return useStableMemo(
     () => obj,
-    isArray(obj) || !isObject(obj) ? obj : Object.values(obj),
+    obj,
     options
   );
 }

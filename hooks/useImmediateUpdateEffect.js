@@ -1,7 +1,7 @@
 
-import useStableMemo from './useStableMemo.js';
-import useWillUnmount from './useWillUnmount.js';
 import { useRef } from 'react';
+import useStableMemo from './useStableMemo.js';
+import useMountEffect from './useMountEffect.js';
 
 /**
  * A synchronous effect that evaluates only when its dependency array changes.
@@ -21,9 +21,10 @@ import { useRef } from 'react';
  */
 export default function useImmediateUpdateEffect (effect, dependencies) {
   const firstRef = useRef(true);
+  /** @type {import('react').MutableRefObject<import('./types.js').Destructor>} */
   const tearDown = useRef();
 
-  useWillUnmount(() => {
+  useMountEffect(() => () => {
     if (tearDown.current) tearDown.current();
   });
 

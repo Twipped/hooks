@@ -2,7 +2,7 @@
 import { useRef } from 'react';
 import { isNotUndefinedOrNull } from '@twipped/utils/types';
 import clamp from '@twipped/utils/clamp';
-import { useDeferredLoop } from './useTimers.js';
+import useDeferredLoop from './useDeferredLoop.js';
 import useStableMemo from './useStableMemo.js';
 
 const easingLinear = (v) => v;
@@ -11,8 +11,8 @@ const easingLinear = (v) => v;
  * Hook to tween the scroll position of an overflow:scroll element.
  *
  * @function useScroll
- * @param {Ref<Element>} ref          The target element.
- * @param {Object}   [baseOptions]
+ * @param {import('react').MutableRefObject<HTMLElement>} ref          The target element.
+ * @param {object}   [baseOptions]
  * @param {number}   [baseOptions.duration]   Duration of the animation, in milliseconds
  * @param {number}   [baseOptions.top]        Target scrollTop value.
  * @param {number}   [baseOptions.left]       Target scrollLeft value.
@@ -32,7 +32,7 @@ export default function useScroll (ref, baseOptions = {}) {
     ...baseOptions,
   };
 
-  const currentMotion = useRef(0);
+  const currentMotion = useRef(null);
 
   const animationLoop = useDeferredLoop(() => {
     if (!currentMotion.current) {
@@ -55,22 +55,22 @@ export default function useScroll (ref, baseOptions = {}) {
     };
 
     if (isNotUndefinedOrNull(target.left)) {
-      const distance = clamp(target.left, 0, max.left) - start.left;
+      const distance = Number(clamp(target.left, 0, max.left)) - start.left;
       const delta = distance * position;
       track.scrollLeft = start.left + delta;
     } else if (isNotUndefinedOrNull(target.right)) {
-      const destination = clamp(max.left - target.right, 0, max.left);
+      const destination = Number(clamp(max.left - target.right, 0, max.left));
       const distance = (destination - start.left);
       const delta = distance * position;
       track.scrollLeft = start.left + delta;
     }
 
     if (isNotUndefinedOrNull(target.top)) {
-      const distance = clamp(target.top, 0, max.top) - start.top;
+      const distance = Number(clamp(target.top, 0, max.top)) - start.top;
       const delta = distance * position;
-      track.scrollTop = clamp(start.top + delta, 0, track.scrollHeight - track.offsetHeight);
+      track.scrollTop = Number(clamp(start.top + delta, 0, track.scrollHeight - track.offsetHeight));
     } else if (isNotUndefinedOrNull(target.bottom)) {
-      const destination = clamp(max.top - target.bottom, 0, max.top);
+      const destination = Number(clamp(max.top - target.bottom, 0, max.top));
       const distance = (destination - start.top);
       const delta = distance * position;
       track.scrollTop = start.top + delta;

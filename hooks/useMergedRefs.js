@@ -1,37 +1,53 @@
+/* eslint-disable no-param-reassign */
+// No, eslint, this is just how you use refs
+
 import { useMemo } from 'react';
-import { isFunction } from '@twipped/utils/types';
 import noop from '@twipped/utils/noop';
 
 /**
- * Assigns a value to a given ref object or function.
+ * @template T
+ * @typedef {import('react').MutableRefObject<T> | import('react').RefCallback<T>} Ref
+ */
+
+/**
+ * Assigns a value to a Ref or Ref Functions
  *
- * @param {Ref} ref
- * @param {any} value
+ * @template T
+ * @param {Ref<T>} ref Ref to assign to.
+ * @param {T} value Value to assign.
  * @private
  */
 export function assignRef (ref, value) {
-  if (isFunction(ref)) ref(value);
+  if (typeof ref === 'function') ref(value);
   if (ref && 'current' in ref) ref.current = value;
 }
 
-
+/**
+ * Converts a Ref to a Ref Function
+ *
+ * @template T
+ * @param {Ref<T>} ref
+ * @returns {(value: T) => void}
+ * @private
+ */
 function toFnRef (ref) {
-  if (isFunction(ref)) return ref;
+  if (typeof ref === 'function') return ref;
   if (ref && 'current' in ref) return (value) => { ref.current = value; };
   return noop;
 }
 
 /**
- * Combines multiple ref objects or functions under a single assignable ref function
+ * Merges multiple refs
  *
- * @param {...Ref} refs
- * @returns {Function}
+ * @template T
+ * @param {...Ref<T>} refs Refs
+ * @returns {(value: T) => void}
  * @private
  */
 export function mergeRefs (...refs) {
-  refs = refs.map(toFnRef);
+  const reffns = refs.map(toFnRef);
   return (value) => {
-    for (const r of refs) r(value);
+    for (const r of reffns) r(value);
   };
 }
 
@@ -39,7 +55,8 @@ export function mergeRefs (...refs) {
  * Creates a single callback ref composed from two other Refs.
  *
  * @function useMergedRefs
- * @param {...Ref} refs Two or more callback or mutable Refs
+ * @template T
+ * @param {...Ref<T>} refs Two or more callback or mutable Refs
  * @example
  * const Button = React.forwardRef((props, ref) => {
  *   const [element, attachRef] = useCallbackRef<HTMLButtonElement>();
@@ -47,7 +64,7 @@ export function mergeRefs (...refs) {
  *
  *   return <button ref={mergedRef} {...props}/>
  * })
- * @returns {Function}
+ * @returns {(value: T) => void}
  */
 export default function useMergedRefs (...refs) {
   // eslint-disable-next-line react-hooks/exhaustive-deps

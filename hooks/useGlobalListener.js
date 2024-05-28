@@ -9,30 +9,35 @@ import resolveRef from './resolveRef.js';
  */
 
 /**
+ * Attaches the handler to its target
+ *
+ * @callback GlobalListenerInterfaceAttach
+ */
+
+/**
+ * Detaches the handler from its target.
+ *
+ * @callback GlobalListenerInterfaceRemove
+ */
+
+/**
+ * Attaches or detaches based on if the passed value is truthy
+ *
+ * @callback GlobalListenerInterfaceWhen
+ * @param {any} when
+ */
+
+/**
  * @typedef {{
- *   attach: {Function: void},
- *   remove: {Function: void},
- *   when: {Function(value: Truthy): void}
+ *   attach: GlobalListenerInterfaceAttach,
+ *   remove: GlobalListenerInterfaceRemove,
+ *   when: (value: Truthy) => void
  * }} GlobalListenerInterface
- * @memberof useGlobalListener
  */
 
 /**
- * @function GlobalListenerInterface#attach
- * @description Attaches the handler to its target.
- * @memberof GlobalListenerInterface
- */
-
-/**
- * @function GlobalListenerInterface#remove
- * @description Detaches the handler from its target.
- * @memberof GlobalListenerInterface
- */
-
-/**
- * @function GlobalListenerInterface#when
- * @description Attaches or detaches based on if the passed value is truthy
- * @memberof GlobalListenerInterface
+ * @template T
+ * @typedef {T | import('react').MutableRefObject<T>|((value: any) => T)} Resolvable
  */
 
 /**
@@ -41,10 +46,10 @@ import resolveRef from './resolveRef.js';
  *
  * @function useGlobalListener
  * @param {string}  eventName Name of the DOM event to listen for.
- * @param {Function}listener  An event handler
+ * @param {(Event) => void} listener  An event handler
  * @param {boolean} [capture=false]   Whether or not to listen during the capture event phase
- * @param {import('react').RefObject<HTMLElement>|HTMLElement} [ownerElementRef] Ref to element to
- * listen to instead of document
+ * @param {Resolvable<Node|window>} [ownerElementRef]
+ * Ref to element to listen to instead of document
  * @example
  * useGlobalListener('keydown', (event) => {
  *  console.log(event.key)
@@ -66,6 +71,7 @@ export default function useGlobalListener (
       return;
     }
 
+    // @ts-ignore
     prehandler(e, ...args);
   });
 
@@ -123,6 +129,11 @@ export function useToggledGlobalListener (
   });
 
   const api = useMemo(() => ({
+    /**
+     * Remove
+     *
+     * @type {GlobalListenerInterfaceRemove}
+     */
     remove () {
       if (!targetRef.current) return;
       const { target, eventName: _event, capture: _capture } = targetRef.current;
@@ -130,6 +141,11 @@ export function useToggledGlobalListener (
       targetRef.current = null;
     },
 
+    /**
+     * Attach
+     *
+     * @type {GlobalListenerInterfaceAttach}
+     */
     attach () {
       const target = resolveRef(ownerElementRef)?.ownerDocument || document;
 
@@ -141,6 +157,11 @@ export function useToggledGlobalListener (
       target.addEventListener(eventName, handler, capture);
     },
 
+    /**
+     * When
+     *
+     * @type {GlobalListenerInterfaceWhen}
+     */
     when (value) {
       if (value && !targetRef.current) api.attach();
       else if (!value && targetRef.current) api.remove();
@@ -164,7 +185,7 @@ export function useToggledGlobalListener (
  * Shortcut for useGlobalListener against the window
  *
  * @param {string}   eventName Event to listen for
- * @param {Function} listener Callback function
+ * @param {(Event) => void} listener Callback function
  * @param {boolean}  [capture=false] Capture events from the top of the DOM tree
  * @returns {void}
  */
@@ -177,7 +198,7 @@ export function useWindowEventListener (eventName, listener, capture) {
  *
  * @function useDocumentEventListener
  * @param {string}   eventName Event to listen for
- * @param {Function} listener Callback function
+ * @param {(Event) => void} listener Callback function
  * @param {boolean}  [capture=false] Capture events from the top of the DOM tree
  * @returns {void}
  */

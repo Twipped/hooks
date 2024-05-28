@@ -1,5 +1,8 @@
-
 import { useEffect, useRef } from 'react';
+import useSmartEffect from './useSmartEffect.js';
+
+/** @typedef {import('./types').EffectCallback} EffectCallback */
+/** @typedef {import('./types').Comparison} Comparison */
 
 /**
  * Runs an effect *only* when the dependencies have changed, skipping the
@@ -7,8 +10,11 @@ import { useEffect, useRef } from 'react';
  * the effect is **never run**
  *
  * @function useUpdateEffect
- * @param {Function} effect An effect to run on mount
- * @param {Array} dependencies
+ * @param {EffectCallback} effect An effect to run on mount
+ * @param {any} dependencies Dependencies
+ * @param {object}   [options]
+ * @param {Comparison}  [options.comparison] The comparison function used to detect if
+ * the dependencies change. Defaults to a shallow equal, pass true to use deep equality.
  * @returns {void}
  * @example js
  *  const ref = useRef<HTMLInput>(null);
@@ -21,15 +27,17 @@ import { useEffect, useRef } from 'react';
  *
  *  }, [focusedIndex])
  */
-export default function useUpdateEffect (effect, dependencies) {
+export default function useUpdateEffect (effect, dependencies, { comparison = false } = {}) {
   const isFirst = useRef(true);
-  useEffect(() => {
+
+  useSmartEffect(() => {
     if (isFirst.current) {
       isFirst.current = false;
-      return;
+      return undefined;
     }
     return effect();
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, dependencies);
+  }, dependencies, { comparison });
+  useEffect(() => () => {
+    isFirst.current = true;
+  }, []);
 }

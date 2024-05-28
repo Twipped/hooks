@@ -1,0 +1,629 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`is* functions isClass tested against a class 1`] = `true`;
+
+exports[`is* functions isClass tested against a class component 1`] = `true`;
+
+exports[`is* functions isClass tested against a fragment 1`] = `false`;
+
+exports[`is* functions isClass tested against a function 1`] = `false`;
+
+exports[`is* functions isClass tested against a function with arguments 1`] = `false`;
+
+exports[`is* functions isClass tested against a functional component 1`] = `false`;
+
+exports[`is* functions isClass tested against a null 1`] = `false`;
+
+exports[`is* functions isClass tested against a number 1`] = `false`;
+
+exports[`is* functions isClass tested against a short function 1`] = `false`;
+
+exports[`is* functions isClass tested against a string 1`] = `false`;
+
+exports[`is* functions isClass tested against an element 1`] = `false`;
+
+exports[`is* functions isClass tested against an html element 1`] = `false`;
+
+exports[`is* functions isClass tested against undefined 1`] = `false`;
+
+exports[`is* functions isClassComponent tested against a class 1`] = `false`;
+
+exports[`is* functions isClassComponent tested against a class component 1`] = `true`;
+
+exports[`is* functions isClassComponent tested against a fragment 1`] = `false`;
+
+exports[`is* functions isClassComponent tested against a function 1`] = `false`;
+
+exports[`is* functions isClassComponent tested against a function with arguments 1`] = `false`;
+
+exports[`is* functions isClassComponent tested against a functional component 1`] = `false`;
+
+exports[`is* functions isClassComponent tested against a null 1`] = `false`;
+
+exports[`is* functions isClassComponent tested against a number 1`] = `false`;
+
+exports[`is* functions isClassComponent tested against a short function 1`] = `false`;
+
+exports[`is* functions isClassComponent tested against a string 1`] = `false`;
+
+exports[`is* functions isClassComponent tested against an element 1`] = `false`;
+
+exports[`is* functions isClassComponent tested against an html element 1`] = `false`;
+
+exports[`is* functions isClassComponent tested against undefined 1`] = `false`;
+
+exports[`is* functions isComponent tested against a class 1`] = `false`;
+
+exports[`is* functions isComponent tested against a class component 1`] = `true`;
+
+exports[`is* functions isComponent tested against a fragment 1`] = `false`;
+
+exports[`is* functions isComponent tested against a function 1`] = `true`;
+
+exports[`is* functions isComponent tested against a function with arguments 1`] = `false`;
+
+exports[`is* functions isComponent tested against a functional component 1`] = `true`;
+
+exports[`is* functions isComponent tested against a null 1`] = `false`;
+
+exports[`is* functions isComponent tested against a number 1`] = `false`;
+
+exports[`is* functions isComponent tested against a short function 1`] = `true`;
+
+exports[`is* functions isComponent tested against a string 1`] = `false`;
+
+exports[`is* functions isComponent tested against an element 1`] = `false`;
+
+exports[`is* functions isComponent tested against an html element 1`] = `false`;
+
+exports[`is* functions isComponent tested against undefined 1`] = `false`;
+
+exports[`is* functions isElement tested against a class 1`] = `false`;
+
+exports[`is* functions isElement tested against a class component 1`] = `false`;
+
+exports[`is* functions isElement tested against a fragment 1`] = `true`;
+
+exports[`is* functions isElement tested against a function 1`] = `false`;
+
+exports[`is* functions isElement tested against a function with arguments 1`] = `false`;
+
+exports[`is* functions isElement tested against a functional component 1`] = `false`;
+
+exports[`is* functions isElement tested against a null 1`] = `false`;
+
+exports[`is* functions isElement tested against a number 1`] = `false`;
+
+exports[`is* functions isElement tested against a short function 1`] = `false`;
+
+exports[`is* functions isElement tested against a string 1`] = `false`;
+
+exports[`is* functions isElement tested against an element 1`] = `true`;
+
+exports[`is* functions isElement tested against an html element 1`] = `true`;
+
+exports[`is* functions isElement tested against undefined 1`] = `false`;
+
+exports[`is* functions isFragment tested against a class 1`] = `false`;
+
+exports[`is* functions isFragment tested against a class component 1`] = `false`;
+
+exports[`is* functions isFragment tested against a fragment 1`] = `true`;
+
+exports[`is* functions isFragment tested against a function 1`] = `false`;
+
+exports[`is* functions isFragment tested against a function with arguments 1`] = `false`;
+
+exports[`is* functions isFragment tested against a functional component 1`] = `false`;
+
+exports[`is* functions isFragment tested against a null 1`] = `false`;
+
+exports[`is* functions isFragment tested against a number 1`] = `false`;
+
+exports[`is* functions isFragment tested against a short function 1`] = `false`;
+
+exports[`is* functions isFragment tested against a string 1`] = `false`;
+
+exports[`is* functions isFragment tested against an element 1`] = `false`;
+
+exports[`is* functions isFragment tested against an html element 1`] = `false`;
+
+exports[`is* functions isFragment tested against undefined 1`] = `false`;
+
+exports[`is* functions isFunctionComponent tested against a class 1`] = `false`;
+
+exports[`is* functions isFunctionComponent tested against a class component 1`] = `false`;
+
+exports[`is* functions isFunctionComponent tested against a fragment 1`] = `false`;
+
+exports[`is* functions isFunctionComponent tested against a function 1`] = `true`;
+
+exports[`is* functions isFunctionComponent tested against a function with arguments 1`] = `false`;
+
+exports[`is* functions isFunctionComponent tested against a functional component 1`] = `true`;
+
+exports[`is* functions isFunctionComponent tested against a null 1`] = `false`;
+
+exports[`is* functions isFunctionComponent tested against a number 1`] = `false`;
+
+exports[`is* functions isFunctionComponent tested against a short function 1`] = `true`;
+
+exports[`is* functions isFunctionComponent tested against a string 1`] = `false`;
+
+exports[`is* functions isFunctionComponent tested against an element 1`] = `false`;
+
+exports[`is* functions isFunctionComponent tested against an html element 1`] = `false`;
+
+exports[`is* functions isFunctionComponent tested against undefined 1`] = `false`;
+
+exports[`iterators childDescender - all 1`] = `
+[
+  <ClassicalComponent
+    a="a"
+    b={1}
+  />,
+  <ShortFunction />,
+  <ShortFunction />,
+  <React.Fragment>
+    <FunctionalComponent>
+      <div>
+        true
+        <strong>
+          Foo
+        </strong>
+      </div>
+    </FunctionalComponent>
+    <FunctionalComponent />
+  </React.Fragment>,
+  <FunctionalComponent>
+    <div>
+      true
+      <strong>
+        Foo
+      </strong>
+    </div>
+  </FunctionalComponent>,
+  <div>
+    true
+    <strong>
+      Foo
+    </strong>
+  </div>,
+  <strong>
+    Foo
+  </strong>,
+  "Foo",
+  <FunctionalComponent />,
+  "Bar",
+  <ClassicalComponent
+    c="c"
+    d={2}
+  />,
+]
+`;
+
+exports[`iterators childDescender all nodes 1`] = `
+[
+  <ClassicalComponent
+    a="a"
+    b={1}
+  />,
+  <ShortFunction />,
+  <ShortFunction />,
+  <React.Fragment>
+    <FunctionalComponent>
+      <div>
+        true
+        <strong>
+          Foo
+        </strong>
+      </div>
+    </FunctionalComponent>
+    <FunctionalComponent />
+  </React.Fragment>,
+  <FunctionalComponent>
+    <div>
+      true
+      <strong>
+        Foo
+      </strong>
+    </div>
+  </FunctionalComponent>,
+  <div>
+    true
+    <strong>
+      Foo
+    </strong>
+  </div>,
+  <strong>
+    Foo
+  </strong>,
+  <FunctionalComponent />,
+  <ClassicalComponent
+    c="c"
+    d={2}
+  />,
+]
+`;
+
+exports[`iterators childDescender with predicate 1`] = `
+[
+  {
+    "key": ".0",
+    "props": {
+      "a": "a",
+      "b": 1,
+    },
+    "ref": null,
+    "type": [Function],
+  },
+  {
+    "key": ".1:$short1",
+    "props": {},
+    "ref": null,
+    "type": [Function],
+  },
+  {
+    "key": ".1:$short2",
+    "props": {},
+    "ref": null,
+    "type": [Function],
+  },
+  {
+    "key": ".2",
+    "props": {},
+    "ref": null,
+    "type": Symbol(react.fragment),
+  },
+  {
+    "key": ".0",
+    "props": {},
+    "ref": null,
+    "type": [Function],
+  },
+  {
+    "key": ".1",
+    "props": {},
+    "ref": null,
+    "type": "div",
+  },
+  {
+    "key": ".2",
+    "props": {},
+    "ref": null,
+    "type": [Function],
+  },
+  {
+    "key": ".5",
+    "props": {
+      "c": "c",
+      "d": 2,
+    },
+    "ref": null,
+    "type": [Function],
+  },
+]
+`;
+
+exports[`iterators childIterator - all 1`] = `
+[
+  <ClassicalComponent
+    a="a"
+    b={1}
+  />,
+  <ShortFunction />,
+  <ShortFunction />,
+  <FunctionalComponent>
+    <div>
+      true
+      <strong>
+        Foo
+      </strong>
+    </div>
+  </FunctionalComponent>,
+  <FunctionalComponent />,
+  "Bar",
+  <ClassicalComponent
+    c="c"
+    d={2}
+  />,
+]
+`;
+
+exports[`iterators childIterator 1`] = `
+[
+  <ClassicalComponent
+    a="a"
+    b={1}
+  />,
+  <ShortFunction />,
+  <ShortFunction />,
+  <FunctionalComponent>
+    <div>
+      true
+      <strong>
+        Foo
+      </strong>
+    </div>
+  </FunctionalComponent>,
+  <FunctionalComponent />,
+  <ClassicalComponent
+    c="c"
+    d={2}
+  />,
+]
+`;
+
+exports[`iterators cloneChildren accepts a new element returned from the predicate 1`] = `
+[
+  <b
+    a="a"
+    b={1}
+    value={0}
+  >
+    replaced!
+  </b>,
+  <b
+    value={1}
+  >
+    replaced!
+  </b>,
+  <b
+    value={2}
+  >
+    replaced!
+  </b>,
+  <b
+    value={3}
+  >
+    replaced!
+  </b>,
+  <b
+    value={4}
+  >
+    replaced!
+  </b>,
+  <b
+    c="c"
+    d={2}
+    value={5}
+  >
+    replaced!
+  </b>,
+]
+`;
+
+exports[`iterators cloneChildren accepts a props object as a predicate return 1`] = `
+[
+  <ClassicalComponent
+    value={0}
+  />,
+  <ShortFunction
+    value={1}
+  />,
+  <ShortFunction
+    value={2}
+  />,
+  <FunctionalComponent
+    value={3}
+  >
+    <div>
+      true
+      <strong>
+        Foo
+      </strong>
+    </div>
+  </FunctionalComponent>,
+  <FunctionalComponent
+    value={4}
+  />,
+  <ClassicalComponent
+    value={5}
+  />,
+]
+`;
+
+exports[`iterators cloneChildren providing an object reproduces an entire element structure, shallowly adding props 1`] = `
+[
+  <ClassicalComponent
+    a="a"
+    b={1}
+    thing="thing"
+  />,
+  <ShortFunction
+    thing="thing"
+  />,
+  <ShortFunction
+    thing="thing"
+  />,
+  <FunctionalComponent
+    thing="thing"
+  >
+    <div>
+      true
+      <strong>
+        Foo
+      </strong>
+    </div>
+  </FunctionalComponent>,
+  <FunctionalComponent
+    thing="thing"
+  />,
+  <ClassicalComponent
+    c="c"
+    d={2}
+    thing="thing"
+  />,
+]
+`;
+
+exports[`iterators filterChildren - all 1`] = `
+[
+  <ClassicalComponent
+    a="a"
+    b={1}
+  />,
+  <ShortFunction />,
+  <ShortFunction />,
+  "Bar",
+  <ClassicalComponent
+    c="c"
+    d={2}
+  />,
+]
+`;
+
+exports[`iterators filterChildren 1`] = `
+[
+  <ClassicalComponent
+    a="a"
+    b={1}
+  />,
+  <ShortFunction />,
+  <ShortFunction />,
+  <ClassicalComponent
+    c="c"
+    d={2}
+  />,
+]
+`;
+
+exports[`iterators flattenChildren flatten all 1`] = `
+[
+  {
+    "key": ".0",
+    "props": {
+      "a": "a",
+      "b": 1,
+    },
+    "ref": null,
+    "type": [Function],
+  },
+  {
+    "key": ".1:$short1",
+    "props": {},
+    "ref": null,
+    "type": [Function],
+  },
+  {
+    "key": ".1:$short2",
+    "props": {},
+    "ref": null,
+    "type": [Function],
+  },
+  {
+    "key": ".2",
+    "props": {},
+    "ref": null,
+    "type": Symbol(react.fragment),
+  },
+  {
+    "key": ".0",
+    "props": {},
+    "ref": null,
+    "type": [Function],
+  },
+  {
+    "key": ".1",
+    "props": {},
+    "ref": null,
+    "type": "div",
+  },
+  {
+    "key": ".1",
+    "props": {},
+    "ref": null,
+    "type": "strong",
+  },
+  {
+    "key": "$7",
+    "props": {
+      "children": "Foo",
+    },
+    "ref": null,
+    "type": Symbol(react.element.text),
+  },
+  {
+    "key": ".2",
+    "props": {},
+    "ref": null,
+    "type": [Function],
+  },
+  {
+    "key": "$9",
+    "props": {
+      "children": "Bar",
+    },
+    "ref": null,
+    "type": Symbol(react.element.text),
+  },
+  {
+    "key": ".5",
+    "props": {
+      "c": "c",
+      "d": 2,
+    },
+    "ref": null,
+    "type": [Function],
+  },
+]
+`;
+
+exports[`iterators flattenChildren flatten with predicate 1`] = `
+[
+  {
+    "key": ".0",
+    "props": {
+      "a": "a",
+      "b": 1,
+    },
+    "ref": null,
+    "type": [Function],
+  },
+  {
+    "key": ".1:$short1",
+    "props": {},
+    "ref": null,
+    "type": [Function],
+  },
+  {
+    "key": ".1:$short2",
+    "props": {},
+    "ref": null,
+    "type": [Function],
+  },
+  {
+    "key": ".2",
+    "props": {},
+    "ref": null,
+    "type": Symbol(react.fragment),
+  },
+  {
+    "key": ".0",
+    "props": {},
+    "ref": null,
+    "type": [Function],
+  },
+  {
+    "key": ".1",
+    "props": {},
+    "ref": null,
+    "type": "div",
+  },
+  {
+    "key": ".2",
+    "props": {},
+    "ref": null,
+    "type": [Function],
+  },
+  {
+    "key": ".5",
+    "props": {
+      "c": "c",
+      "d": 2,
+    },
+    "ref": null,
+    "type": [Function],
+  },
+]
+`;

@@ -13,7 +13,7 @@ import useStableMemo from './useStableMemo.js';
  * @returns {[state: any, setState: Function, getState: Function]} A three item
  * array containing: state, setState, getState
  */
-export default function useSilentState (initial = null, dependencies) {
+export default function useSilentState (initial = null, dependencies = undefined) {
   const ref = useRef();
 
   // if the dependencies change, then the state will be reset to the initial value
@@ -28,7 +28,7 @@ export default function useSilentState (initial = null, dependencies) {
 
   const getter = useCallback(() => ref.current, [ ref ]);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+  // @ts-ignore
   setter.reset = useCallback(() => setter(initial), [ initial, setter ]);
 
   return [ ref.current, setter, getter ];

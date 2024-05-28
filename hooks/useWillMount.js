@@ -1,5 +1,3 @@
-
-
 import { useRef, useEffect } from 'react';
 
 /**
@@ -7,16 +5,13 @@ import { useRef, useEffect } from 'react';
  * and returning it during every render until unmounted.
  *
  * @function useWillMount
- * @param  {Function} onMount
- * @param  {Function} onWillUnmount
+ * @deprecated use useMountEffect instead
+ * @param  {Function} onMount Callback to invoke on mount
+ * @param  {Function} [onWillUnmount] Callback to invoke on Unmount
  * @returns {any} Returns the result of the onMount function.
  */
 export default function useWillMount (onMount, onWillUnmount) {
   const mounted = useRef(null);
-
-  // create a ref that always contains the latest unmount function
-  const owu = useRef(onWillUnmount);
-  owu.current = onWillUnmount;
 
   if (!mounted.current) {
     mounted.current = [ onMount() ];

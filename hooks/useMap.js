@@ -9,16 +9,16 @@ export class HookedMap extends Map {
     this.listener = listener;
   }
 
-  set (...args) {
-    super.set(...args);
+  set (key, value) {
+    super.set(key, value);
     // When initializing the Set, the base Set calls this.add() before the
     // listener is assigned so it will be undefined
     if (this.listener) this.listener(this);
     return this;
   }
 
-  delete (...args) {
-    const result = super.delete(...args);
+  delete (key) {
+    const result = super.delete(key);
     this.listener(this);
     return result;
   }

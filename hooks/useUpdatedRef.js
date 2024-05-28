@@ -1,13 +1,12 @@
-
 import { useRef } from 'react';
-/** @typedef {import('@types/react').Ref} Ref */
 
 /**
  * Returns a ref that is immediately updated with the new value
  *
+ * @template T
  * @function useUpdatedRef
  * @param {any} value The Ref value
- * @returns {Ref}
+ * @returns {import('react').MutableRefObject<T>}
  */
 export default function useUpdatedRef (value) {
   const valueRef = useRef(value);

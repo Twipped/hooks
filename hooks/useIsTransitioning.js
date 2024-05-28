@@ -14,31 +14,31 @@ function matches (parent, target, selector) {
  * Returns true if the target element is currently animating a css transition
  *
  * @function useIsTransitioning
- * @param  {Ref<Element>} elementRef
+ * @param  {import('react').MutableRefObject<HTMLElement>|HTMLElement} elementRef
  * @param  {string} [selector]   Optional css selector to specify the animation delegate
  * @returns {boolean}
  */
 export default function useIsTransitioning (elementRef, selector = null) {
-  const [ isTransitioning, setTransition ] = useState(0);
+  const [ isTransitioning, setTransition ] = useState(false);
 
   const run = useEventHandler('transitionrun', (ev) => {
     if (!matches(ev.currentTarget, ev.target, selector)) return;
-    setTransition(1);
+    setTransition(true);
   });
 
   const start = useEventHandler('transitionstart', (ev) => {
     if (!matches(ev.currentTarget, ev.target, selector)) return;
-    setTransition(1);
+    setTransition(true);
   });
 
   const cancel = useEventHandler('transitioncancel', (ev) => {
     if (!matches(ev.currentTarget, ev.target, selector)) return;
-    setTransition(0);
+    setTransition(false);
   });
 
   const end = useEventHandler('transitionend', (ev) => {
     if (!matches(ev.currentTarget, ev.target, selector)) return;
-    setTransition(0);
+    setTransition(false);
   });
 
   useWhenElementRefReady(elementRef, () => {

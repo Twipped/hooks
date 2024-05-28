@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
-/** @typedef {import('@types/react').Ref} Ref */
+import useWhenElementRefReady from './useWhenElementRefReady.js';
 
 /**
  * Tests if a given Ref element exists within a given viewport.
  *
  * @function useElementInViewport
- * @param  {Ref|HTMLElement} elementRef Ref to the relevant element.
- * @param  {Object}  options
- * @param  {Ref|HTMLElement} [options.root] The element that is used as the viewport for checking visibility of the target. Defaults to the browser viewport.
+ * @param  {import('react').MutableRefObject<HTMLElement>|HTMLElement} elementRef Ref to the relevant element.
+ * @param  {object}  options
+ * @param  {import('react').MutableRefObject<HTMLElement>|HTMLElement} [options.root] The element that is used as the viewport for checking visibility of the target. Defaults to the browser viewport.
  * @param  {string}  [options.rootMargin]  Margin to draw around the root element for detecting overlap. Identical to CSS `margin` definition. Defaults to 0 on all sides.
  * @param  {number}  [options.threshold]   How much of the target element must be on screen to be considered visible, from 0 to 1.
  * @returns {boolean}
@@ -18,8 +18,10 @@ export default function useElementInViewport (
 ) {
   const [ isOnscreen, setIsOnscreen ] = useState(false);
 
+  const element = useWhenElementRefReady(elementRef);
+
   useEffect(() => {
-    if (!elementRef.current) {
+    if (!element) {
       return null;
     }
 
@@ -33,11 +35,11 @@ export default function useElementInViewport (
         threshold,
       }
     );
-    observer.observe(elementRef.current);
+    observer.observe(element);
 
     return () => { observer.disconnect(); };
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ elementRef.current, root, rootMargin, threshold ]);
+  }, [ element, root, rootMargin, threshold ]);
   return isOnscreen;
 }
