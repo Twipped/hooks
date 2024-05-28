@@ -1,5 +1,76 @@
 # Changelog
 
+## [2.0.0](https://github.com/Twipped/hooks/compare/v1.1.0...v2.0.0) (2024-05-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **useClock:** No longer provides the tick constants (DAYS, HOURS, etc), use the date-fns comparison functions.
+* **useTimeout:** `timer.isActive` is now a read-only boolean instead of a getter function.
+* **useInterval:** `timer.isActive` is now a read-only boolean instead of a getter function.
+* **useDerivedState:** Now resets its value immediately when dependencies change, instead of waiting for next effect loop. This ensures that outgoing state is always in sync with incoming state.
+* **hooks/useTimers:** This file has now been separated into its constituent imports.
+* **usePageHash:** Actually returns the hash now, instead of a object.
+* **usePropsMemo:** This functionality is now incorporated into useStableMemo
+* **useWillUnmount:** Use useMountEffect instead.
+* **useChildren:** Replaced with useMemoChildren
+
+### removed
+
+* **useClock:** No longer provides the tick constants (DAYS, HOURS, etc), use the date-fns comparison functions. ([f95e96b](https://github.com/Twipped/hooks/commit/f95e96ba7e06e3ad7b027e1c74bb2e1876cb3bb9))
+
+
+### Removed
+
+* **hooks/useTimers:** This file has now been separated into its constituent imports. ([f95e96b](https://github.com/Twipped/hooks/commit/f95e96ba7e06e3ad7b027e1c74bb2e1876cb3bb9))
+* **useChildren:** Replaced with useMemoChildren ([6397634](https://github.com/Twipped/hooks/commit/639763486438e7aec8d7599556361d8a1ec3a8f0))
+* **usePropsMemo:** This functionality is now incorporated into useStableMemo ([6397634](https://github.com/Twipped/hooks/commit/639763486438e7aec8d7599556361d8a1ec3a8f0))
+* **useWillUnmount:** Use useMountEffect instead. ([6397634](https://github.com/Twipped/hooks/commit/639763486438e7aec8d7599556361d8a1ec3a8f0))
+
+
+### Features
+
+* All new typescript definitions for vscode completion. ([f95e96b](https://github.com/Twipped/hooks/commit/f95e96ba7e06e3ad7b027e1c74bb2e1876cb3bb9))
+* **SelectionContext:** Context provider for managing a value selections across nested components. ([f95e96b](https://github.com/Twipped/hooks/commit/f95e96ba7e06e3ad7b027e1c74bb2e1876cb3bb9))
+* **StatedContext:** Context provider for managing state across nested components. ([f95e96b](https://github.com/Twipped/hooks/commit/f95e96ba7e06e3ad7b027e1c74bb2e1876cb3bb9))
+* **useChanged:** New hook for identifying when dependencies have been modified. ([f95e96b](https://github.com/Twipped/hooks/commit/f95e96ba7e06e3ad7b027e1c74bb2e1876cb3bb9))
+* **useDebouncedEffect:** Can now accept anything for its dependencies. ([f95e96b](https://github.com/Twipped/hooks/commit/f95e96ba7e06e3ad7b027e1c74bb2e1876cb3bb9))
+* **useDebouncedEffect:** Now accepts a dependency comparison option on the fifth argument. ([f95e96b](https://github.com/Twipped/hooks/commit/f95e96ba7e06e3ad7b027e1c74bb2e1876cb3bb9))
+* **useDeferredUpdate:** New hook that generates an update callback that is guaranteed to never cause a state change during render. ([f95e96b](https://github.com/Twipped/hooks/commit/f95e96ba7e06e3ad7b027e1c74bb2e1876cb3bb9))
+* **useGettableState:** Added the `defer` option to the setter function, and corrusponding `alwaysDefer` option to the hook invocation. This controls if calling the setter should immediately trigger setState, or defer to the next cycle of the event loop. Setting to true allows for writes during the render function without triggering a “State change during render” error. ([f95e96b](https://github.com/Twipped/hooks/commit/f95e96ba7e06e3ad7b027e1c74bb2e1876cb3bb9))
+* **useGettableState:** Added the `immedate` option to the setter function, and corrusponding `alwaysImmediate` option to the hook invocation. This controls if the state update should happen when the setter is called, or if it should wait for rerender. ([f95e96b](https://github.com/Twipped/hooks/commit/f95e96ba7e06e3ad7b027e1c74bb2e1876cb3bb9))
+* **useImmediateEffect:** Now accepts a dependency comparison option on the third argument. ([f95e96b](https://github.com/Twipped/hooks/commit/f95e96ba7e06e3ad7b027e1c74bb2e1876cb3bb9))
+* **useIntervalUpdate:** New hook for triggering a component refreshes every N milliseconds since last update. ([f95e96b](https://github.com/Twipped/hooks/commit/f95e96ba7e06e3ad7b027e1c74bb2e1876cb3bb9))
+* **useLocalStorage:** Now has an `isJSON` option to disable json parsing/serializing of stored values. Defaults to true. ([f95e96b](https://github.com/Twipped/hooks/commit/f95e96ba7e06e3ad7b027e1c74bb2e1876cb3bb9))
+* **useMountEffect:** New strict-mode safe hook for executing effects only on mount and dismount. ([f95e96b](https://github.com/Twipped/hooks/commit/f95e96ba7e06e3ad7b027e1c74bb2e1876cb3bb9))
+* **useSessionStorage:** Now has an `isJSON` option to disable json parsing/serializing of stored values. Defaults to true. ([f95e96b](https://github.com/Twipped/hooks/commit/f95e96ba7e06e3ad7b027e1c74bb2e1876cb3bb9))
+* **useSmartEffect:** New hook. Identical to useEffect, but can use anything as a dependency and performs deep comparison of dependencies by default. ([f95e96b](https://github.com/Twipped/hooks/commit/f95e96ba7e06e3ad7b027e1c74bb2e1876cb3bb9))
+* **useSuspense:** New hook for performing an async task across a react suspension. ([f95e96b](https://github.com/Twipped/hooks/commit/f95e96ba7e06e3ad7b027e1c74bb2e1876cb3bb9))
+* **useUpdateEffect:** Can now accept anything for its dependencies. ([f95e96b](https://github.com/Twipped/hooks/commit/f95e96ba7e06e3ad7b027e1c74bb2e1876cb3bb9))
+* **useUpdateEffect:** Now accepts a dependency comparison option on the third argument. ([f95e96b](https://github.com/Twipped/hooks/commit/f95e96ba7e06e3ad7b027e1c74bb2e1876cb3bb9))
+* **useViewportIsIdle:** New hook for tracking if the user is inactive. ([f95e96b](https://github.com/Twipped/hooks/commit/f95e96ba7e06e3ad7b027e1c74bb2e1876cb3bb9))
+
+
+### Bug Fixes
+
+* **useClock:** No longer incorrectly triggers an update immediately after first render. ([f95e96b](https://github.com/Twipped/hooks/commit/f95e96ba7e06e3ad7b027e1c74bb2e1876cb3bb9))
+* **useClock:** Now functions properly in StrictMode ([f95e96b](https://github.com/Twipped/hooks/commit/f95e96ba7e06e3ad7b027e1c74bb2e1876cb3bb9))
+* **useDebounce:** Now functions properly in StrictMode ([f95e96b](https://github.com/Twipped/hooks/commit/f95e96ba7e06e3ad7b027e1c74bb2e1876cb3bb9))
+* **useDefer:** Fixed a bug that would cause the timeout handle to get lost on component refresh ([f95e96b](https://github.com/Twipped/hooks/commit/f95e96ba7e06e3ad7b027e1c74bb2e1876cb3bb9))
+* **useDerivedState:** Now resets its value immediately when dependencies change, instead of waiting for next effect loop. This ensures that outgoing state is always in sync with incoming state. ([f95e96b](https://github.com/Twipped/hooks/commit/f95e96ba7e06e3ad7b027e1c74bb2e1876cb3bb9))
+* **useGettableState:** Now supports passing a callback to the setter function, same as the native useState. ([f95e96b](https://github.com/Twipped/hooks/commit/f95e96ba7e06e3ad7b027e1c74bb2e1876cb3bb9))
+* **useGettableState:** The getter and setter functions will no longer change every render if the initial value is an object or array. ([f95e96b](https://github.com/Twipped/hooks/commit/f95e96ba7e06e3ad7b027e1c74bb2e1876cb3bb9))
+* **useInterval:** `timer.isActive` is now a read-only boolean instead of a getter function. ([f95e96b](https://github.com/Twipped/hooks/commit/f95e96ba7e06e3ad7b027e1c74bb2e1876cb3bb9))
+* **useInterval:** Now functions properly in StrictMode ([f95e96b](https://github.com/Twipped/hooks/commit/f95e96ba7e06e3ad7b027e1c74bb2e1876cb3bb9))
+* **useMemoObject:** Now accepts anything as a dependency. ([f95e96b](https://github.com/Twipped/hooks/commit/f95e96ba7e06e3ad7b027e1c74bb2e1876cb3bb9))
+* **usePageHash:** Actually returns the hash now, instead of a object. ([f95e96b](https://github.com/Twipped/hooks/commit/f95e96ba7e06e3ad7b027e1c74bb2e1876cb3bb9))
+* **useStableMemo:** Now correctly detects a dependency change if `dependencies` becomes a falsy value. ([f95e96b](https://github.com/Twipped/hooks/commit/f95e96ba7e06e3ad7b027e1c74bb2e1876cb3bb9))
+* **useTimeout:** `timer.isActive` is now a read-only boolean instead of a getter function. ([f95e96b](https://github.com/Twipped/hooks/commit/f95e96ba7e06e3ad7b027e1c74bb2e1876cb3bb9))
+* **useTimeout:** Fixed a bug that would cause the timeout handle to get lost on component refresh ([f95e96b](https://github.com/Twipped/hooks/commit/f95e96ba7e06e3ad7b027e1c74bb2e1876cb3bb9))
+* **useTimeout:** Now functions properly in StrictMode ([f95e96b](https://github.com/Twipped/hooks/commit/f95e96ba7e06e3ad7b027e1c74bb2e1876cb3bb9))
+* **useTimeout:** When the timeout function is provided on the hook instead of the `set()` function, the timeout will now always invoke the latest rendered instance of the function. Previously it would render the instance at the time set() was called. ([f95e96b](https://github.com/Twipped/hooks/commit/f95e96ba7e06e3ad7b027e1c74bb2e1876cb3bb9))
+* **useUpdateEffect:** Now functions properly in StrictMode ([f95e96b](https://github.com/Twipped/hooks/commit/f95e96ba7e06e3ad7b027e1c74bb2e1876cb3bb9))
+
 ## [1.1.0](https://github.com/Twipped/hooks/compare/v1.0.0...v1.1.0) (2023-09-28)
 
 
